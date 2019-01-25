@@ -1,0 +1,5 @@
+ <dbtest.c:66 main();> Number of tables 23
+Number of fields in country = 3
+[0m
+ <dbtest.c:71 main();> No views found
+[0m

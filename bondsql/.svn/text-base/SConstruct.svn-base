@@ -1,0 +1,29 @@
+Import('env','usrlocal','bondcommon')
+print 'building bondsql'
+
+# Source files
+list = Split('lexer.l parser.y sql_parser.c mem.c sql_tree.c sql_display.c')
+
+headerlist = Split('sql_parser.h')
+
+nv=env.Clone()
+nv.Append(YACCFLAGS='-v -d -p sql')
+nv.Append(LEXFLAGS='-Psql')
+bondsql = nv.SharedLibrary('#lib/bondsql',list)
+
+env.Append(LIBS=['bondsql'])
+env.Append(CPPPATH=['#bondsql'])
+
+nv2=nv.Clone()
+nv2.Append(LIBS=['bondsql'])
+nv2.Append(CPPPATH=['#bondsql'])
+
+p = nv2.Program('sql_parser_test',['sql_parser_test.c']);
+
+env.InstallPerm(usrlocal+'lib',bondsql,0444)
+env.InstallPerm(usrlocal+'include/bond',headerlist,0444)
+il = env.Alias('install-lib', usrlocal+'lib')
+ih = env.Alias('install-header', usrlocal+'include/bond')
+env.Alias('install', [il])
+
+Export('bondsql');

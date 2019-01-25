@@ -1,0 +1,31 @@
+Import('env','usrlocal', 'pg', 'mysql','bondcommon','bondsql')
+print 'Building bonddb...'
+
+# Source files
+list = Split('bonddbplugin.c bonddbinit.c bonddbobj.c bonddbwrite.c \
+	bonddbkey.c bonddbrecord.c bonddbfield.c bonddbid.c bonddbparse.c \
+	bonddbloadby.c bonddbarray.c bonddbfilter.c bonddbpurify.c bonddbglobal.c')
+
+headerlist = Split('bonddb.h bonddbobj.h bonddbid.h bonddbloadby.h \
+	bonddbfilter.h bonddbarray.h bonddbglobal.h bonddbfield.h \
+	bonddbrecord.h bonddbplugin.h bonddbinit.h bonddbparse.h \
+	bonddbwrite.h bonddbpurify.h');
+
+nv=env.Clone()
+
+bonddb2=nv.SharedLibrary('#lib/bonddb2',list)
+Depends(bonddb2,bondcommon[0]);
+testprog = nv.Clone()
+testprog.Append(LIBS=['bonddb2'])
+testprog.Append(CPPPATH=['#bonddb'])
+prg=testprog.Program('bonddbtest.c');
+Depends(prg,bonddb2[0]);
+	
+
+env.InstallPerm(usrlocal+'include/bond', headerlist,0444)
+env.InstallPerm(usrlocal+'lib',bonddb2,0444)
+il = env.Alias('install-lib', usrlocal+'lib')
+ih = env.Alias('install-header', usrlocal+'include/bond')
+env.Alias('install',[il, ih])
+
+Export('bonddb2');

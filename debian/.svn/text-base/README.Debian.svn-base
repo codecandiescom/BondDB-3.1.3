@@ -1,0 +1,7 @@
+bonddb for Debian
+-----------------
+
+you will need a bond.conf file callable from whatever software you write to
+use this project
+
+ -- Andrew Hill <andru@treshna.com>, Wed, 27 Feb 2002 10:53:35 +1300

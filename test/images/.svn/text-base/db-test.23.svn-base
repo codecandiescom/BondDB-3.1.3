@@ -1,0 +1,3 @@
+ <dbtest.c:538 main();> Testing debugging messaging system[0m
+ <dbtest.c:540 main();> Back to normal debugging message[0m
+ <dbtest.c:541 main();> TEST PASSED[0m

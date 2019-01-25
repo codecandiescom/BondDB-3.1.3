@@ -1,0 +1,13 @@
+bonddb
+
+http://bonddb.treshna.com
+==========================================================================
+
+Dependences:
+
+Posgresql is the biggest dependency, you need the development libaries
+installed like libpq.
+
+Bision and lexer are needed to compile the sql parser component of bonddb.
+
+GLib is also required

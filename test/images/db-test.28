@@ -1,0 +1,13 @@
+ <dbfilter.c:265 db_filter_filterbyvalue();> Filtering list soldier, field countryid for value 1[0m
+ 0 1 1
+ 1 1 1
+ 2 3 1
+ 3 1 1
+ <dbfilter.c:317 db_filter_filterbyvalue();> filter has now been finished, with 3 of 4 items showing[0m
+ <dbfilter.c:265 db_filter_filterbyvalue();> Filtering list soldier, field countryid for value 3[0m
+ 0 1 3
+ 1 1 3
+ 2 3 3
+ 3 1 3
+ <dbfilter.c:317 db_filter_filterbyvalue();> filter has now been finished, with 1 of 4 items showing[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

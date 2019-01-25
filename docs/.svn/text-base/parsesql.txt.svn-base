@@ -1,0 +1,11 @@
+There is a built-in sql parser which understands most SQL statements (but not
+all of them).  This is in bondsql/ directory.
+
+db_create("sql select or tablename"); will create a new dbobject. this has to
+be parsed and modified to make sure its correct.  pg_oid needs to be added.
+Likewise, * statements needs to be expanded out into there table and field
+values.  The database structure needs to be queried to make sure the table
+and field names are correctly found.  
+
+Joins need to be understood and there information stored.  A pg_oid for each
+table requested needs to be present. 

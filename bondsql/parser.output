@@ -1,0 +1,2368 @@
+State 25 conflicts: 2 shift/reduce
+State 28 conflicts: 6 shift/reduce
+State 29 conflicts: 1 shift/reduce
+State 40 conflicts: 1 shift/reduce
+State 48 conflicts: 1 shift/reduce
+State 66 conflicts: 7 shift/reduce
+State 68 conflicts: 2 shift/reduce
+State 73 conflicts: 2 shift/reduce
+State 76 conflicts: 1 shift/reduce
+State 86 conflicts: 4 shift/reduce
+State 103 conflicts: 1 shift/reduce
+State 156 conflicts: 1 shift/reduce
+State 157 conflicts: 1 shift/reduce
+State 170 conflicts: 1 shift/reduce
+State 194 conflicts: 2 shift/reduce
+
+
+Grammar
+
+    0 $accept: statement $end
+
+    1 statement: select_statement
+    2          | insert_statement
+    3          | update_statement
+    4          | delete_statement
+
+    5 select_statement: L_SELECT opt_distinct fields_list L_FROM targets_list opt_where opt_orderby opt_groupby
+    6                 | L_SELECT opt_distinct fields_list opt_where opt_orderby opt_groupby
+
+    7 insert_statement: L_INSERT L_INTO simple_target opt_fields_list L_VALUES L_LBRACKET fields_list L_RBRACKET
+
+    8 update_statement: L_UPDATE simple_target L_SET set_list opt_where
+
+    9 delete_statement: L_DELETE L_FROM simple_target opt_where
+
+   10 set_list: set_item
+   11         | set_item L_COMMA set_list
+
+   12 opt_fields_list: L_LBRACKET fields_list L_RBRACKET
+   13                | /* empty */
+
+   14 opt_distinct: L_DISTINCT
+   15             | /* empty */
+
+   16 opt_where: L_WHERE where_list
+   17          | /* empty */
+
+   18 opt_orderby: L_ORDER L_BY order_fields_list
+   19            | /* empty */
+
+   20 order_fields_list: order_field
+   21                  | order_field L_COMMA order_fields_list
+
+   22 order_field: field_name
+   23            | field_name L_ORDER_ASC
+   24            | field_name L_ORDER_DSC
+
+   25 opt_groupby: L_GROUP L_BY fields_list
+   26            | /* empty */
+
+   27 fields_list: field
+   28            | field L_COMMA fields_list
+
+   29 join_type: L_LEFT L_JOIN
+   30          | L_LEFT L_OUTER L_JOIN
+   31          | L_RIGHT L_JOIN
+   32          | L_RIGHT L_OUTER L_JOIN
+   33          | L_FULL L_JOIN
+   34          | L_FULL L_OUTER L_JOIN
+   35          | L_INNER L_JOIN
+   36          | L_JOIN
+
+   37 targets_list: target
+   38             | targets_list L_COMMA target
+   39             | targets_list join_type target
+   40             | targets_list join_type target L_ON where_list
+
+   41 simple_table: L_IDENT
+
+   42 table: simple_table
+   43      | select_statement
+   44      | L_LBRACKET table L_RBRACKET
+   45      | L_IDENT L_LBRACKET fields_list L_RBRACKET
+   46      | L_IDENT L_LBRACKET L_RBRACKET
+
+   47 target: table
+   48       | table L_AS L_IDENT
+   49       | table L_IDENT
+
+   50 simple_target: simple_table
+   51              | simple_table L_AS L_IDENT
+   52              | simple_table L_IDENT
+
+   53 dotted_name: L_IDENT
+   54            | L_IDENT L_DOT dotted_name
+   55            | L_IDENT L_DOT L_TIMES
+
+   56 field_name: dotted_name
+   57           | L_TIMES
+   58           | L_NULL
+   59           | L_STRING
+   60           | L_UNSPECVAL
+
+   61 field_op: L_MINUS
+   62         | L_PLUS
+   63         | L_TIMES
+   64         | L_DIV
+
+   65 field_raw: field_name
+   66          | field_raw field_op field_raw
+   67          | select_statement
+   68          | L_LBRACKET field_raw L_RBRACKET
+   69          | L_IDENT L_LBRACKET fields_list L_RBRACKET
+   70          | L_IDENT L_LBRACKET L_RBRACKET
+
+   71 field: field_raw
+   72      | field_raw L_AS L_IDENT
+   73      | field_raw L_AS L_TEXTUAL
+   74      | field_raw param_spec
+   75      | field_raw param_spec L_AS L_IDENT
+
+   76 where_list: where_item
+   77           | L_NOT where_list
+   78           | where_list L_OR where_list
+   79           | where_list L_AND where_list
+   80           | L_LBRACKET where_list L_RBRACKET
+
+   81 set_item: field L_EQ field
+
+   82 condition_operator: L_EQ
+   83                   | L_IS
+   84                   | L_IN
+   85                   | L_LIKE
+   86                   | L_ILIKE
+   87                   | L_SIMILAR
+   88                   | L_GT
+   89                   | L_LT
+   90                   | L_GEQ
+   91                   | L_LEQ
+   92                   | L_DIFF
+   93                   | L_REGEXP
+   94                   | L_REGEXP_CI
+   95                   | L_NOTREGEXP
+   96                   | L_NOTREGEXP_CI
+   97                   | L_NOT
+
+   98 where_item: field condition_operator field
+   99           | field L_BETWEEN field L_AND field
+  100           | field L_NOT condition_operator field
+  101           | field L_NOT L_BETWEEN field L_AND field
+  102           | field L_IS L_NOT field
+
+  103 param_spec: L_LSBRACKET param_spec_list L_RSBRACKET
+
+  104 param_spec_list: param_spec_item
+  105                | param_spec_item param_spec_list
+
+  106 param_spec_item: L_PNAME L_EQ L_TEXTUAL
+  107                | L_PDESCR L_EQ L_TEXTUAL
+  108                | L_PTYPE L_EQ L_TEXTUAL
+  109                | L_PISPARAM L_EQ L_TEXTUAL
+  110                | L_PNULLOK L_EQ L_TEXTUAL
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+L_SELECT (258) 5 6
+L_FROM (259) 5 9
+L_WHERE (260) 16
+L_AS (261) 48 51 72 73 75
+L_ON (262) 40
+L_ORDER (263) 18
+L_BY (264) 18 25
+L_ORDER_ASC (265) 23
+L_ORDER_DSC (266) 24
+L_DISTINCT (267) 14
+L_BETWEEN (268) 99 101
+L_IN (269) 84
+L_GROUP (270) 25
+L_INSERT (271) 7
+L_INTO (272) 7
+L_VALUES (273) 7
+L_UPDATE (274) 8
+L_SET (275) 8
+L_DOT (276) 54 55
+L_COMMA (277) 11 21 28 38
+L_NULL (278) 58
+L_LBRACKET (279) 7 12 44 45 46 68 69 70 80
+L_RBRACKET (280) 7 12 44 45 46 68 69 70 80
+L_IDENT (281) 41 45 46 48 49 51 52 53 54 55 69 70 72 75
+L_EQ (282) 81 82 106 107 108 109 110
+L_IS (283) 83 102
+L_LIKE (284) 85
+L_ILIKE (285) 86
+L_GT (286) 88
+L_LT (287) 89
+L_GEQ (288) 90
+L_LEQ (289) 91
+L_DIFF (290) 92
+L_REGEXP (291) 93
+L_REGEXP_CI (292) 94
+L_NOTREGEXP (293) 95
+L_NOTREGEXP_CI (294) 96
+L_SIMILAR (295) 87
+L_NOT (296) 77 97 100 101 102
+L_AND (297) 79 99 101
+L_OR (298) 78
+L_MINUS (299) 61
+L_PLUS (300) 62
+L_TIMES (301) 55 57 63
+L_DIV (302) 64
+L_STRING (303) 59
+L_TEXTUAL (304) 73 106 107 108 109 110
+L_DELETE (305) 9
+L_JOIN (306) 29 30 31 32 33 34 35 36
+L_INNER (307) 35
+L_LEFT (308) 29 30
+L_RIGHT (309) 31 32
+L_FULL (310) 33 34
+L_OUTER (311) 30 32 34
+L_LSBRACKET (312) 103
+L_RSBRACKET (313) 103
+L_PNAME (314) 106
+L_PTYPE (315) 108
+L_PISPARAM (316) 109
+L_PDESCR (317) 107
+L_PNULLOK (318) 110
+L_UNSPECVAL (319) 60
+
+
+Nonterminals, with rules where they appear
+
+$accept (65)
+    on left: 0
+statement (66)
+    on left: 1 2 3 4, on right: 0
+select_statement (67)
+    on left: 5 6, on right: 1 43 67
+insert_statement (68)
+    on left: 7, on right: 2
+update_statement (69)
+    on left: 8, on right: 3
+delete_statement (70)
+    on left: 9, on right: 4
+set_list (71)
+    on left: 10 11, on right: 8 11
+opt_fields_list (72)
+    on left: 12 13, on right: 7
+opt_distinct (73)
+    on left: 14 15, on right: 5 6
+opt_where (74)
+    on left: 16 17, on right: 5 6 8 9
+opt_orderby (75)
+    on left: 18 19, on right: 5 6
+order_fields_list (76)
+    on left: 20 21, on right: 18 21
+order_field (77)
+    on left: 22 23 24, on right: 20 21
+opt_groupby (78)
+    on left: 25 26, on right: 5 6
+fields_list (79)
+    on left: 27 28, on right: 5 6 7 12 25 28 45 69
+join_type (80)
+    on left: 29 30 31 32 33 34 35 36, on right: 39 40
+targets_list (81)
+    on left: 37 38 39 40, on right: 5 38 39 40
+simple_table (82)
+    on left: 41, on right: 42 50 51 52
+table (83)
+    on left: 42 43 44 45 46, on right: 44 47 48 49
+target (84)
+    on left: 47 48 49, on right: 37 38 39 40
+simple_target (85)
+    on left: 50 51 52, on right: 7 8 9
+dotted_name (86)
+    on left: 53 54 55, on right: 54 56
+field_name (87)
+    on left: 56 57 58 59 60, on right: 22 23 24 65
+field_op (88)
+    on left: 61 62 63 64, on right: 66
+field_raw (89)
+    on left: 65 66 67 68 69 70, on right: 66 68 71 72 73 74 75
+field (90)
+    on left: 71 72 73 74 75, on right: 27 28 81 98 99 100 101 102
+where_list (91)
+    on left: 76 77 78 79 80, on right: 16 40 77 78 79 80
+set_item (92)
+    on left: 81, on right: 10 11
+condition_operator (93)
+    on left: 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97,
+    on right: 98 100
+where_item (94)
+    on left: 98 99 100 101 102, on right: 76
+param_spec (95)
+    on left: 103, on right: 74 75
+param_spec_list (96)
+    on left: 104 105, on right: 103 105
+param_spec_item (97)
+    on left: 106 107 108 109 110, on right: 104 105
+
+
+state 0
+
+    0 $accept: . statement $end
+
+    L_SELECT  shift, and go to state 1
+    L_INSERT  shift, and go to state 2
+    L_UPDATE  shift, and go to state 3
+    L_DELETE  shift, and go to state 4
+
+    statement         go to state 5
+    select_statement  go to state 6
+    insert_statement  go to state 7
+    update_statement  go to state 8
+    delete_statement  go to state 9
+
+
+state 1
+
+    5 select_statement: L_SELECT . opt_distinct fields_list L_FROM targets_list opt_where opt_orderby opt_groupby
+    6                 | L_SELECT . opt_distinct fields_list opt_where opt_orderby opt_groupby
+
+    L_DISTINCT  shift, and go to state 10
+
+    $default  reduce using rule 15 (opt_distinct)
+
+    opt_distinct  go to state 11
+
+
+state 2
+
+    7 insert_statement: L_INSERT . L_INTO simple_target opt_fields_list L_VALUES L_LBRACKET fields_list L_RBRACKET
+
+    L_INTO  shift, and go to state 12
+
+
+state 3
+
+    8 update_statement: L_UPDATE . simple_target L_SET set_list opt_where
+
+    L_IDENT  shift, and go to state 13
+
+    simple_table   go to state 14
+    simple_target  go to state 15
+
+
+state 4
+
+    9 delete_statement: L_DELETE . L_FROM simple_target opt_where
+
+    L_FROM  shift, and go to state 16
+
+
+state 5
+
+    0 $accept: statement . $end
+
+    $end  shift, and go to state 17
+
+
+state 6
+
+    1 statement: select_statement .
+
+    $default  reduce using rule 1 (statement)
+
+
+state 7
+
+    2 statement: insert_statement .
+
+    $default  reduce using rule 2 (statement)
+
+
+state 8
+
+    3 statement: update_statement .
+
+    $default  reduce using rule 3 (statement)
+
+
+state 9
+
+    4 statement: delete_statement .
+
+    $default  reduce using rule 4 (statement)
+
+
+state 10
+
+   14 opt_distinct: L_DISTINCT .
+
+    $default  reduce using rule 14 (opt_distinct)
+
+
+state 11
+
+    5 select_statement: L_SELECT opt_distinct . fields_list L_FROM targets_list opt_where opt_orderby opt_groupby
+    6                 | L_SELECT opt_distinct . fields_list opt_where opt_orderby opt_groupby
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    fields_list       go to state 25
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 29
+
+
+state 12
+
+    7 insert_statement: L_INSERT L_INTO . simple_target opt_fields_list L_VALUES L_LBRACKET fields_list L_RBRACKET
+
+    L_IDENT  shift, and go to state 13
+
+    simple_table   go to state 14
+    simple_target  go to state 30
+
+
+state 13
+
+   41 simple_table: L_IDENT .
+
+    $default  reduce using rule 41 (simple_table)
+
+
+state 14
+
+   50 simple_target: simple_table .
+   51              | simple_table . L_AS L_IDENT
+   52              | simple_table . L_IDENT
+
+    L_AS     shift, and go to state 31
+    L_IDENT  shift, and go to state 32
+
+    $default  reduce using rule 50 (simple_target)
+
+
+state 15
+
+    8 update_statement: L_UPDATE simple_target . L_SET set_list opt_where
+
+    L_SET  shift, and go to state 33
+
+
+state 16
+
+    9 delete_statement: L_DELETE L_FROM . simple_target opt_where
+
+    L_IDENT  shift, and go to state 13
+
+    simple_table   go to state 14
+    simple_target  go to state 34
+
+
+state 17
+
+    0 $accept: statement $end .
+
+    $default  accept
+
+
+state 18
+
+   58 field_name: L_NULL .
+
+    $default  reduce using rule 58 (field_name)
+
+
+state 19
+
+   68 field_raw: L_LBRACKET . field_raw L_RBRACKET
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 35
+
+
+state 20
+
+   53 dotted_name: L_IDENT .
+   54            | L_IDENT . L_DOT dotted_name
+   55            | L_IDENT . L_DOT L_TIMES
+   69 field_raw: L_IDENT . L_LBRACKET fields_list L_RBRACKET
+   70          | L_IDENT . L_LBRACKET L_RBRACKET
+
+    L_DOT       shift, and go to state 36
+    L_LBRACKET  shift, and go to state 37
+
+    $default  reduce using rule 53 (dotted_name)
+
+
+state 21
+
+   57 field_name: L_TIMES .
+
+    $default  reduce using rule 57 (field_name)
+
+
+state 22
+
+   59 field_name: L_STRING .
+
+    $default  reduce using rule 59 (field_name)
+
+
+state 23
+
+   60 field_name: L_UNSPECVAL .
+
+    $default  reduce using rule 60 (field_name)
+
+
+state 24
+
+   67 field_raw: select_statement .
+
+    $default  reduce using rule 67 (field_raw)
+
+
+state 25
+
+    5 select_statement: L_SELECT opt_distinct fields_list . L_FROM targets_list opt_where opt_orderby opt_groupby
+    6                 | L_SELECT opt_distinct fields_list . opt_where opt_orderby opt_groupby
+
+    L_FROM   shift, and go to state 38
+    L_WHERE  shift, and go to state 39
+
+    L_FROM    [reduce using rule 17 (opt_where)]
+    L_WHERE   [reduce using rule 17 (opt_where)]
+    $default  reduce using rule 17 (opt_where)
+
+    opt_where  go to state 40
+
+
+state 26
+
+   56 field_name: dotted_name .
+
+    $default  reduce using rule 56 (field_name)
+
+
+state 27
+
+   65 field_raw: field_name .
+
+    $default  reduce using rule 65 (field_raw)
+
+
+state 28
+
+   66 field_raw: field_raw . field_op field_raw
+   71 field: field_raw .
+   72      | field_raw . L_AS L_IDENT
+   73      | field_raw . L_AS L_TEXTUAL
+   74      | field_raw . param_spec
+   75      | field_raw . param_spec L_AS L_IDENT
+
+    L_AS         shift, and go to state 41
+    L_MINUS      shift, and go to state 42
+    L_PLUS       shift, and go to state 43
+    L_TIMES      shift, and go to state 44
+    L_DIV        shift, and go to state 45
+    L_LSBRACKET  shift, and go to state 46
+
+    L_AS         [reduce using rule 71 (field)]
+    L_MINUS      [reduce using rule 71 (field)]
+    L_PLUS       [reduce using rule 71 (field)]
+    L_TIMES      [reduce using rule 71 (field)]
+    L_DIV        [reduce using rule 71 (field)]
+    L_LSBRACKET  [reduce using rule 71 (field)]
+    $default     reduce using rule 71 (field)
+
+    field_op    go to state 47
+    param_spec  go to state 48
+
+
+state 29
+
+   27 fields_list: field .
+   28            | field . L_COMMA fields_list
+
+    L_COMMA  shift, and go to state 49
+
+    L_COMMA   [reduce using rule 27 (fields_list)]
+    $default  reduce using rule 27 (fields_list)
+
+
+state 30
+
+    7 insert_statement: L_INSERT L_INTO simple_target . opt_fields_list L_VALUES L_LBRACKET fields_list L_RBRACKET
+
+    L_LBRACKET  shift, and go to state 50
+
+    $default  reduce using rule 13 (opt_fields_list)
+
+    opt_fields_list  go to state 51
+
+
+state 31
+
+   51 simple_target: simple_table L_AS . L_IDENT
+
+    L_IDENT  shift, and go to state 52
+
+
+state 32
+
+   52 simple_target: simple_table L_IDENT .
+
+    $default  reduce using rule 52 (simple_target)
+
+
+state 33
+
+    8 update_statement: L_UPDATE simple_target L_SET . set_list opt_where
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    set_list          go to state 53
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 54
+    set_item          go to state 55
+
+
+state 34
+
+    9 delete_statement: L_DELETE L_FROM simple_target . opt_where
+
+    L_WHERE  shift, and go to state 39
+
+    $default  reduce using rule 17 (opt_where)
+
+    opt_where  go to state 56
+
+
+state 35
+
+   66 field_raw: field_raw . field_op field_raw
+   68          | L_LBRACKET field_raw . L_RBRACKET
+
+    L_RBRACKET  shift, and go to state 57
+    L_MINUS     shift, and go to state 42
+    L_PLUS      shift, and go to state 43
+    L_TIMES     shift, and go to state 44
+    L_DIV       shift, and go to state 45
+
+    field_op  go to state 47
+
+
+state 36
+
+   54 dotted_name: L_IDENT L_DOT . dotted_name
+   55            | L_IDENT L_DOT . L_TIMES
+
+    L_IDENT  shift, and go to state 58
+    L_TIMES  shift, and go to state 59
+
+    dotted_name  go to state 60
+
+
+state 37
+
+   69 field_raw: L_IDENT L_LBRACKET . fields_list L_RBRACKET
+   70          | L_IDENT L_LBRACKET . L_RBRACKET
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_RBRACKET   shift, and go to state 61
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    fields_list       go to state 62
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 29
+
+
+state 38
+
+    5 select_statement: L_SELECT opt_distinct fields_list L_FROM . targets_list opt_where opt_orderby opt_groupby
+
+    L_SELECT    shift, and go to state 1
+    L_LBRACKET  shift, and go to state 63
+    L_IDENT     shift, and go to state 64
+
+    select_statement  go to state 65
+    targets_list      go to state 66
+    simple_table      go to state 67
+    table             go to state 68
+    target            go to state 69
+
+
+state 39
+
+   16 opt_where: L_WHERE . where_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 70
+    L_IDENT      shift, and go to state 20
+    L_NOT        shift, and go to state 71
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 72
+    where_list        go to state 73
+    where_item        go to state 74
+
+
+state 40
+
+    6 select_statement: L_SELECT opt_distinct fields_list opt_where . opt_orderby opt_groupby
+
+    L_ORDER  shift, and go to state 75
+
+    L_ORDER   [reduce using rule 19 (opt_orderby)]
+    $default  reduce using rule 19 (opt_orderby)
+
+    opt_orderby  go to state 76
+
+
+state 41
+
+   72 field: field_raw L_AS . L_IDENT
+   73      | field_raw L_AS . L_TEXTUAL
+
+    L_IDENT    shift, and go to state 77
+    L_TEXTUAL  shift, and go to state 78
+
+
+state 42
+
+   61 field_op: L_MINUS .
+
+    $default  reduce using rule 61 (field_op)
+
+
+state 43
+
+   62 field_op: L_PLUS .
+
+    $default  reduce using rule 62 (field_op)
+
+
+state 44
+
+   63 field_op: L_TIMES .
+
+    $default  reduce using rule 63 (field_op)
+
+
+state 45
+
+   64 field_op: L_DIV .
+
+    $default  reduce using rule 64 (field_op)
+
+
+state 46
+
+  103 param_spec: L_LSBRACKET . param_spec_list L_RSBRACKET
+
+    L_PNAME     shift, and go to state 79
+    L_PTYPE     shift, and go to state 80
+    L_PISPARAM  shift, and go to state 81
+    L_PDESCR    shift, and go to state 82
+    L_PNULLOK   shift, and go to state 83
+
+    param_spec_list  go to state 84
+    param_spec_item  go to state 85
+
+
+state 47
+
+   66 field_raw: field_raw field_op . field_raw
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 86
+
+
+state 48
+
+   74 field: field_raw param_spec .
+   75      | field_raw param_spec . L_AS L_IDENT
+
+    L_AS  shift, and go to state 87
+
+    L_AS      [reduce using rule 74 (field)]
+    $default  reduce using rule 74 (field)
+
+
+state 49
+
+   28 fields_list: field L_COMMA . fields_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    fields_list       go to state 88
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 29
+
+
+state 50
+
+   12 opt_fields_list: L_LBRACKET . fields_list L_RBRACKET
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    fields_list       go to state 89
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 29
+
+
+state 51
+
+    7 insert_statement: L_INSERT L_INTO simple_target opt_fields_list . L_VALUES L_LBRACKET fields_list L_RBRACKET
+
+    L_VALUES  shift, and go to state 90
+
+
+state 52
+
+   51 simple_target: simple_table L_AS L_IDENT .
+
+    $default  reduce using rule 51 (simple_target)
+
+
+state 53
+
+    8 update_statement: L_UPDATE simple_target L_SET set_list . opt_where
+
+    L_WHERE  shift, and go to state 39
+
+    $default  reduce using rule 17 (opt_where)
+
+    opt_where  go to state 91
+
+
+state 54
+
+   81 set_item: field . L_EQ field
+
+    L_EQ  shift, and go to state 92
+
+
+state 55
+
+   10 set_list: set_item .
+   11         | set_item . L_COMMA set_list
+
+    L_COMMA  shift, and go to state 93
+
+    $default  reduce using rule 10 (set_list)
+
+
+state 56
+
+    9 delete_statement: L_DELETE L_FROM simple_target opt_where .
+
+    $default  reduce using rule 9 (delete_statement)
+
+
+state 57
+
+   68 field_raw: L_LBRACKET field_raw L_RBRACKET .
+
+    $default  reduce using rule 68 (field_raw)
+
+
+state 58
+
+   53 dotted_name: L_IDENT .
+   54            | L_IDENT . L_DOT dotted_name
+   55            | L_IDENT . L_DOT L_TIMES
+
+    L_DOT  shift, and go to state 36
+
+    $default  reduce using rule 53 (dotted_name)
+
+
+state 59
+
+   55 dotted_name: L_IDENT L_DOT L_TIMES .
+
+    $default  reduce using rule 55 (dotted_name)
+
+
+state 60
+
+   54 dotted_name: L_IDENT L_DOT dotted_name .
+
+    $default  reduce using rule 54 (dotted_name)
+
+
+state 61
+
+   70 field_raw: L_IDENT L_LBRACKET L_RBRACKET .
+
+    $default  reduce using rule 70 (field_raw)
+
+
+state 62
+
+   69 field_raw: L_IDENT L_LBRACKET fields_list . L_RBRACKET
+
+    L_RBRACKET  shift, and go to state 94
+
+
+state 63
+
+   44 table: L_LBRACKET . table L_RBRACKET
+
+    L_SELECT    shift, and go to state 1
+    L_LBRACKET  shift, and go to state 63
+    L_IDENT     shift, and go to state 64
+
+    select_statement  go to state 65
+    simple_table      go to state 67
+    table             go to state 95
+
+
+state 64
+
+   41 simple_table: L_IDENT .
+   45 table: L_IDENT . L_LBRACKET fields_list L_RBRACKET
+   46      | L_IDENT . L_LBRACKET L_RBRACKET
+
+    L_LBRACKET  shift, and go to state 96
+
+    $default  reduce using rule 41 (simple_table)
+
+
+state 65
+
+   43 table: select_statement .
+
+    $default  reduce using rule 43 (table)
+
+
+state 66
+
+    5 select_statement: L_SELECT opt_distinct fields_list L_FROM targets_list . opt_where opt_orderby opt_groupby
+   38 targets_list: targets_list . L_COMMA target
+   39             | targets_list . join_type target
+   40             | targets_list . join_type target L_ON where_list
+
+    L_WHERE  shift, and go to state 39
+    L_COMMA  shift, and go to state 97
+    L_JOIN   shift, and go to state 98
+    L_INNER  shift, and go to state 99
+    L_LEFT   shift, and go to state 100
+    L_RIGHT  shift, and go to state 101
+    L_FULL   shift, and go to state 102
+
+    L_WHERE   [reduce using rule 17 (opt_where)]
+    L_COMMA   [reduce using rule 17 (opt_where)]
+    L_JOIN    [reduce using rule 17 (opt_where)]
+    L_INNER   [reduce using rule 17 (opt_where)]
+    L_LEFT    [reduce using rule 17 (opt_where)]
+    L_RIGHT   [reduce using rule 17 (opt_where)]
+    L_FULL    [reduce using rule 17 (opt_where)]
+    $default  reduce using rule 17 (opt_where)
+
+    opt_where  go to state 103
+    join_type  go to state 104
+
+
+state 67
+
+   42 table: simple_table .
+
+    $default  reduce using rule 42 (table)
+
+
+state 68
+
+   47 target: table .
+   48       | table . L_AS L_IDENT
+   49       | table . L_IDENT
+
+    L_AS     shift, and go to state 105
+    L_IDENT  shift, and go to state 106
+
+    L_AS      [reduce using rule 47 (target)]
+    L_IDENT   [reduce using rule 47 (target)]
+    $default  reduce using rule 47 (target)
+
+
+state 69
+
+   37 targets_list: target .
+
+    $default  reduce using rule 37 (targets_list)
+
+
+state 70
+
+   68 field_raw: L_LBRACKET . field_raw L_RBRACKET
+   80 where_list: L_LBRACKET . where_list L_RBRACKET
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 70
+    L_IDENT      shift, and go to state 20
+    L_NOT        shift, and go to state 71
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 107
+    field             go to state 72
+    where_list        go to state 108
+    where_item        go to state 74
+
+
+state 71
+
+   77 where_list: L_NOT . where_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 70
+    L_IDENT      shift, and go to state 20
+    L_NOT        shift, and go to state 71
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 72
+    where_list        go to state 109
+    where_item        go to state 74
+
+
+state 72
+
+   98 where_item: field . condition_operator field
+   99           | field . L_BETWEEN field L_AND field
+  100           | field . L_NOT condition_operator field
+  101           | field . L_NOT L_BETWEEN field L_AND field
+  102           | field . L_IS L_NOT field
+
+    L_BETWEEN       shift, and go to state 110
+    L_IN            shift, and go to state 111
+    L_EQ            shift, and go to state 112
+    L_IS            shift, and go to state 113
+    L_LIKE          shift, and go to state 114
+    L_ILIKE         shift, and go to state 115
+    L_GT            shift, and go to state 116
+    L_LT            shift, and go to state 117
+    L_GEQ           shift, and go to state 118
+    L_LEQ           shift, and go to state 119
+    L_DIFF          shift, and go to state 120
+    L_REGEXP        shift, and go to state 121
+    L_REGEXP_CI     shift, and go to state 122
+    L_NOTREGEXP     shift, and go to state 123
+    L_NOTREGEXP_CI  shift, and go to state 124
+    L_SIMILAR       shift, and go to state 125
+    L_NOT           shift, and go to state 126
+
+    condition_operator  go to state 127
+
+
+state 73
+
+   16 opt_where: L_WHERE where_list .
+   78 where_list: where_list . L_OR where_list
+   79           | where_list . L_AND where_list
+
+    L_AND  shift, and go to state 128
+    L_OR   shift, and go to state 129
+
+    L_AND     [reduce using rule 16 (opt_where)]
+    L_OR      [reduce using rule 16 (opt_where)]
+    $default  reduce using rule 16 (opt_where)
+
+
+state 74
+
+   76 where_list: where_item .
+
+    $default  reduce using rule 76 (where_list)
+
+
+state 75
+
+   18 opt_orderby: L_ORDER . L_BY order_fields_list
+
+    L_BY  shift, and go to state 130
+
+
+state 76
+
+    6 select_statement: L_SELECT opt_distinct fields_list opt_where opt_orderby . opt_groupby
+
+    L_GROUP  shift, and go to state 131
+
+    L_GROUP   [reduce using rule 26 (opt_groupby)]
+    $default  reduce using rule 26 (opt_groupby)
+
+    opt_groupby  go to state 132
+
+
+state 77
+
+   72 field: field_raw L_AS L_IDENT .
+
+    $default  reduce using rule 72 (field)
+
+
+state 78
+
+   73 field: field_raw L_AS L_TEXTUAL .
+
+    $default  reduce using rule 73 (field)
+
+
+state 79
+
+  106 param_spec_item: L_PNAME . L_EQ L_TEXTUAL
+
+    L_EQ  shift, and go to state 133
+
+
+state 80
+
+  108 param_spec_item: L_PTYPE . L_EQ L_TEXTUAL
+
+    L_EQ  shift, and go to state 134
+
+
+state 81
+
+  109 param_spec_item: L_PISPARAM . L_EQ L_TEXTUAL
+
+    L_EQ  shift, and go to state 135
+
+
+state 82
+
+  107 param_spec_item: L_PDESCR . L_EQ L_TEXTUAL
+
+    L_EQ  shift, and go to state 136
+
+
+state 83
+
+  110 param_spec_item: L_PNULLOK . L_EQ L_TEXTUAL
+
+    L_EQ  shift, and go to state 137
+
+
+state 84
+
+  103 param_spec: L_LSBRACKET param_spec_list . L_RSBRACKET
+
+    L_RSBRACKET  shift, and go to state 138
+
+
+state 85
+
+  104 param_spec_list: param_spec_item .
+  105                | param_spec_item . param_spec_list
+
+    L_PNAME     shift, and go to state 79
+    L_PTYPE     shift, and go to state 80
+    L_PISPARAM  shift, and go to state 81
+    L_PDESCR    shift, and go to state 82
+    L_PNULLOK   shift, and go to state 83
+
+    $default  reduce using rule 104 (param_spec_list)
+
+    param_spec_list  go to state 139
+    param_spec_item  go to state 85
+
+
+state 86
+
+   66 field_raw: field_raw . field_op field_raw
+   66          | field_raw field_op field_raw .
+
+    L_MINUS  shift, and go to state 42
+    L_PLUS   shift, and go to state 43
+    L_TIMES  shift, and go to state 44
+    L_DIV    shift, and go to state 45
+
+    L_MINUS   [reduce using rule 66 (field_raw)]
+    L_PLUS    [reduce using rule 66 (field_raw)]
+    L_TIMES   [reduce using rule 66 (field_raw)]
+    L_DIV     [reduce using rule 66 (field_raw)]
+    $default  reduce using rule 66 (field_raw)
+
+    field_op  go to state 47
+
+
+state 87
+
+   75 field: field_raw param_spec L_AS . L_IDENT
+
+    L_IDENT  shift, and go to state 140
+
+
+state 88
+
+   28 fields_list: field L_COMMA fields_list .
+
+    $default  reduce using rule 28 (fields_list)
+
+
+state 89
+
+   12 opt_fields_list: L_LBRACKET fields_list . L_RBRACKET
+
+    L_RBRACKET  shift, and go to state 141
+
+
+state 90
+
+    7 insert_statement: L_INSERT L_INTO simple_target opt_fields_list L_VALUES . L_LBRACKET fields_list L_RBRACKET
+
+    L_LBRACKET  shift, and go to state 142
+
+
+state 91
+
+    8 update_statement: L_UPDATE simple_target L_SET set_list opt_where .
+
+    $default  reduce using rule 8 (update_statement)
+
+
+state 92
+
+   81 set_item: field L_EQ . field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 143
+
+
+state 93
+
+   11 set_list: set_item L_COMMA . set_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    set_list          go to state 144
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 54
+    set_item          go to state 55
+
+
+state 94
+
+   69 field_raw: L_IDENT L_LBRACKET fields_list L_RBRACKET .
+
+    $default  reduce using rule 69 (field_raw)
+
+
+state 95
+
+   44 table: L_LBRACKET table . L_RBRACKET
+
+    L_RBRACKET  shift, and go to state 145
+
+
+state 96
+
+   45 table: L_IDENT L_LBRACKET . fields_list L_RBRACKET
+   46      | L_IDENT L_LBRACKET . L_RBRACKET
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_RBRACKET   shift, and go to state 146
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    fields_list       go to state 147
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 29
+
+
+state 97
+
+   38 targets_list: targets_list L_COMMA . target
+
+    L_SELECT    shift, and go to state 1
+    L_LBRACKET  shift, and go to state 63
+    L_IDENT     shift, and go to state 64
+
+    select_statement  go to state 65
+    simple_table      go to state 67
+    table             go to state 68
+    target            go to state 148
+
+
+state 98
+
+   36 join_type: L_JOIN .
+
+    $default  reduce using rule 36 (join_type)
+
+
+state 99
+
+   35 join_type: L_INNER . L_JOIN
+
+    L_JOIN  shift, and go to state 149
+
+
+state 100
+
+   29 join_type: L_LEFT . L_JOIN
+   30          | L_LEFT . L_OUTER L_JOIN
+
+    L_JOIN   shift, and go to state 150
+    L_OUTER  shift, and go to state 151
+
+
+state 101
+
+   31 join_type: L_RIGHT . L_JOIN
+   32          | L_RIGHT . L_OUTER L_JOIN
+
+    L_JOIN   shift, and go to state 152
+    L_OUTER  shift, and go to state 153
+
+
+state 102
+
+   33 join_type: L_FULL . L_JOIN
+   34          | L_FULL . L_OUTER L_JOIN
+
+    L_JOIN   shift, and go to state 154
+    L_OUTER  shift, and go to state 155
+
+
+state 103
+
+    5 select_statement: L_SELECT opt_distinct fields_list L_FROM targets_list opt_where . opt_orderby opt_groupby
+
+    L_ORDER  shift, and go to state 75
+
+    L_ORDER   [reduce using rule 19 (opt_orderby)]
+    $default  reduce using rule 19 (opt_orderby)
+
+    opt_orderby  go to state 156
+
+
+state 104
+
+   39 targets_list: targets_list join_type . target
+   40             | targets_list join_type . target L_ON where_list
+
+    L_SELECT    shift, and go to state 1
+    L_LBRACKET  shift, and go to state 63
+    L_IDENT     shift, and go to state 64
+
+    select_statement  go to state 65
+    simple_table      go to state 67
+    table             go to state 68
+    target            go to state 157
+
+
+state 105
+
+   48 target: table L_AS . L_IDENT
+
+    L_IDENT  shift, and go to state 158
+
+
+state 106
+
+   49 target: table L_IDENT .
+
+    $default  reduce using rule 49 (target)
+
+
+state 107
+
+   66 field_raw: field_raw . field_op field_raw
+   68          | L_LBRACKET field_raw . L_RBRACKET
+   71 field: field_raw .
+   72      | field_raw . L_AS L_IDENT
+   73      | field_raw . L_AS L_TEXTUAL
+   74      | field_raw . param_spec
+   75      | field_raw . param_spec L_AS L_IDENT
+
+    L_AS         shift, and go to state 41
+    L_RBRACKET   shift, and go to state 57
+    L_MINUS      shift, and go to state 42
+    L_PLUS       shift, and go to state 43
+    L_TIMES      shift, and go to state 44
+    L_DIV        shift, and go to state 45
+    L_LSBRACKET  shift, and go to state 46
+
+    $default  reduce using rule 71 (field)
+
+    field_op    go to state 47
+    param_spec  go to state 48
+
+
+state 108
+
+   78 where_list: where_list . L_OR where_list
+   79           | where_list . L_AND where_list
+   80           | L_LBRACKET where_list . L_RBRACKET
+
+    L_RBRACKET  shift, and go to state 159
+    L_AND       shift, and go to state 128
+    L_OR        shift, and go to state 129
+
+
+state 109
+
+   77 where_list: L_NOT where_list .
+   78           | where_list . L_OR where_list
+   79           | where_list . L_AND where_list
+
+    $default  reduce using rule 77 (where_list)
+
+
+state 110
+
+   99 where_item: field L_BETWEEN . field L_AND field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 160
+
+
+state 111
+
+   84 condition_operator: L_IN .
+
+    $default  reduce using rule 84 (condition_operator)
+
+
+state 112
+
+   82 condition_operator: L_EQ .
+
+    $default  reduce using rule 82 (condition_operator)
+
+
+state 113
+
+   83 condition_operator: L_IS .
+  102 where_item: field L_IS . L_NOT field
+
+    L_NOT  shift, and go to state 161
+
+    $default  reduce using rule 83 (condition_operator)
+
+
+state 114
+
+   85 condition_operator: L_LIKE .
+
+    $default  reduce using rule 85 (condition_operator)
+
+
+state 115
+
+   86 condition_operator: L_ILIKE .
+
+    $default  reduce using rule 86 (condition_operator)
+
+
+state 116
+
+   88 condition_operator: L_GT .
+
+    $default  reduce using rule 88 (condition_operator)
+
+
+state 117
+
+   89 condition_operator: L_LT .
+
+    $default  reduce using rule 89 (condition_operator)
+
+
+state 118
+
+   90 condition_operator: L_GEQ .
+
+    $default  reduce using rule 90 (condition_operator)
+
+
+state 119
+
+   91 condition_operator: L_LEQ .
+
+    $default  reduce using rule 91 (condition_operator)
+
+
+state 120
+
+   92 condition_operator: L_DIFF .
+
+    $default  reduce using rule 92 (condition_operator)
+
+
+state 121
+
+   93 condition_operator: L_REGEXP .
+
+    $default  reduce using rule 93 (condition_operator)
+
+
+state 122
+
+   94 condition_operator: L_REGEXP_CI .
+
+    $default  reduce using rule 94 (condition_operator)
+
+
+state 123
+
+   95 condition_operator: L_NOTREGEXP .
+
+    $default  reduce using rule 95 (condition_operator)
+
+
+state 124
+
+   96 condition_operator: L_NOTREGEXP_CI .
+
+    $default  reduce using rule 96 (condition_operator)
+
+
+state 125
+
+   87 condition_operator: L_SIMILAR .
+
+    $default  reduce using rule 87 (condition_operator)
+
+
+state 126
+
+   97 condition_operator: L_NOT .
+  100 where_item: field L_NOT . condition_operator field
+  101           | field L_NOT . L_BETWEEN field L_AND field
+
+    L_BETWEEN       shift, and go to state 162
+    L_IN            shift, and go to state 111
+    L_EQ            shift, and go to state 112
+    L_IS            shift, and go to state 163
+    L_LIKE          shift, and go to state 114
+    L_ILIKE         shift, and go to state 115
+    L_GT            shift, and go to state 116
+    L_LT            shift, and go to state 117
+    L_GEQ           shift, and go to state 118
+    L_LEQ           shift, and go to state 119
+    L_DIFF          shift, and go to state 120
+    L_REGEXP        shift, and go to state 121
+    L_REGEXP_CI     shift, and go to state 122
+    L_NOTREGEXP     shift, and go to state 123
+    L_NOTREGEXP_CI  shift, and go to state 124
+    L_SIMILAR       shift, and go to state 125
+    L_NOT           shift, and go to state 164
+
+    $default  reduce using rule 97 (condition_operator)
+
+    condition_operator  go to state 165
+
+
+state 127
+
+   98 where_item: field condition_operator . field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 166
+
+
+state 128
+
+   79 where_list: where_list L_AND . where_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 70
+    L_IDENT      shift, and go to state 20
+    L_NOT        shift, and go to state 71
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 72
+    where_list        go to state 167
+    where_item        go to state 74
+
+
+state 129
+
+   78 where_list: where_list L_OR . where_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 70
+    L_IDENT      shift, and go to state 20
+    L_NOT        shift, and go to state 71
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 72
+    where_list        go to state 168
+    where_item        go to state 74
+
+
+state 130
+
+   18 opt_orderby: L_ORDER L_BY . order_fields_list
+
+    L_NULL       shift, and go to state 18
+    L_IDENT      shift, and go to state 58
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    order_fields_list  go to state 169
+    order_field        go to state 170
+    dotted_name        go to state 26
+    field_name         go to state 171
+
+
+state 131
+
+   25 opt_groupby: L_GROUP . L_BY fields_list
+
+    L_BY  shift, and go to state 172
+
+
+state 132
+
+    6 select_statement: L_SELECT opt_distinct fields_list opt_where opt_orderby opt_groupby .
+
+    $default  reduce using rule 6 (select_statement)
+
+
+state 133
+
+  106 param_spec_item: L_PNAME L_EQ . L_TEXTUAL
+
+    L_TEXTUAL  shift, and go to state 173
+
+
+state 134
+
+  108 param_spec_item: L_PTYPE L_EQ . L_TEXTUAL
+
+    L_TEXTUAL  shift, and go to state 174
+
+
+state 135
+
+  109 param_spec_item: L_PISPARAM L_EQ . L_TEXTUAL
+
+    L_TEXTUAL  shift, and go to state 175
+
+
+state 136
+
+  107 param_spec_item: L_PDESCR L_EQ . L_TEXTUAL
+
+    L_TEXTUAL  shift, and go to state 176
+
+
+state 137
+
+  110 param_spec_item: L_PNULLOK L_EQ . L_TEXTUAL
+
+    L_TEXTUAL  shift, and go to state 177
+
+
+state 138
+
+  103 param_spec: L_LSBRACKET param_spec_list L_RSBRACKET .
+
+    $default  reduce using rule 103 (param_spec)
+
+
+state 139
+
+  105 param_spec_list: param_spec_item param_spec_list .
+
+    $default  reduce using rule 105 (param_spec_list)
+
+
+state 140
+
+   75 field: field_raw param_spec L_AS L_IDENT .
+
+    $default  reduce using rule 75 (field)
+
+
+state 141
+
+   12 opt_fields_list: L_LBRACKET fields_list L_RBRACKET .
+
+    $default  reduce using rule 12 (opt_fields_list)
+
+
+state 142
+
+    7 insert_statement: L_INSERT L_INTO simple_target opt_fields_list L_VALUES L_LBRACKET . fields_list L_RBRACKET
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    fields_list       go to state 178
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 29
+
+
+state 143
+
+   81 set_item: field L_EQ field .
+
+    $default  reduce using rule 81 (set_item)
+
+
+state 144
+
+   11 set_list: set_item L_COMMA set_list .
+
+    $default  reduce using rule 11 (set_list)
+
+
+state 145
+
+   44 table: L_LBRACKET table L_RBRACKET .
+
+    $default  reduce using rule 44 (table)
+
+
+state 146
+
+   46 table: L_IDENT L_LBRACKET L_RBRACKET .
+
+    $default  reduce using rule 46 (table)
+
+
+state 147
+
+   45 table: L_IDENT L_LBRACKET fields_list . L_RBRACKET
+
+    L_RBRACKET  shift, and go to state 179
+
+
+state 148
+
+   38 targets_list: targets_list L_COMMA target .
+
+    $default  reduce using rule 38 (targets_list)
+
+
+state 149
+
+   35 join_type: L_INNER L_JOIN .
+
+    $default  reduce using rule 35 (join_type)
+
+
+state 150
+
+   29 join_type: L_LEFT L_JOIN .
+
+    $default  reduce using rule 29 (join_type)
+
+
+state 151
+
+   30 join_type: L_LEFT L_OUTER . L_JOIN
+
+    L_JOIN  shift, and go to state 180
+
+
+state 152
+
+   31 join_type: L_RIGHT L_JOIN .
+
+    $default  reduce using rule 31 (join_type)
+
+
+state 153
+
+   32 join_type: L_RIGHT L_OUTER . L_JOIN
+
+    L_JOIN  shift, and go to state 181
+
+
+state 154
+
+   33 join_type: L_FULL L_JOIN .
+
+    $default  reduce using rule 33 (join_type)
+
+
+state 155
+
+   34 join_type: L_FULL L_OUTER . L_JOIN
+
+    L_JOIN  shift, and go to state 182
+
+
+state 156
+
+    5 select_statement: L_SELECT opt_distinct fields_list L_FROM targets_list opt_where opt_orderby . opt_groupby
+
+    L_GROUP  shift, and go to state 131
+
+    L_GROUP   [reduce using rule 26 (opt_groupby)]
+    $default  reduce using rule 26 (opt_groupby)
+
+    opt_groupby  go to state 183
+
+
+state 157
+
+   39 targets_list: targets_list join_type target .
+   40             | targets_list join_type target . L_ON where_list
+
+    L_ON  shift, and go to state 184
+
+    L_ON      [reduce using rule 39 (targets_list)]
+    $default  reduce using rule 39 (targets_list)
+
+
+state 158
+
+   48 target: table L_AS L_IDENT .
+
+    $default  reduce using rule 48 (target)
+
+
+state 159
+
+   80 where_list: L_LBRACKET where_list L_RBRACKET .
+
+    $default  reduce using rule 80 (where_list)
+
+
+state 160
+
+   99 where_item: field L_BETWEEN field . L_AND field
+
+    L_AND  shift, and go to state 185
+
+
+state 161
+
+  102 where_item: field L_IS L_NOT . field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 186
+
+
+state 162
+
+  101 where_item: field L_NOT L_BETWEEN . field L_AND field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 187
+
+
+state 163
+
+   83 condition_operator: L_IS .
+
+    $default  reduce using rule 83 (condition_operator)
+
+
+state 164
+
+   97 condition_operator: L_NOT .
+
+    $default  reduce using rule 97 (condition_operator)
+
+
+state 165
+
+  100 where_item: field L_NOT condition_operator . field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 188
+
+
+state 166
+
+   98 where_item: field condition_operator field .
+
+    $default  reduce using rule 98 (where_item)
+
+
+state 167
+
+   78 where_list: where_list . L_OR where_list
+   79           | where_list . L_AND where_list
+   79           | where_list L_AND where_list .
+
+    $default  reduce using rule 79 (where_list)
+
+
+state 168
+
+   78 where_list: where_list . L_OR where_list
+   78           | where_list L_OR where_list .
+   79           | where_list . L_AND where_list
+
+    L_AND  shift, and go to state 128
+
+    $default  reduce using rule 78 (where_list)
+
+
+state 169
+
+   18 opt_orderby: L_ORDER L_BY order_fields_list .
+
+    $default  reduce using rule 18 (opt_orderby)
+
+
+state 170
+
+   20 order_fields_list: order_field .
+   21                  | order_field . L_COMMA order_fields_list
+
+    L_COMMA  shift, and go to state 189
+
+    L_COMMA   [reduce using rule 20 (order_fields_list)]
+    $default  reduce using rule 20 (order_fields_list)
+
+
+state 171
+
+   22 order_field: field_name .
+   23            | field_name . L_ORDER_ASC
+   24            | field_name . L_ORDER_DSC
+
+    L_ORDER_ASC  shift, and go to state 190
+    L_ORDER_DSC  shift, and go to state 191
+
+    $default  reduce using rule 22 (order_field)
+
+
+state 172
+
+   25 opt_groupby: L_GROUP L_BY . fields_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    fields_list       go to state 192
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 29
+
+
+state 173
+
+  106 param_spec_item: L_PNAME L_EQ L_TEXTUAL .
+
+    $default  reduce using rule 106 (param_spec_item)
+
+
+state 174
+
+  108 param_spec_item: L_PTYPE L_EQ L_TEXTUAL .
+
+    $default  reduce using rule 108 (param_spec_item)
+
+
+state 175
+
+  109 param_spec_item: L_PISPARAM L_EQ L_TEXTUAL .
+
+    $default  reduce using rule 109 (param_spec_item)
+
+
+state 176
+
+  107 param_spec_item: L_PDESCR L_EQ L_TEXTUAL .
+
+    $default  reduce using rule 107 (param_spec_item)
+
+
+state 177
+
+  110 param_spec_item: L_PNULLOK L_EQ L_TEXTUAL .
+
+    $default  reduce using rule 110 (param_spec_item)
+
+
+state 178
+
+    7 insert_statement: L_INSERT L_INTO simple_target opt_fields_list L_VALUES L_LBRACKET fields_list . L_RBRACKET
+
+    L_RBRACKET  shift, and go to state 193
+
+
+state 179
+
+   45 table: L_IDENT L_LBRACKET fields_list L_RBRACKET .
+
+    $default  reduce using rule 45 (table)
+
+
+state 180
+
+   30 join_type: L_LEFT L_OUTER L_JOIN .
+
+    $default  reduce using rule 30 (join_type)
+
+
+state 181
+
+   32 join_type: L_RIGHT L_OUTER L_JOIN .
+
+    $default  reduce using rule 32 (join_type)
+
+
+state 182
+
+   34 join_type: L_FULL L_OUTER L_JOIN .
+
+    $default  reduce using rule 34 (join_type)
+
+
+state 183
+
+    5 select_statement: L_SELECT opt_distinct fields_list L_FROM targets_list opt_where opt_orderby opt_groupby .
+
+    $default  reduce using rule 5 (select_statement)
+
+
+state 184
+
+   40 targets_list: targets_list join_type target L_ON . where_list
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 70
+    L_IDENT      shift, and go to state 20
+    L_NOT        shift, and go to state 71
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 72
+    where_list        go to state 194
+    where_item        go to state 74
+
+
+state 185
+
+   99 where_item: field L_BETWEEN field L_AND . field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 195
+
+
+state 186
+
+  102 where_item: field L_IS L_NOT field .
+
+    $default  reduce using rule 102 (where_item)
+
+
+state 187
+
+  101 where_item: field L_NOT L_BETWEEN field . L_AND field
+
+    L_AND  shift, and go to state 196
+
+
+state 188
+
+  100 where_item: field L_NOT condition_operator field .
+
+    $default  reduce using rule 100 (where_item)
+
+
+state 189
+
+   21 order_fields_list: order_field L_COMMA . order_fields_list
+
+    L_NULL       shift, and go to state 18
+    L_IDENT      shift, and go to state 58
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    order_fields_list  go to state 197
+    order_field        go to state 170
+    dotted_name        go to state 26
+    field_name         go to state 171
+
+
+state 190
+
+   23 order_field: field_name L_ORDER_ASC .
+
+    $default  reduce using rule 23 (order_field)
+
+
+state 191
+
+   24 order_field: field_name L_ORDER_DSC .
+
+    $default  reduce using rule 24 (order_field)
+
+
+state 192
+
+   25 opt_groupby: L_GROUP L_BY fields_list .
+
+    $default  reduce using rule 25 (opt_groupby)
+
+
+state 193
+
+    7 insert_statement: L_INSERT L_INTO simple_target opt_fields_list L_VALUES L_LBRACKET fields_list L_RBRACKET .
+
+    $default  reduce using rule 7 (insert_statement)
+
+
+state 194
+
+   40 targets_list: targets_list join_type target L_ON where_list .
+   78 where_list: where_list . L_OR where_list
+   79           | where_list . L_AND where_list
+
+    L_AND  shift, and go to state 128
+    L_OR   shift, and go to state 129
+
+    L_AND     [reduce using rule 40 (targets_list)]
+    L_OR      [reduce using rule 40 (targets_list)]
+    $default  reduce using rule 40 (targets_list)
+
+
+state 195
+
+   99 where_item: field L_BETWEEN field L_AND field .
+
+    $default  reduce using rule 99 (where_item)
+
+
+state 196
+
+  101 where_item: field L_NOT L_BETWEEN field L_AND . field
+
+    L_SELECT     shift, and go to state 1
+    L_NULL       shift, and go to state 18
+    L_LBRACKET   shift, and go to state 19
+    L_IDENT      shift, and go to state 20
+    L_TIMES      shift, and go to state 21
+    L_STRING     shift, and go to state 22
+    L_UNSPECVAL  shift, and go to state 23
+
+    select_statement  go to state 24
+    dotted_name       go to state 26
+    field_name        go to state 27
+    field_raw         go to state 28
+    field             go to state 198
+
+
+state 197
+
+   21 order_fields_list: order_field L_COMMA order_fields_list .
+
+    $default  reduce using rule 21 (order_fields_list)
+
+
+state 198
+
+  101 where_item: field L_NOT L_BETWEEN field L_AND field .
+
+    $default  reduce using rule 101 (where_item)

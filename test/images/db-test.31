@@ -1,0 +1,13 @@
+ <dbtest.c:739 main();> Testing adding to objects[0m
+ <db.c:932 db_add();> Applying default sprintchicken values.[0m
+ <db.c:387 db_setvalue_nomark();> adding in some default values of hill to lastname[0m
+ <dbtest.c:749 main();> Checking the number of objects loaded. 1st time. 5[0m
+ <dbtest.c:757 main();> Checking id is equal to 2 it is 5[0m
+ <dbtest.c:760 main();> Checking the number of objects loaded. 2nd time. 5[0m
+ <dbobject.c:269 db_obj_sqlwrite();> INSERT INTO person (id,firstname,lastname,email) VALUES ('31','emperor','hill','dru@treshna.com')[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on person, with 5 5 items there[0m
+ <dbtest.c:774 main();> Email address is is dru@treshna.com[0m
+ <dbobjectdel.c:133 db_del_getchildren();> No children found for person[0m
+ <db.c:527 db_deleteobject();> This is going to delete recusively.  TEST WELL BEFORE USE![0m
+ <dbobjectdel.c:322 db_del_deleteall();> delllist->objlist is null[0m
+ <dbobjectdel.c:355 db_del_deleteall();> deleting records[0m

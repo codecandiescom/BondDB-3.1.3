@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}/local
+libdir=${exec_prefix}/lib
+includedir=${prefix}/local/include
+
+Name: bonddb
+Description: Bond Database Library
+Version: 0.7.99
+Requires: 
+Libs: -L${libdir} -lbonddb -lbondcommon -lbondsql
+Cflags: -I${includedir}/bond

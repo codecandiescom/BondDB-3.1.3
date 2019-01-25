@@ -1,0 +1,44 @@
+#!/bin/bash
+
+CURRENT_TEST_DIR=`pwd`
+BOND_DIR=${CURRENT_TEST_DIR%/*}
+
+LOGDIR=$CURRENT_TEST_DIR
+LOGFILE=${LOGDIR}/qatestbondDB.log
+
+if [[ ! -d $LOGDIR ]]; then
+	mkdir $LOGDIR
+	chmod 655 $LOGDIR
+fi
+
+if [[ ! -f $LOGFILE ]]; then
+	touch $LOGFILE
+	chmod 655 $LOGFILE
+fi
+
+if [[ ! `which cvs2cl.pl` ]]; then
+	echo "This program requires 'cvs2cl.pl' in $CURRENT_TEST_DIR" \
+		>/dev/stderr
+	
+	exit 1
+fi
+
+cd $BOND_DIR
+cvs2cl.pl &>/dev/null
+cd $CURRENT_TEST_DIR
+
+diff ${BOND_DIR}/ChangeLog ${CURRENT_TEST_DIR}/ChangeLog &>/dev/null
+if (( $? > 0 )); then
+	cp ${BOND_DIR}/ChangeLog ${CURRENT_TEST_DIR}/ChangeLog
+
+	echo -n "========================================" > $LOGFILE
+	echo    "========================================" >> $LOGFILE
+	echo "[`date`]: Starting BONDDB Testing Script" >> $LOGFILE
+
+	./qareporterDB >> $LOGFILE
+
+	echo -e "\n\n\n" >> $LOGFILE
+else
+	echo "No need to run this report scirpt" >>/dev/stderr
+	exit 0
+fi

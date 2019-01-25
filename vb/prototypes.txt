@@ -1,0 +1,22 @@
+' example prototypes for calling these functions from VB '
+'
+' remove the 'K:' bit for production, but for debugging it may be handy to 
+' map the K: drive of the host to the output directory of of the DLL
+' see 1st_RUNME.bat for an example.
+'
+' in addition to this DLL you'll also need the bonddb, pgsql, glib DLLS.
+' if one is missing VB gives a cryptic file not found error.
+'
+'
+Private Declare Function dbinit Lib "k:vb_bonddb.dll" Alias "system_init@4" (x As String) As Long
+Private Declare Function BondDB_new_from_sql Lib "k:vb_bonddb.dll" Alias "VB_new_sql@16" (ByVal dbglobal As Long, sql As String, dbobject As Long, ByVal writes As Long) As String
+Private Declare Function BondDB_setvalue Lib "k:vb_bonddb.dll" Alias "VB_setvalue@20" (ByVal dbobject As Long, table As String, field As String, value As String, ByVal mark As Long) As Long
+Private Declare Function BondDB_getvalue Lib "k:vb_bonddb.dll" Alias "VB_getvalue@16" (ByVal dbobject As Long, table As String, field As String, result As Long) As String
+Private Declare Function BondDB_numrecord Lib "k:vb_bonddb.dll" Alias "VB_numrecord@4" (ByVal dbobject As Long) As Long
+Private Declare Function BondDB_moveto Lib "k:vb_bonddb.dll" Alias "VB_moveto@8" (ByVal dbobject As Long,ByVal pos As Long) As Long
+Private Declare Sub BondDB_free Lib "k:vb_bonddb.dll" Alias "VB_free@4" (dbobject As Long)
+Private Declare Function GetConf Lib "k:vb_bonddb.dll" Alias "config_getvalue@4" (name As String) As String
+Private Declare Function NotifyCheck Lib "k:vb_bonddb.dll" Alias "VB_notify_check@4" (ByVal deglobal As Long) As String
+Private Declare Function NotifyListen Lib "k:vb_bonddb.dll" Alias "VB_notify_listen@8" (ByVal deglobal As Long, name As String) As Long
+Private Declare Function BondDB_save Lib "k:vb_bonddb.dll" Alias "VB_save@8" (ByVal dbobject As Long, result As Long) As String
+Private Declare Function BondDB_delete Lib "k:vb_bonddb.dll" Alias "VB_save@8" (ByVal dbobject As Long, tablename as String, result As Long) As String

@@ -1,0 +1,6238 @@
+2005-12-14 17:14  andru
+
+	* bonddb/bonddbobj.c: Fixing bad assignment and bad freeing causing
+	  norty segfaults sometimes in bonddb_setvalue
+
+2005-12-12 14:53  andru
+
+	* INSTALL: Removing information regarding autoconf.
+
+2005-12-07 10:30  jasen
+
+	* bondcommon/bcmem.h: improvements to debugging
+
+2005-12-05 15:10  jasen
+
+	* bondcommon/bcmem.c: added MEM_FREE_OVERWRITE option in bcmem.c so
+	  that free'd memory is overwritten to help track using freed
+	  memory...
+
+2005-12-01 10:11  jasen
+
+	* bondcommon/: bcdebug.c, bcdebug.h, bcmem.c: [no log message]
+
+2005-11-30 12:04  jasen
+
+	* Makefile.in, aclocal.m4, bondcommon.pc, bonddb.pc, configure,
+	  bondcommon/Makefile.in, bondcommon/bcmem.c, bondsql/Makefile.in,
+	  src/Makefile.in: bugfix: mem_realloc
+
+2005-11-29 11:48  jasen
+
+	* bonddb/SConstruct: cosmetic edit.
+
+2005-11-29 11:45  jasen
+
+	* bondcommon/bcconfig.c: spurious g_dir_close()  calls fix
+
+2005-11-29 10:12  andru
+
+	* ChangeLog, bondcommon/bcmem.c, bonddb/bonddbarray.c,
+	  bonddb/bonddbobj.c, bonddb/bonddbplugin.c, pgsql/binding_pgsql.c:
+	  Fixing a number of nasty memory bugs.
+
+2005-11-29 09:24  jasen
+
+	* bondcommon/bcmem.h: [no log message]
+
+2005-11-28 17:04  jasen
+
+	* bondcommon/bcmem.c, bondcommon/bcmem.h, bonddb/bonddbplugin.c,
+	  pgsql/binding_pgsql.c, src/dbuniqueid.c: implemented mem_vprintf,
+	  added "__attribute__" tags to *printf* fixed format warnings.
+
+2005-11-28 14:00  jasen
+
+	* bonddb/SConstruct: windows/unix build compatibility bugfix
+
+2005-11-28 13:57  jasen
+
+	* bonddb/SConstruct: [no log message]
+
+2005-11-27 15:52  andru
+
+	* bonddb/: bonddbglobal.h, bonddbinit.c, bonddbobj.c, bonddbobj.h:
+	  Added code to print out object results not freed yet.
+
+2005-11-23 11:22  jasen
+
+	* SConstruct, bondcommon/SConstruct, bonddb/SConstruct,
+	  bondsql/SConstruct: Fixing build process for win32
+
+2005-11-22 15:53  jasen
+
+	* bondcommon.pc, bonddb.pc, bonddb2.pc: for windows port
+
+2005-11-21 15:46  jasen
+
+	* SConstruct, bonddb/bonddbplugin.c: more windows porting - now use
+	  "cross-scons" to build for windows
+
+2005-11-18 16:00  andru
+
+	* SConstruct, bondcommon/SConstruct, bonddb/SConstruct,
+	  bonddb/bonddbobj.c, bonddb/bonddbpurify.c, bonddb/bonddbpurify.h,
+	  bonddb/bonddbtest.c, bondsql/SConstruct, lib/.cvsignore,
+	  pgsql/SConstruct, src/SConstruct: Rebuild build system (lots of
+	  work, now saves in lib directory).  Added bonddbpurify to
+	  properly escape values (still needs work)
+
+2005-11-18 10:34  andru
+
+	* bonddb/: bonddbloadby.c, bonddbwrite.c: Fixed segfault that
+	  occurres on second time a record is deleted occasionally
+
+2005-11-16 00:56  andru
+
+	* bonddb/: bonddbfield.c, bonddbfield.h, bonddbobj.c: Modifed
+	  bonddb to support (NULL).fieldname and search other tables for
+	  required fields. I dont know if this is a good thing.
+
+2005-11-10 10:55  jasen
+
+	* SConstruct: [no log message]
+
+2005-11-10 10:25  andru
+
+	* SConstruct: Fixing install a bit more for bonddb2.pc files
+
+2005-11-09 23:33  andru
+
+	* bondcommon/.cvsignore, bondcommon/bcconfig.c,
+	  bondcommon/bcdebug.c, bondcommon/bcdebug.h, bonddb/.cvsignore,
+	  bondsql/.cvsignore, pgsql/.cvsignore: Fixing cvs ignore files.
+	  Fixing debugging colour options.
+
+2005-11-09 22:47  andru
+
+	* src/dbtest.conf: still removing
+
+2005-11-09 22:46  andru
+
+	* src/: bond.conf, vicprof.conf: removing nasty config files
+
+2005-11-09 21:40  andru
+
+	* README, SConstruct, bondcommon.pc, bondcommon/bcconfig.c: Fixing
+	  install issues that liam found
+
+2005-11-06 23:36  andru
+
+	* bondcommon/: bcconfig.c, bcdebug.c: Error checking on failed to
+	  open data stream
+
+2005-11-06 21:30  andru
+
+	* bonddb/bonddbplugin.c: Removed debugging output
+
+2005-11-03 01:45  andru
+
+	* bondcommon/bcmem.c: OPPPSPS!
+
+2005-11-03 01:38  andru
+
+	* bondcommon/bcmem.c: Fix RELEASE=1 issue
+
+2005-11-03 01:32  andru
+
+	* bondcommon/: bcmem.c, bcmem.h: Fix bug when RELEASE=1
+
+2005-11-02 22:11  andru
+
+	* bonddb2.pc: Fixing version info
+
+2005-11-02 22:08  andru
+
+	* ChangeLog: Release 2.2.0
+
+2005-11-02 16:42  andru
+
+	* SConstruct, bondcommon/bcmem.c: Fixing build errors and conflict
+	  problems.
+
+2005-11-02 15:04  jasen
+
+	* SConstruct, bondcommon/SConstruct, bonddb/SConstruct,
+	  bondsql/SConstruct, gda/SConstruct, pgsql/SConstruct,
+	  src/SConstruct: updated SConstruct(s) to "install" mingw
+	  libs/headers to ../winport/ instead of /usr/ when a 'scons
+	  XMINGW=yes install' is done.
+
+2005-11-02 14:23  jasen
+
+	* bondcommon/bcmem.c: repairs to "NO_CHECK_MEM"
+
+2005-11-02 13:32  andru
+
+	* bonddb2.pc, bonddb/SConstruct, bonddb/bonddbid.c,
+	  bonddb/bonddbloadby.c, bonddb/bonddbobj.c, bonddb/bonddbobj.h,
+	  bonddb/bonddbrecord.c, bonddb/bonddbwrite.c,
+	  bonddb/bonddbwrite.h: Went to jungle in laos. Wrote some code.
+
+	  Fixed a number of problems with failed writes losing old values
+	  saved.  Added support for readonly objects.
+
+2005-11-02 09:54  jasen
+
+	* bonddb/bonddbloadby.c, pgsql/binding_pgsql.c: work-around for a
+	  bug in msvcrt.dll strtok()
+
+2005-11-01 12:36  jasen
+
+	* SConstruct, bonddb/SConstruct, bonddb/bonddbplugin.c,
+	  pgsql/SConstruct: phase 1 post-porting bugfixes
+
+2005-10-31 17:16  jasen
+
+	* SConstruct, bondcommon/SConstruct, bondcommon/bcconfig.c,
+	  bonddb/SConstruct, bonddb/bonddbplugin.c, bondsql/SConstruct,
+	  pgsql/SConstruct, src/SConstruct, src/dbclient.c: it now compiles
+	  for windows by doing scons XMINGW=yes dunno if it runs or not,
+	  but it builds without warnings.
+
+2005-10-28 14:34  jasen
+
+	* SConstruct, bondcommon/bcmem.c, src/dbtest.c: further warning
+	  removal.
+
+2005-10-28 12:35  jasen
+
+	* SConstruct, bonddb2.pc, bondcommon/bcconfig.c,
+	  bondcommon/bcdebug.c, bondcommon/bcdebug.h,
+	  bondcommon/bcgarbage.c, bondcommon/bcmem.c, bondcommon/bcmem.h,
+	  bondsql/lexer.l, bondsql/mem.c, bondsql/mem.h, src/dbcache.c,
+	  src/dbcommentcallback.c, src/dbmethodmodule.c,
+	  src/dbmethodmodule.h, src/dbobjectdel.c, src/dbsqlparse.c,
+	  src/dbuniqueid.c, src/safescanner.c: killed a few zillion
+	  warnings by changing char* parameters to const char* and/or
+	  changing variables to more-suitable types etc...  soon it may
+	  compile with no warnings.
+
+2005-10-26 11:40  jasen
+
+	* bondcommon/bcdebug.c: fix bondcommon to compile for windows
+
+2005-10-25 16:07  jasen
+
+	* bondcommon/bcmem.c: bugfix
+
+2005-10-14 15:04  andru
+
+	* bondcommon/: bcmem.c, bcmem.h: added line number notifiation for
+	  mem_check failures.
+
+2005-10-14 13:25  andru
+
+	* bondcommon/: bcmem.c, bcmem.h: added mem_strndup() to
+	  bondcommon/mem.c
+
+2005-10-03 00:25  andru
+
+	* bonddb/bonddbobj.c: Fix bug in setvalue that ignores NULL values
+	  sent in.
+
+2005-09-29 21:05  andru
+
+	* bondcommon/: bcmem.c, bcmem.h: adding mem_strdup_replace()
+	  function.
+
+2005-09-29 01:27  andru
+
+	* bonddb/: bonddbobj.c, bonddbwrite.c: Fixing memory leak
+
+2005-09-25 18:58  andru
+
+	* bonddb/bonddbwrite.c: Undid fix for bug 20 as it broke other
+	  things.
+
+2005-09-21 20:58  andru
+
+	* bonddb/bonddbwrite.c: Fix bug 20. Dont update a record when
+	  changes are duplicate of whats already in the database.
+
+2005-09-21 20:01  andru
+
+	* bonddb/bonddbwrite.c: Allow deletion of records if id extraction
+	  fails.
+
+2005-09-21 00:25  andru
+
+	* bonddb/: bonddbloadby.c, bonddbrecord.c: Fixed memory courption
+	  that occurres when you delete the last record in a recordset.
+
+2005-09-20 22:25  andru
+
+	* bonddb/bonddbwrite.c: Allow for NULL updates and inserts in
+	  writes.
+
+2005-09-19 22:25  andru
+
+	* bonddb2.pc: update version
+
+2005-09-19 22:10  andru
+
+	* ChangeLog: Release 2.0.2
+
+2005-09-19 19:30  andru
+
+	* bonddb/bonddbloadby.c, pgsql/binding_pgsql.c: Fixing loadby funny
+	  business on first load.  Fixing invalid memory in pgsql binding.
+
+2005-09-19 12:48  andru
+
+	* bonddb/: bonddbloadby.c, bonddbloadby.h: Adding a bit more
+	  intellgence to loadby.  Fixing all test cases.
+
+2005-09-19 00:36  andru
+
+	* bonddb/: bonddbarray.c, bonddbrecord.c: Fixed bug with record
+	  deletion occurring occasionaly.
+
+2005-09-19 00:06  andru
+
+	* bondcommon/: bcconfig.c, bcdebug.c: Fixing problem colour for
+	  debugging info.
+
+2005-09-12 15:47  andru
+
+	* bondcommon/bcgarbage.c: Fixing garbage collection for bond.
+
+2005-09-07 23:14  andru
+
+	* ChangeLog: Release 2.0.1
+
+2005-09-05 11:37  andru
+
+	* bonddb/bonddbarray.c: Fixed segfault in array extracting
+	  happening on invalid record set passed.
+
+2005-08-26 00:57  andru
+
+	* bonddb/: bonddbkey.c, bonddbloadby.c, bonddbobj.c, bonddbobj.h,
+	  bonddbrecord.c: Bug fix for record deletion #3 Adding function to
+	  blank objects which happens on loadobjectbyobjects.
+
+2005-07-19 13:32  andru
+
+	* bonddb/: bonddbid.c, bonddbobj.c, bonddbobj.h, bonddbrecord.c:
+	  Fixing memory bug in writing changes to file and doing
+	  bonddb_clear causing courption.  Fixed memory leak in
+	  bonddbrecord.c
+
+2005-07-17 22:52  andru
+
+	* bonddb/bonddbarray.c: Fixed parsing problem in bonddb_array.
+
+2005-07-14 18:53  andru
+
+	* ChangeLog: Release 2.0.0
+
+2005-07-14 18:32  andru
+
+	* bonddb/: bonddbfield.c, bonddbobj.c, bonddbrecord.c: Fixed bug in
+	  bonddb_sql Fixed bug in over 100 adds causing memory courption.
+
+2005-07-14 16:00  andru
+
+	* bonddb/bonddbloadby.c: Test tidyup loadby
+
+2005-07-14 14:35  andru
+
+	* bonddb/: bonddbloadby.c, bonddbtest.c, bonddbwrite.c: Improvement
+	  to tests.
+
+2005-07-14 14:14  andru
+
+	* pgsql/binding_pgsql.c: Fix for finding primary keys
+
+2005-07-14 00:48  andru
+
+	* bonddb/bonddbinit.c, bonddb/bonddbinit.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbparse.c, bonddb/bonddbplugin.h, bonddb/bonddbtest.c,
+	  src/dbbirth.c: Filling in gaps in api for working on bread.
+
+2005-06-15 00:29  andru
+
+	* bonddb/bonddbfilter.c, bonddb/bonddbloadby.c, bonddb/bonddbobj.c,
+	  pgsql/binding_pgsql.c: Fixing problems in loadbys found in very
+	  complex sql statements.  Removed extra debugging output.
+
+2005-06-14 15:56  andru
+
+	* bonddb/bonddbfilter.c: Fixed nasty bug in filtering code to do
+	  with memory freeing
+
+2005-06-13 01:39  andru
+
+	* bonddb/: bonddbfilter.c, bonddbtest.c: Added additional test for
+	  filter.  Fixed bug in remove filter.
+
+2005-06-13 00:58  andru
+
+	* bonddb/: bonddbfilter.c, bonddbfilter.h: Added ability to remove
+	  single filter items from filter list.
+
+2005-06-13 00:25  andru
+
+	* bonddb/bonddbfilter.c: Bug fixes for bonddbfilter.
+
+2005-06-10 00:23  andru
+
+	* bonddb/bonddbwrite.c: Fixing problem with record deletion not
+	  getting id always.
+
+2005-06-09 23:30  andru
+
+	* bonddb/bonddbid.c: minor bug fix to bonddbid
+
+2005-06-08 01:12  andru
+
+	* bonddb/bonddbloadby.c, bonddb/bonddbobj.c, bonddb/bonddbrecord.c,
+	  bonddb/bonddbtest.c, pgsql/binding_pgsql.c: Fixing memory related
+	  issues.
+
+2005-06-07 19:02  andru
+
+	* bonddb/bonddbrecord.c: Random debugging not needed
+
+2005-06-07 14:56  andru
+
+	* bonddb/: bonddbglobal.h, bonddbid.c, bonddbid.h, bonddbobj.c,
+	  bonddbobj.h, bonddbrecord.c, bonddbtest.c: Support for temporary
+	  ids for new record adds.  More testing on adding records.
+
+2005-06-07 01:18  andru
+
+	* ChangeLog, bonddb/bonddbid.c, bonddb/bonddbloadby.c,
+	  bonddb/bonddbobj.c, bonddb/bonddbparse.c~: [no log message]
+
+2005-06-07 00:19  andru
+
+	* bonddb/: bonddbarray.c, bonddbid.c, bonddbloadby.c, bonddbtest.c:
+	  Fixed loadby by itself so you can load person by person etc.
+
+2005-06-06 21:06  andru
+
+	* ChangeLog: RELEASE 1.9.9
+
+2005-06-06 21:02  andru
+
+	* bonddb/: bonddbarray.c, bonddbobj.c: Fixed memory leak problem
+	  with double free in parsing.
+
+2005-06-06 17:59  andru
+
+	* bonddb/: bonddbarray.c, bonddbarray.h, bonddbid.c, bonddbobj.c,
+	  bonddbtest.c: Wrote code
+
+2005-06-06 02:43  andru
+
+	* bondcommon/bcdebug.c, bondcommon/bcdebug.h, bonddb/bonddbparse.h:
+	  Fixing warnings in code.  Added support in bondcommon to ignore
+	  debugging levels.
+
+2005-06-06 02:18  andru
+
+	* bonddb/SConstruct, bonddb/bonddb.h, bonddb/bonddbid.c,
+	  bonddb/bonddbid.h, bonddb/bonddbobj.c, bonddb/bonddbparse.c,
+	  bonddb/bonddbparse.h, pgsql/binding_pgsql.c: Added ability to
+	  find first table in sql statements.  Fixed bug in pgsql with it
+	  thinking everything is a primary key.  Added function to set the
+	  currentid to better work with bond.  Other minor bug fixes
+
+2005-06-05 20:02  andru
+
+	* SConstruct, bonddb2.pc, bonddb/SConstruct, bonddb/bonddb.h,
+	  bonddb/bonddbid.c, bonddb/bonddbobj.c, bonddb/bonddbobj.h: Fixing
+	  problems in bonddb2 discovered when modifying bond to talk to
+	  bonddb2.
+
+2005-06-03 00:35  andru
+
+	* bonddb/: SConstruct, bonddb.h, bonddbfilter.c, bonddbfilter.h,
+	  bonddbobj.c, bonddbobj.h: Adding filler functions to help with
+	  implimentation of bonddb2.
+
+2005-06-01 22:47  andru
+
+	* bonddb/: bonddbfilter.c, bonddbfilter.h, bonddbtest.c: Fixing
+	  bugs relating to record deletion breaking filters
+
+2005-06-01 14:02  andru
+
+	* bonddb/: bonddbfilter.c, bonddbfilter.h, bonddbrecord.c: Allowing
+	  deletion of records while it is filtered
+
+2005-06-01 01:11  andru
+
+	* bonddb/: SConstruct, bonddbarray.c, bonddbdel.c, bonddbdel.h,
+	  bonddbfilter.c, bonddbfilter.h, bonddbobj.c, bonddbobj.h,
+	  bonddbtest.c, bonddbwrite.c: Wrote code to do filtering of record
+	  sets.
+
+2005-05-31 01:12  andru
+
+	* bonddb/: SConstruct, bonddbdel.c, bonddbdel.h, bonddbobj.c,
+	  bonddbobj.h, bonddbtest.c, bonddbwrite.c: Initial work on
+	  improving abilities for record deletation
+
+2005-05-30 23:48  andru
+
+	* bonddb/: bonddbloadby.c, bonddbobj.c, bonddbtest.c: Fixed many to
+	  one loadby test
+
+2005-05-30 22:47  andru
+
+	* bonddb/bonddbloadby.c, bonddb/bonddbloadby.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbobj.h, bonddb/bonddbplugin.c, bonddb/bonddbplugin.h,
+	  bonddb/bonddbtest.c, bonddb/bonddbtest.conf,
+	  pgsql/binding_pgsql.c: Continued work on bonddb2.  Finding out
+	  references automatically.  Improved testing for loadby.  Birth
+	  code for adding values from within loadby
+
+2005-05-30 09:44  andru
+
+	* bonddb/bonddbarray.c, bonddb/bonddbid.c, src/db.c, src/dbbirth.c,
+	  src/dbtest.c: Trying to get around the mess of
+	  loadobjectbyobjects bugs.
+
+2005-05-17 01:11  andru
+
+	* bonddb/: SConstruct, bonddbarray.c, bonddbarray.h, bonddbfield.c,
+	  bonddbobj.c, bonddbobj.h, bonddbrecord.c, bonddbtest.c: Added
+	  bonddb_array_extract() which is a replacement for
+	  db_cache_extract().  It extracts all the fields of a certain name
+	  from the database and puts them in an array for easy extraction.
+
+2005-05-16 22:23  andru
+
+	* bonddb/bonddbplugin.c, bonddb/bonddbplugin.h,
+	  bonddb/bonddbtest.c, gda/binding_gda.c: Added gda function for
+	  finding references.  Tried to get gda_column_default_value() to
+	  work but to no aval.
+
+2005-05-03 14:41  andru
+
+	* bonddb/bonddbloadby.c, bonddb/bonddbloadby.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbobj.h, bonddb/bonddbtest.c, gda/binding_gda.c: Lots
+	  more stuff done on loadby's
+
+2005-04-28 21:24  andru
+
+	* bonddb/: SConstruct, bonddbobj.c, bonddbobj.h, bonddbtest.c:
+	  Initial work on loadby's
+
+2005-04-25 19:10  andru
+
+	* bonddb/bonddbfield.c, bonddb/bonddbtest.c,
+	  bonddb/bonddbtest.conf, gda/binding_gda.c: More on default values
+
+2005-04-25 15:59  andru
+
+	* bonddb/bonddbfield.c, bonddb/bonddbfield.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbobj.h, bonddb/bonddbrecord.c, bonddb/bonddbrecord.h,
+	  bonddb/bonddbtest.c, bonddb/bonddbtest.conf,
+	  bonddb/bonddbwrite.c, bonddb/bonddbwrite.h,
+	  pgsql/binding_pgsql.c: Fixed default value code for pgsql
+	  backend.  Fixed problem with mutliple writes.  Got default values
+	  to show up.  Continued work on deletation.
+
+2005-04-25 02:34  andru
+
+	* bonddb/: bonddbtest.c, bonddbwrite.c: Continued work on record
+	  delation
+
+2005-04-25 01:07  andru
+
+	* bonddb/bonddbid.c, bonddb/bonddbid.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbobj.h, bonddb/bonddbparse.c, bonddb/bonddbplugin.h,
+	  bonddb/bonddbrecord.c, bonddb/bonddbtest.c, bonddb/bonddbwrite.c,
+	  gda/binding_gda.c, pgsql/binding_pgsql.c: Fixing record
+	  deletation.  Other id stuff and inserting etc
+
+2005-04-23 18:32  andru
+
+	* bonddb/bonddbobj.c, bonddb/bonddbrecord.c, gda/binding_gda.c:
+	  Fixing memory leaks. fixing double free's and object freeing.
+	  Fixing gda close off.
+
+2005-04-22 17:14  andru
+
+	* gda/binding_gda.c: Got gda backend to now parse tests. only
+	  memory leaks left.
+
+2005-04-22 16:25  andru
+
+	* bonddb/bonddbfield.c, gda/binding_gda.c: More gda stuff. primary
+	  key. fixing bugs. must sleep
+
+2005-04-22 15:51  danielle
+
+	* README: editing the README file with up to date information
+
+2005-04-22 13:49  danielle
+
+	* README, bondsql/sql_parser.c: editing the README file with up to
+	  date installation information
+
+2005-04-22 13:46  andru
+
+	* README: Adding some readme stuff
+
+2005-04-22 13:43  andru
+
+	* bonddb/bonddbfield.c, gda/binding_gda.c: Finally got libgda to
+	  install .agrr omg evil blah.
+
+2005-04-22 12:50  danielle
+
+	* bonddb/: SConstruct, bonddbobj.h, bonddbparse.c, bonddbparse.c~,
+	  bonddbparse.h: [no log message]
+
+2005-04-22 01:10  andru
+
+	* bonddb/bonddbfield.c, bonddb/bonddbinit.c, bonddb/bonddbplugin.c,
+	  bonddb/bonddbtest.c, bonddb/bonddbtest.conf, gda/binding_gda.c:
+	  Continued work on libgda.
+
+2005-04-21 15:16  andru
+
+	* SConstruct, gda/.cvsignore, gda/SConstruct, gda/binding_gda.c,
+	  pgsql/.cvsignore: Got gda to compile and install but doesnt work
+	  yet
+
+2005-04-21 11:54  andru
+
+	* SConstruct, bonddb/SConstruct, bonddb/bonddbfield.c,
+	  bonddb/bonddbinit.c, bonddb/bonddbplugin.c, bonddb/bonddbtest.c,
+	  bonddb/bonddbtest.conf, gda/binding_gda.c, pgsql/SConstruct,
+	  pgsql/binding_pgsql.c, src/SConstruct: Fixed build process.
+	  Added gda build process.  fixing startup to support builds ok
+
+2005-04-21 00:20  andru
+
+	* bonddb/bonddbplugin.c, bonddb/bonddbtest.c,
+	  pgsql/binding_pgsql.c: Fixing _db_defaultvalue function and
+	  making it work correctly
+
+2005-04-20 16:56  danielle
+
+	* gda/binding_gda.c: altered binding_gda.c to use libgda rather
+	  than libpq
+
+2005-04-20 03:26  andru
+
+	* bonddb/bonddbfield.c, bonddb/bonddbfield.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbplugin.h, pgsql/binding_pgsql.c, src/dbfield.h:
+	  Wrote big nasty function to figure out defaultvalues for stuff
+
+2005-04-19 21:34  andru
+
+	* bonddb/: bonddbobj.c, bonddbtest.c: Added test 25 for checking
+	  navigatble and saving etc
+
+2005-04-19 20:42  andru
+
+	* ChangeLog, bonddb/bonddbid.c, bonddb/bonddbobj.c,
+	  bonddb/bonddbtest.c, bonddb/bonddbwrite.c: Fix test 24
+
+2005-04-19 17:14  andru
+
+	* bonddb/.cvsignore, bonddb/bonddbfield.c, bonddb/bonddbid.c,
+	  bonddb/bonddbobj.c, bonddb/bonddbobj.h, bonddb/bonddbtest.c,
+	  bonddb/bonddbwrite.c, pgsql/.cvsignore, pgsql/binding_pgsql.c:
+	  Fixed problem with id extraction and invalid pointers.  Loadall
+	  function for bonddbobj.  More work on adding and saving records.
+	  Quotation escaping added.
+
+2005-04-19 16:33  danielle
+
+	* bonddb/bonddbwrite.c: commenting bonddbwrite.c
+
+2005-04-19 16:18  andru
+
+	* bonddb/: bonddbrecord.c, bonddbtest.c, bonddbwrite.c: Added
+	  mark/non-mark support to bonddbwrite
+
+2005-04-19 16:18  danielle
+
+	* bonddb/bonddbkey.c: commenting bonddbkey.c
+
+2005-04-19 16:09  andru
+
+	* bonddb/: bonddbobj.h, bonddbrecord.c: Fixing record stuff
+
+2005-04-19 16:08  danielle
+
+	* bonddb/: bonddbid.c, bonddbinit.c, bonddbkey.c: commenting
+	  bonddbbid.c, bonddbinit.c and bonddbkey.c
+
+2005-04-19 15:43  danielle
+
+	* bonddb/: bonddbfield.c, bonddbobj.c, bonddbrecord.c: commenting
+	  bonddbfield.c,bonddbobj.c and bonddbrecord.c
+
+2005-04-19 15:41  andru
+
+	* bonddb/: bonddbobj.c, bonddbobj.h: loose ends
+
+2005-04-19 15:34  andru
+
+	* bonddb/: bonddbtest.c, bonddbwrite.c: Got writes working
+	  correctly i belive
+
+2005-04-19 14:50  andru
+
+	* bonddb/: bonddbobj.c, bonddbobj.h, bonddbtest.c, bonddbwrite.c,
+	  bonddbwrite.h: Working on save.  Added a nice little segfault
+
+2005-04-19 14:21  danielle
+
+	* bonddb/: bonddbplugin.c, bonddbplugin.h: documenting
+	  bonddbplugin.c
+
+2005-04-19 14:15  andru
+
+	* bonddb/bonddbid.c, bonddb/bonddbid.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbrecord.c, bonddb/bonddbtest.c, bonddb/bonddbwrite.c,
+	  pgsql/binding_pgsql.c: Fixing memory leaks.
+
+2005-04-19 13:49  danielle
+
+	* bonddb/bonddbobj.c: added more comments to document
+	  bonddbobject.c functions
+
+2005-04-19 13:14  andru
+
+	* bonddb/bonddbid.c: Writing getsql function for id's
+
+2005-04-19 13:08  danielle
+
+	* bonddb/bonddbobj.c: writing documentation for bonddbobj.c
+
+2005-04-19 13:07  danielle
+
+	* src/: db.c, dbobject.c: nothing has changed
+
+2005-04-19 00:33  andru
+
+	* bonddb/: bonddbid.c, bonddbid.h, bonddbobj.c, bonddbtest.c,
+	  bonddbwrite.c: Fixes to navigation mode setting stuff.  Initial
+	  work on creating write sql statements
+
+2005-04-18 15:34  andru
+
+	* bonddb/bonddbfield.c, bonddb/bonddbid.c, bonddb/bonddbinit.c,
+	  bonddb/bonddbkey.c, bonddb/bonddbkey.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbobj.h, bonddb/bonddbplugin.c, bonddb/bonddbplugin.h,
+	  bonddb/bonddbrecord.c, bonddb/bonddbtest.c,
+	  pgsql/binding_pgsql.c: Working on getting id's and keys. primary
+	  key abstraction. more logic checks
+
+2005-04-18 01:52  andru
+
+	* bonddb/: bonddbfield.c, bonddbfield.h, bonddbobj.c, bonddbobj.h,
+	  bonddbrecord.c, bonddbrecord.h, bonddbtest.c, bonddbwrite.c,
+	  bonddbwrite.h: Record cache work.  Test for setting value and
+	  retrieving value.  Adding write code.  Code to get field
+	  definations and field pos.
+
+2005-04-17 23:00  andru
+
+	* bonddb/bonddbobj.c, bonddb/bonddbtest.c, pgsql/binding_pgsql.c:
+	  Fixing state issues. Fixing pgsql backend binding.
+
+2005-04-15 02:03  andru
+
+	* bondcommon/bcdebug.c, bondcommon/bcdebug.h, bonddb/SConstruct,
+	  bonddb/bonddbfield.c, bonddb/bonddbfield.h, bonddb/bonddbid.c,
+	  bonddb/bonddbinit.c, bonddb/bonddbkey.c, bonddb/bonddbobj.c,
+	  bonddb/bonddbobj.h, bonddb/bonddbplugin.c, bonddb/bonddbplugin.h,
+	  bonddb/bonddbrecord.c, bonddb/bonddbtest.c,
+	  bonddb/bonddbtest.conf, pgsql/binding_pgsql.c: Continued work on
+	  new bonddb.
+
+	  Working on tests and fixing code already written.  Continual
+	  refinement.  Writing postgresql backend.  Writing code to parse
+	  fields and tables.
+
+2005-04-14 22:38  andru
+
+	* pgsql/binding_pgsql.c: Making sur ei dont lose stuff before i
+	  start mass editing
+
+2005-04-14 00:27  andru
+
+	* SConstruct, bondcommon/bcdebug.c, bondcommon/bcdebug.h,
+	  bonddb/.cvsignore, bonddb/SConstruct, bonddb/bonddbfield.c,
+	  bonddb/bonddbfield.h, bonddb/bonddbglobal.h, bonddb/bonddbid.c,
+	  bonddb/bonddbid.h, bonddb/bonddbinit.c, bonddb/bonddbinit.h,
+	  bonddb/bonddbkey.c, bonddb/bonddbkey.h, bonddb/bonddbobj.c,
+	  bonddb/bonddbobj.h, bonddb/bonddbplugin.c, bonddb/bonddbplugin.h,
+	  bonddb/bonddbrecord.c, bonddb/bonddbrecord.h, pgsql/SConstruct,
+	  pgsql/binding_pgsql.c: Started work on bonddb2 (version 2 of
+	  bonddb yes) This is a major rewrite.	Old bonddb will continue to
+	  exist in src directory.  Bonddb2 will be written along side it.
+
+2005-04-11 11:46  andru
+
+	* bonddb.pc: Fixing version info
+
+2005-04-11 10:27  andru
+
+	* bondcommon.pc, bonddb.pc, createdb_mysql.sql, src/dbtoliet.c,
+	  src/dbuniqueid.c: Removing extra documentation and a few other
+	  cleanups
+
+2005-02-22 22:30  andru
+
+	* src/: db.c, dbuniqueid.c: Removing debugging output
+
+2005-02-21 02:01  andru
+
+	* src/db.c: Fixing loadby issue in bondrelation in regard to loadby
+	  oneself and searching
+
+2005-02-16 02:57  andru
+
+	* src/db.c: Fixed bug i created in order to fix a bug
+
+2005-02-14 00:36  andru
+
+	* src/db.c: Fixing bug in db_Sql not reseting db_ready when it
+	  should
+
+2005-02-10 02:24  andru
+
+	* src/: dbobject.c, dbpgsql.c, dbuniqueid.c, dbuniqueid.h: Major
+	  bug fixes for unique id stuff.  Agrr silly bonddb
+
+2005-01-31 22:03  andru
+
+	* src/: dbfield.c, dbuniqueid.c: Fixed hashtable freeing.
+
+2005-01-31 19:50  andru
+
+	* src/: dbfield.c, dbuniqueid.c: Fixed segfault in field adding.
+
+2005-01-31 01:52  andru
+
+	* .cvsignore, .sconsign: blah
+
+2005-01-31 01:11  andru
+
+	* .sconsign, src/dbclient.c, src/dbobject.h, src/dbuniqueid.c,
+	  src/dbuniqueid.h: Added new function to get the unique id as a
+	  string which is a bit faster.
+
+2005-01-17 09:27  andru
+
+	* src/: db.c, dbcache.c, dbobject.c, dbverifysql.c: Work done while
+	  in asia and iran.
+
+2004-12-19 17:44  andru
+
+	* bondcommon/bcmem.c: Added extra debugging output
+
+2004-12-14 10:24  andru
+
+	* bondsql/sql_parser.c, src/dbfilter.c: Fixed is not bug in bondsql
+
+2004-12-10 14:08  andru
+
+	* src/db.c: Fixed memory leak in db.c
+
+2004-11-29 01:01  andru
+
+	* src/db.c: Made inserts with db_sql and other types of sql
+	  statements a bit faster and more simple.
+
+2004-11-03 00:45  andru
+
+	* src/: dbbureaucrat.c, dbuniqueid.c: Fixed memory leak.
+
+2004-11-02 01:27  andru
+
+	* src/: db.c, dbcache.c, dbobject.c, dbobjectdel.c, dbobjectnav.c:
+	  Fixed record delation and all the problems it caused. oh what a
+	  bug.
+
+2004-11-01 18:30  andru
+
+	* bondcommon.pc, bonddb.pc: Updating version numbers
+
+2004-11-01 18:28  andru
+
+	* .cvsignore, bondcommon.pc, bonddb.pc: Added needed .pc files for
+	  pkg-config
+
+2004-10-31 20:17  andru
+
+	* SConstruct: Added installation of bonddb.pc file to
+	  /usr/local/lib.
+
+2004-10-29 17:22  andru
+
+	* README, SConstruct: Release 0.8.3
+
+2004-10-29 00:47  andru
+
+	* .cvsignore, SConstruct, bondcommon/.cvsignore,
+	  bondcommon/SConstruct, bondcommon/bcmem.c, bondsql/.cvsignore,
+	  bondsql/SConstruct, src/.cvsignore, src/SConstruct: Rewrote build
+	  system to use scons instead of make and gnu build tools.
+
+2004-10-28 17:30  andru
+
+	* src/.cvsignore, src/SConstruct, src/db.c, src/dbobject.c,
+	  src/dbuniqueid.c, bondcommon/SConstruct: Setting up new scons
+	  envoriment.  Trying to fix bugs with record deletion and unique
+	  id's screwing up on multiple deletes.
+
+2004-10-26 23:28  andru
+
+	* bondsql/: sql_parser.c, sql_parser.h: sql parser updates from
+	  libsql
+
+2004-10-26 23:08  andru
+
+	* src/: Makefile.am, Makefile.in, SConstruct, dbgather.c,
+	  dbverifysql.c: Improved error message in dbgather and dbverifysql
+	  Adding scons kinda inital start working on it support.
+
+2004-10-26 01:11  andru
+
+	* bondcommon/.cvsignore, bondcommon/SConstruct, src/db.c,
+	  src/dbobject.c: Code tidyup's. Initial work on some SConstruct
+	  stuff.
+
+2004-10-13 16:36  andru
+
+	* src/: db.c, dbobject.c: Fixed bug 554. Loadby's were screwing up
+	  after deletion and running into a g_assert on empty record sets.
+
+2004-10-13 03:42  andru
+
+	* src/: db.c, dbobject.c, dbobjectdel.c, dbobjectvalid.h, dbtest.c,
+	  dbtest.conf, dbtoliet.c: Fixed bug with db_loadbyobjects and
+	  db_delete. What would happen is if you delete a record it would
+	  copy values from the previous record set for you.  oh how evil.
+
+2004-10-13 03:29  andru
+
+	* src/dbobjectvalid.c: Fixed bug which i created recently with
+	  doing inserts on saves.
+
+2004-10-12 01:55  andru
+
+	* src/: db.c, dbcache.c, dbobject.c, dbpgsql.c, dbtoliet.c,
+	  dbuniqueid.c: Fixed bug getting dbuniqueid's.  Code tiydup's.
+
+2004-10-12 00:14  andru
+
+	* bondcommon/bcmem.h: Disabled memory checking.
+
+2004-10-10 15:57  andru
+
+	* src/: db.c, dbmasteroftable.c, dbuniqueid.c: Fixed up minor
+	  documnetation. Added trap to test for bug 129 showing up.
+
+2004-10-07 19:26  andru
+
+	* ChangeLog: Release 0.8.2
+
+2004-10-06 21:05  andru
+
+	* src/: dbobjectvalid.c, dbtoliet.c: Fixed bug where updates fail
+	  on well used tables.	Fixed bug with inserts accidently writing
+	  oid's. oh so norty.
+
+2004-10-05 23:40  andru
+
+	* src/: db.c, db.h, dbobject.c, dbpgsql.c, dbtoliet.c, dbwrapper.h:
+	  Added function to api to get the last SQL error.  Added db_save()
+	  to force saves.  Fixed memory leak in dbtoliet.
+
+2004-10-04 23:59  andru
+
+	* src/: db.c, dbobject.c, dbobjectvalid.c: Replaced some segfaults
+	  with convent error messages.
+
+2004-09-29 02:03  andru
+
+	* src/dbverifysql.c: Fixed issue if a table doesnt exist it goes
+	  boo!.  Wait no thats not it  i need sleep mayb.e dont know what i
+	  changed.  bugger. and it was only one line
+
+2004-09-29 00:22  andru
+
+	* src/dbobject.c: Added protection for a segfault.
+
+2004-09-21 23:19  andru
+
+	* ChangeLog: Release 0.8.1
+
+2004-09-18 23:10  andru
+
+	* src/: db.c, db.h, dbmasteroftable.c, dbobject.c, dbobject.h:
+	  Tidyup of dbmasteroftable api so it fits in with the rest of
+	  bonddb.  Fixed fieldschanged bug.
+
+2004-09-18 15:44  andru
+
+	* src/: db.c, db.h, dbcache.c, dbmasteroftable.c: More work on
+	  master of table code.
+
+2004-09-18 15:44  andru
+
+	* bondsql/: parser.y, sql_parser.c: Fix for bug 461
+
+2004-09-16 03:07  andru
+
+	* src/: Makefile.am, Makefile.in, db.c, dbcache.c, dbfield.c,
+	  dbfield.h, dbgather.c, dbmasteroftable.c, dbmasteroftable.h,
+	  dbobject.c, dbobject.h, dbtest.c: Lots of work done on
+	  masteroftable operations and got it to kinda work kinda at the
+	  moment now when you run it though the tests. Phasing out the
+	  dbsync code which appears to be an old attempt at making this
+	  work.
+
+2004-09-15 17:19  andru
+
+	* Makefile.in, aclocal.m4, bootstrap, configure, configure.in,
+	  depcomp, install-sh, missing, mkinstalldirs,
+	  bondcommon/Makefile.in, bondsql/Makefile.in,
+	  bondsql/sql_parser.c, bondsql/sql_parser.h,
+	  reference/Makefile.in, src/Makefile.am, src/Makefile.in,
+	  src/dbclient.c, src/dbgather.c, src/dbgather.h, src/dbgda.c,
+	  src/dbgda.h, src/dbgdagather.c, src/dbgdagather.h,
+	  src/dbgnomedb.c, src/dbgnomedb.h, src/dbmasteroftable.c,
+	  src/dbmasteroftable.h, src/dbobject.c, src/dbpgsql.c,
+	  src/dbpgsql.h, src/dbpgsqlgather.c, src/dbsqlparse.c,
+	  src/dbuniqueid.c, src/dbuniqueid.h, src/dbwrapper.h: Yes a lot
+	  has changed.	Fixed bug 458 (master of table).  Fixed bug 484
+	  (knowing what primary keys exist).  Added master of table code.
+	  This allows you to change fields which are used in relationships
+	  and it was cascade and update all effected fields. This attempts
+	  to fix bug 71.  Added gnome-db support with libgda. Use
+	  ./configure --enable-gda=yes The gathering of details for libgda
+	  still needs work.  dbclient needed to be modified to get provider
+	  information.
+
+2004-09-14 00:45  andru
+
+	* src/dbtest.c: Fixing segfault problem found by Philip Rhoades.
+
+2004-09-10 02:04  andru
+
+	* mkinstalldirs, bondsql/.cvsignore, bondsql/Makefile.am,
+	  bondsql/Makefile.in, bondsql/parser.y, bondsql/sql_parse_test.c,
+	  bondsql/sql_parser.c, bondsql/sql_parser.h,
+	  bondsql/sql_parser_test.c, bondsql/sql_tree.c, src/Makefile.am,
+	  src/Makefile.in, src/dbfield.c, src/dbfield.h,
+	  src/dbmasteroftable.c, src/dbmasteroftable.h, src/dbtest.c: Work
+	  done today.  Modified sql parser so you can get a list of where
+	  clauses.  Started work on solving bug 71.  Added masteroftable
+	  support.
+
+2004-08-09 23:31  andru
+
+	* ChangeLog: I ment release 0.8.0
+
+2004-08-09 23:27  andru
+
+	* ChangeLog: Release 0.7.4
+
+2004-08-09 23:26  andru
+
+	* aclocal.m4, bootstrap, configure, mkinstalldirs: Fix bootstrap
+	  issues.
+
+2004-08-09 17:06  andru
+
+	* bondcommon/bcconfig.c, bondsql/parser.y,
+	  bondsql/sql_parse_test.c, bondsql/sql_parser.c, src/db.c,
+	  src/dbobject.c, src/dbobjectdel.c: Didn't quite realised i
+	  changed so much.  Did update from bondcommon directory and update
+	  from latest libgda.  Removed debugging output from deletes which
+	  caused occasional crash.
+
+2004-08-05 16:44  andru
+
+	* config.guess, config.sub, ltmain.sh, bondcommon/bcdebug.c,
+	  bondsql/lexer.l, bondsql/mem.c, bondsql/mem.h, bondsql/parser.y,
+	  bondsql/sample_sql_statements, bondsql/sql_display.c,
+	  bondsql/sql_parser.c, bondsql/sql_parser.h, bondsql/sql_tree.c,
+	  bondsql/sql_tree.h, src/db.c, src/dbobject.c: Made object dead if
+	  table you are loading by doesn't have any rows.  Merged
+	  gnome-db's libgda sql library with bondsql. Wrote a script to
+	  keep the libraries up to date with each other.  Fixed bug in
+	  progress with 's in fields.  Have proper escaping now.  Fixed bug
+	  with order by in libgda.
+
+2004-04-13 23:34  andru
+
+	* bondcommon/bcdebug.c: Added exit with sleep instead of
+	  g_assert(null);.
+
+2004-04-11 22:52  andru
+
+	* src/: db.c, dbobject.c, dbtest.c: Fixed bug 194
+
+2004-04-06 14:12  sam
+
+	* README: changed README to say postgres 7.3 required, instead of
+	  postgres 7.0
+
+2004-04-06 14:05  andru
+
+	* reference/: .cvsignore, Makefile.in: Fixed nasty make bug
+
+2004-03-29 00:49  andru
+
+	* src/: dbclient.c, dbfilter.c: Fixed memory leak in dbfilter.
+	  Improved error messages.
+
+2004-03-25 16:03  andru
+
+	* bondcommon/bcconfig.c, bondsql/sql_parser.c: Fixed sql parser to
+	  handle desc bug.  Fixed bug in input for -c for different config
+	  files.
+
+2004-03-20 19:21  andru
+
+	* src/dbcache.c: Improved error checking on cache extraction
+
+2004-03-20 18:01  andru
+
+	* bondsql/lexer.l: Fixed bug with _ not been supported in table
+	  names.
+
+2004-03-18 01:32  andru
+
+	* mkinstalldirs, bondcommon/bcgarbage.c, src/dbobject.c: Fixed bug
+	  161
+
+2004-03-18 01:24  andru
+
+	* src/: dbobject.c, dbtest.c, dbtest.conf: Fixed oops bug i created
+	  a few hours ago
+
+2004-03-18 00:47  andru
+
+	* src/: dbobject.c, dbtest.conf: [no log message]
+
+2004-03-17 13:00  andru
+
+	* src/dbtest.c: Added test to make certain deletion works fine.
+
+2004-02-20 14:40  andru
+
+	* bondsql/sql_parser.c: Added support for regerating sql statements
+	  containing desc
+
+2004-02-20 02:18  andru
+
+	* bondsql/: parser.y, sql_parser.h, sql_tree.c, sql_tree.h: Fixed
+	  bug 141 (added orderby desc support).
+
+2004-02-20 02:03  andru
+
+	* bondsql/: lexer.l, parser.y:
+	  DAMNNNNITTTSTUPIDDDDCURSSEEERREDYACCKKKKKLAXXEEYARRPARRSSERERRRSSHIIIITTTT
+
+2004-02-19 02:10  andru
+
+	* src/: db.c, dbobject.c: Fixed memory leak in db_addloadby's
+
+2004-02-19 01:08  andru
+
+	* bondcommon/bcmem.c: Told mem_display() to ignore its own memory
+	  allocations
+
+2004-02-18 18:20  andru
+
+	* bondcommon/bcmem.c: Added more informatioative wording.
+
+2004-02-17 02:36  andru
+
+	* bondcommon/bc.c: Added support for debug_memdup=true tag in
+	  config files to do a memory dump on exit.
+
+2004-02-17 01:33  andru
+
+	* ChangeLog, Makefile.in, aclocal.m4, config.guess, config.h.in,
+	  config.sub, configure, ltmain.sh, mkinstalldirs, stamp-h.in,
+	  bondcommon/Makefile.in, bondcommon/bcmem.c, bondsql/Makefile.in,
+	  reference/Makefile.am, src/Makefile.in: Release 0.7.3
+
+2004-02-15 23:48  andru
+
+	* src/db.c: Added check into loadbyobjects to make sure its a valid
+	  object.
+
+2004-02-15 17:21  andru
+
+	* README, bondcommon/bcmem.c, bondcommon/bcmem.h, src/db.c: Wrote
+	  new db_verify function to check if memory is good.  Added
+	  information on mysql.
+
+2004-02-13 00:13  andru
+
+	* src/: dbmysql.c, dbmysqlgather.c, dbwrapper.h: got mysql support
+	  to compile. course it doesnt work.
+
+2004-02-11 01:12  andru
+
+	* configure.in, src/Makefile.am, src/dbmysql.c,
+	  src/dbmysqlgather.c, src/dbmysqlgather.h: Added support for mysql
+	  into makefiles and configure script.	Use ./configure
+	  --enable-mysql=yes to use mysql support.  Of course it doesn't
+	  really work it just has correct makefiles
+
+2004-02-08 20:00  andru
+
+	* src/dbwrapper.h: set to default to postgreql
+
+2004-02-08 19:55  andru
+
+	* src/: dbmysql.c, dbmysql.h, dbobjectdel.c, dbpgsql.c,
+	  dbwrapper.h: Added a token of support of mysql.
+
+2004-01-31 03:23  andru
+
+	* bondcommon/bcmem.c: Check for negitive allocation
+
+2004-01-26 01:48  andru
+
+	* bondcommon/Makefile.am, bondcommon/Makefile.in,
+	  bondcommon/bcconfig.c, bondcommon/bcmem.c, src/db.c: Fixed bug in
+	  bondconfig under unix.  Updated bcmem from bondcommon code.
+	  Improved warning message in db.c
+
+2004-01-18 16:40  andru
+
+	* src/: db.h, dbobject.c, dbobject.h: Changing to DbObject the name
+
+2004-01-16 01:14  andru
+
+	* bondcommon/: bcdebug.c, bcdebug.h: Added attention() function
+
+2004-01-06 14:43  andru
+
+	* bondsql/sql_parser.c: Fixed really nasty bug. Added support for
+	  >, <, >=, <= for sql statements.  Not quite sure how that one
+	  slipped though.
+
+2004-01-06 00:46  andru
+
+	* bondcommon/bcmem.c, bondcommon/bcmem.h, src/db.c, src/dbgather.h,
+	  src/dbobject.c, src/dbpgsql.c, src/dbpgsqlgather.c,
+	  src/dbsqlparse.c, src/dbtest.c: Fixed memory leak in dbverifysql.
+	  Added support for postgresql 7.4 by disabling views. Need to fix
+	  at a later date.  Added memory debugging code for watch for id's
+	  and get id's of memory allocation to aid in leak finding.
+
+2004-01-05 22:18  andru
+
+	* src/dbdefault.c: Fixed problem with default values not working
+	  properly.
+
+2004-01-05 11:29  andru
+
+	* bondcommon/bc.h, bondcommon/bcconfig.c, src/dbfield.h: Code tidy
+	  up. fix warnings
+
+2003-11-13 15:31  andru
+
+	* src/: dbtoliet.c, dbtoliet.h: Coding done in the jungle
+
+2003-10-16 00:51  andru
+
+	* src/dbsync.c: what i think is major work but really doens't equal
+	  any lines of code.
+
+2003-10-16 00:51  andru
+
+	* bondsql/: sql_parser.c, sql_parser.h: Added ability to search
+	  though where statements for string occurances
+
+2003-10-15 17:58  andru
+
+	* bondcommon/bcconfig.c, src/dbsync.c, src/dbtest.c,
+	  src/dbuniqueid.c: Started work on dbsync work agian noticed
+	  bizare infinite loop in bonddb cleanup.
+
+2003-10-02 00:07  andru
+
+	* src/dbclient.c: fixed bug with config file in regard to
+	  db_connection_string
+
+2003-10-01 12:47  andru
+
+	* src/dbsync.c: fixed compiler error
+
+2003-09-24 13:21  andru
+
+	* src/: dbsync.c, dbsync.h: code i wrote when i was asleep
+
+2003-09-24 01:21  andru
+
+	* src/: dbsync.c, dbsync.h: continued work on dbsync
+
+2003-09-23 19:06  andru
+
+	* src/: Makefile.am, Makefile.in, db.c, dbheader.h, dbobject.h,
+	  dbsync.c, dbsync.h, dbtest.c, dbuniqueid.h, dbverifysql.c: Added
+	  dbsync function for resync'ing rows in records which are selects
+	  over mulitple tables. This is to help replace mapme and solve
+	  bugs in regard to changing a active id and getting those changes
+	  to follow though elsewhere.
+
+2003-09-16 12:43  andru
+
+	* ChangeLog, src/dbuniqueid.c: Releaes 7.2
+
+2003-09-14 04:29  andru
+
+	* src/dbcache.c: fixed bug #34
+
+2003-09-10 22:05  andru
+
+	* src/: dbcache.c, dbpgsql.c: Continued work on dbextract fixing
+	  bugs.  Removed the occasional glib errors.
+
+2003-09-10 02:23  andru
+
+	* src/dbcache.c: Added EXECFUNCTION support into db_cache_extract()
+
+2003-09-09 23:15  andru
+
+	* src/: db.c, dbobject.c: Fixed bug with birthvalue getting
+	  courpted under some situations.
+
+2003-09-09 01:54  andru
+
+	* src/: db.c, dbheader.h, dbobject.c, dbobject.h, dbobjectvalid.c,
+	  dbobjectvalid.h: Renamed Object to DbObject. (Object still
+	  exists, though now depreciated) Re-Added dead object support.
+	  This may break binary compitablity on some platforms.
+
+2003-09-07 21:36  andru
+
+	* config.h.in, bondcommon/bcmem.h, src/db.c, src/dbobjectnav.c: and
+	  more so work
+
+2003-09-01 11:49  andru
+
+	* src/: db.c, dbcache.c, dbverifysql.c: Continued debugging work on
+	  objectsbyobject.
+
+2003-09-01 09:28  andru
+
+	* src/: db.c, dbobject.c, dbobject.h: Bug fixes to
+	  loadobjectbyobjects.	Allowed refrehs of self properly.
+
+2003-09-01 02:31  andru
+
+	* Makefile.in, aclocal.m4, configure, bondcommon/Makefile.in,
+	  bondsql/Makefile.in, src/Makefile.in, src/dbverifysql.c:
+	  Re-bootstrap it for non-c++ support.
+
+2003-09-01 00:44  andru
+
+	* bondcommon/bcgarbage.c, bondcommon/bcgarbage.h,
+	  bondsql/sql_parser.c, src/Makefile.am, src/Makefile.in, src/db.h,
+	  src/dbbirth.c, src/dbcache.c, src/dbcache.h, src/dbdefault.c,
+	  src/dbfield.c, src/dbfield.h, src/dbgather.c, src/dbgather.h,
+	  src/dbobject.c, src/dbobject.h, src/dboo.h, src/dbsqlparse.c,
+	  src/dbtest.c, src/dbtoliet.c, src/dbuniqueid.c,
+	  src/dbverifysql.c: Fixed many bugs in db_extract_cache and worked
+	  a bit on its speed.  Adding GNU comments to files.  Continued
+	  work on garbage collection.
+
+2003-08-31 21:50  andru
+
+	* bondcommon/: Makefile.am, Makefile.in, bc.h, bcgarbage.c,
+	  bcgarbage.h, bcmem.h: Added new garbage collection
+
+2003-08-31 03:31  andru
+
+	* src/dbcache.c: Fixing memory leak in extraction
+
+2003-08-25 01:59  andru
+
+	* src/: dbpgsqlgather.c, dbverifysql.c: Fixed bug with certain
+	  select statements doing nasty things.
+
+2003-08-24 20:26  andru
+
+	* bondsql/: lexer.l, parser.y: Bug fix by andre for parser
+
+2003-08-23 04:20  andru
+
+	* src/: db.c, dbsqlparse.c, dbverifysql.c: damn achole cna't
+	  remeeber what i did but i am sure i was drunk during the time
+
+2003-08-22 02:58  andru
+
+	* .cvsignore, src/db.c, src/dbgather.c, src/dbobject.c,
+	  src/dbobject.h, src/dbtoliet.c: Fixed big problems with loadby. A
+	  case of right table.field and left table.field big mixup. Also
+	  fixed bug in regard to proberly handling of errors.  Removed
+	  extra debugging output.
+
+2003-08-22 02:14  andru
+
+	* src/: db.c, dbbirth.c, dbfield.c, dbfield.h, dbobject.c,
+	  dbtoliet.c: Added db_field_debug function for printing field
+	  information.	Fixed bug with birth values not coming across.
+	  Temporay debugging in toliet. will remove.  Fixed g_assert in
+	  db_obj_refresh killing client apps. now handles failure.
+
+2003-08-21 23:06  andru
+
+	* src/: db.c, dbclient.c, dbobject.c, dbobject.h, dbtoliet.c,
+	  dbuniqueid.c: Fixed bug wiwith loadby not working on new objects.
+	  Added function to refresh object by itsself.  Fixed memory error
+	  in toliet.c
+
+2003-08-21 01:22  andru
+
+	* bondcommon/bc.c, bondcommon/bcconfig.c, bondcommon/bcdebug.c,
+	  bondcommon/bcdebug.h, src/dbclient.c: Added feature to draw
+	  lines.  Made debug_output go though main drawing function, so can
+	  be disabled with debug levels.  Cleaned up initalisation and
+	  error messags in bc_init and db_init.  Made clean exits on
+	  failure.
+
+2003-08-20 23:38  andru
+
+	* bondcommon/: bcconfig.c, bcdebug.c, bcdebug.h: Added debug_line
+	  support, got first debugging message to go to the right stream.
+
+2003-08-20 14:37  andru
+
+	* .cvsignore, Makefile.am, Makefile.in, bondcommon.pc.in,
+	  bonddb.pc.in, configure, configure.in: Added bondcommon.pc
+	  package configurating for programmes that only want that
+	  functionality.  Updated assocaited files to show that.
+
+2003-08-20 13:45  andru
+
+	* .cvsignore, Makefile.am, Makefile.in, aclocal.m4, bonddb.pc.in,
+	  configure, configure.in: Got pkg-config to work properly now.
+
+2003-08-20 13:13  andru
+
+	* bonddb.pc.in, configure.in: Working on adding bonddb pkg-config
+	  support.
+
+2003-08-20 11:55  andru
+
+	* Makefile.in: oops
+
+2003-08-20 11:54  andru
+
+	* .cvsignore, bondcommon/.cvsignore, bondsql/.cvsignore,
+	  src/.cvsignore: Allowing Makefile.in to exist now.
+
+2003-08-20 11:53  andru
+
+	* aclocal.m4, configure, bondcommon/Makefile.in,
+	  bondsql/Makefile.in, src/Makefile.in: Adding .in makefiles to
+	  allow configure to work.  Went back to automake1.4
+
+2003-08-20 11:49  andru
+
+	* bondcommon/Makefile.am: Fixed bug with install headers.
+
+2003-08-20 03:04  andru
+
+	* src/: Makefile.am, vicprof.c: Trying to fix those silly make
+	  issues for vicprof. wtf? why does it not work when its called
+	  vicprof, but if i rename it to something else, like dbtestblah it
+	  works fine. damit.
+
+2003-08-20 02:38  andru
+
+	* install-sh, ltmain.sh, missing, mkinstalldirs: Updated
+	  confuguration autoconf stuff again. damit
+
+2003-08-20 02:36  andru
+
+	* aclocal.m4, configure, configure.in, depcomp, install-sh,
+	  missing, mkinstalldirs, rmbootstrap, bondsql/Makefile.am,
+	  src/Makefile.am: Got ./bootstrap to not generate any warnings.
+	  Added way to remove bootstrap generated files.  Now stuck with
+	  missing problem in configure.
+
+2003-08-20 01:24  andru
+
+	* aclocal.m4, config.h.in, configure, configure.in,
+	  bondcommon/bc.c, bondcommon/bcconfig.c, bondcommon/bcconfig.h,
+	  bondcommon/bcdebug.c, src/db.c, src/dbbureaucrat.c,
+	  src/dbclient.c, src/dbcommentcallback.c, src/dbfield.c,
+	  src/dblog.c, src/dblog.h, src/dbmapme.c, src/dbobject.c,
+	  src/dbobjectdel.c, src/dbtest.c, src/dbtest.conf: Added support
+	  into bcconfig to parse config file for debugging options.  Fixing
+	  bugs in bond config code.  Fixing bugs in debugging code.  Fixing
+	  debug output in connecting.  Fixing warnings in code.  Trying to
+	  remove new warnings in configure.in?
+
+2003-08-18 05:56  andru
+
+	* .cvsignore, Makefile.am, NEWS, README, acconfig.h, aclocal.m4,
+	  autogen.sh, bonddb.spec, bootstrap, config.guess, config.h.in,
+	  config.sub, configure, configure.in, install-sh, ltmain.sh,
+	  missing, mkinstalldirs, stamp-h.in, bondcommon/Makefile.am,
+	  bondcommon/bcmem.h, bondsql/Makefile.am, bondsql/mem.h,
+	  src/Makefile.am, src/advstring.c, src/dbbureaucrat.c,
+	  src/dbcommentcallback.c, src/dbobject.c, src/dbsqlparse.c,
+	  src/dbtest.c, src/dbtoliet.c, src/safescanner.h, src/vicprof.c:
+	  Rewrote makefiles completely.  Changed bootstrap loader.  Rewrote
+	  configure.in.  Added debuging, profiling, memory profiling etc as
+	  configure file options.  Speed up compiling time a lot.  Made
+	  compiler less safe.  Added ansi compitablity.
+
+2003-08-18 05:39  andru
+
+	* src/: advstring.c, dbcommentcallback.c, dbconstraint.c,
+	  dbfield.c, dblog.c, dbmethod.c, dbpgsqlgather.c, dbsqlparse.c,
+	  dbwrapper.c: Changing of debug.h files
+
+2003-08-16 15:43  andru
+
+	* bondcommon/bcconfig.c, src/Makefile.am, src/db.c, src/db.h,
+	  src/dbbirth.c, src/dbbureaucrat.c, src/dbcache.c, src/dbclient.c,
+	  src/dbclient.h, src/dbdefault.c, src/dbgather.c, src/dbmapme.c,
+	  src/dbobject.c, src/dbobjectdel.c, src/dbobjectnav.c,
+	  src/dbobjectvalid.c, src/dboo.c, src/dboosql.c, src/dbpath.c,
+	  src/dbpgsql.c, src/dbsuggest.c, src/dbtest.c, src/dbtoliet.c,
+	  src/dbuniqueid.c, src/dbverifysql.c: Rename all debug.h
+	  references to bc.h (bond common.) Changed db_init to use new
+	  config file format.
+
+2003-08-16 04:48  andru
+
+	* src/dbclient.c: Removing code that was moved to bondcommon.
+
+2003-08-16 04:44  andru
+
+	* bondcommon/: .cvsignore, Makefile.am, bc.c, bc.h, bcconfig.c,
+	  bcconfig.h, bcdebug.c, bcdebug.h, bcmem.c, bcmem.h: bonddebug is
+	  being replaced by bondcommon library.  It will include a config
+	  file parser.
+
+2003-08-14 01:01  andru
+
+	* src/: dbfield.c, dbgather.c, dbuniqueid.c, dbverifysql.c: Fixing
+	  segfaults on errors. Adding g_asserts and error messages.
+
+2003-08-13 21:42  andru
+
+	* src/: db.c, dbfield.c, dbgather.c, dbgather.h, dbobject.c,
+	  dbuniqueid.c, dbuniqueid.h, dbverifysql.c: Working on loadby.
+	  Better error handling
+
+2003-08-13 10:04  andru
+
+	* createtestdb.sql, bonddebug/dbmem.h, bonddebug/debug.c,
+	  bondsql/mem.c, src/dbcache.c, src/dbclient.c, src/dbfilter.c,
+	  src/dbobjectdel.c, src/dbobjectdel.h, src/dbtoliet.c,
+	  src/dbtoliet.h: removing warniings from code.
+
+2003-08-08 00:58  andru
+
+	* src/: Makefile.am, dbcache.c, dbuniqueid.c, dbverifysql.c: Added
+	  profiling to makefile for speed testing.  Wrote and extended the
+	  cache extract function. Got it working mostly. But still odd
+	  problems with it. I wouldn't trust it completely yet.  Improved
+	  the unique id getting as well.
+
+2003-08-05 23:15  andru
+
+	* ChangeLog: Release 0.7.1
+
+2003-08-05 00:51  andru
+
+	* bonddebug/dbmem.h, bondsql/sql_parser.c, src/dblooksee.c: Removed
+	  memory boundary checking for speed.  Fixed oops bug in
+	  sql_parser.  Told dblooksee its obsolete.
+
+2003-08-04 10:19  andru
+
+	* bondsql/sql_parser.c, src/dbobject.c: Got appending where
+	  statemnts to handle NULL values.
+
+2003-08-03 22:08  andru
+
+	* src/dbobject.c: removed message, fixed warning
+
+2003-08-03 18:07  andru
+
+	* src/: db.c, dbobject.c: Fixed bugs with db_loadobjectbyobjects().
+	  Fixed bug with setready on failed SQL.
+
+2003-08-01 10:28  andru
+
+	* src/dbobject.c: modified db_getvalue to always use the cache if
+	  possible
+
+2003-07-30 14:09  andru
+
+	* src/: dbconstraint.c, dbuniqueid.c: I did nothing to
+	  dbconstraint.c I fixed a bug in the dbuniqueid regarding new
+	  records.
+
+2003-07-27 03:32  andru
+
+	* src/: db.c, dbfilter.c, dbfilter.h, dbobject.c, dbobjectvalid.c:
+	  Fixed minor compiler bug.  Tidy up debugging messages.
+
+2003-07-25 10:26  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbverifysql.c: Getting loadby
+	  to work when object isn't ready.
+
+2003-07-25 01:58  andru
+
+	* src/: db.h, dbverifysql.c: temporary work on getting loadby to
+	  work
+
+2003-07-24 20:29  andru
+
+	* src/dbbirth.c: Added write for birthvalues stored in field
+
+2003-07-24 20:20  andru
+
+	* bondsql/sql_parser.c, src/db.c, src/dbbirth.c, src/dbcache.c,
+	  src/dbcache.h, src/dbfield.h, src/dbobject.c, src/dbobject.h,
+	  src/dbtest.c, src/dbverifysql.c: Add db_loadobjectbyobjects()
+	  function to load more from one obj.
+
+2003-07-23 21:10  andru
+
+	* ChangeLog: Release 0.7.0
+
+2003-07-23 21:00  andru
+
+	* bondsql/: sql_parser.c, sql_parser.h: Fixed bugs with appending
+	  where statements. Or statements are nested while and group things
+	  around
+
+2003-07-02 02:50  andru
+
+	* bondsql/sql_parser.c, bondsql/sql_parser.h, src/dbfilter.c,
+	  src/dbfilter.h: Removed old enum for filters, converted over to
+	  the same one used for sql parser for convience and
+	  standardisation.  Make highly complex append_where statement
+	  function for sql parser. OH the horrors of SQL boolean operations
+
+2003-06-30 03:20  andru
+
+	* src/: db.c, db.h, dbobject.c, dbobject.h, dbverifysql.c: Added
+	  support for pausing a sql query so to speak. It is so you can
+	  interupt a sql statement in progress and modify the query
+	  externally. I needed it to get searching in bond to work
+	  correctly on a form by form relationship manour.
+
+2003-06-27 12:29  andru
+
+	* src/: dbcache.c, dbfield.c, dbfield.h: Added function for finding
+	  the tablename of a field requested Tidyup on debugging.
+
+2003-06-11 01:52  andru
+
+	* src/: dbfilter.c, dbfilter.h: Continued work on filtering.
+
+2003-06-10 03:26  andru
+
+	* src/dbfilter.c: continued work on it
+
+2003-06-10 03:23  andru
+
+	* src/dbfilter.c: Modified db_filter_load to filter on basic
+	  queries when loaded into the system if they are set.
+
+2003-06-09 06:56  andru
+
+	* src/: dbfilter.c, dbfilter.h: Continued work on dbfilter. to
+	  support more intergration with bond.
+
+2003-06-09 02:21  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbobject.h: wrote new functions for
+	  filtering.  Code is still a bit messy for filters but designed
+	  well.  May need to tidy up a bit later on with naming
+	  conventions.
+
+2003-06-09 00:57  andru
+
+	* src/dbuniqueid.c: Minor code fixups for warnings. no its nothign
+	  anything major
+
+2003-06-04 23:23  andru
+
+	* src/: dbclient.c, dbuniqueid.c, dbuniqueid.h: Added function to
+	  extract id as a string from a object
+
+2003-05-29 18:09  andru
+
+	* bondsql/Makefile.am: fixing installation issues
+
+2003-05-28 01:07  andru
+
+	* bondsql/sql_parser.c, bondsql/sql_parser.h, src/dbcache.c,
+	  src/dbconstraint.c, src/dbconstraint.h, src/dbtest.c,
+	  src/dbverifysql.c: Finished adding support for modification of
+	  sql select statement to expand itself to other tables
+	  dynamically.	(ie want country.name when you only select * from
+	  soldier).
+
+2003-05-27 12:00  andru
+
+	* src/dbtoliet.c: fixed memory leak on error
+
+2003-05-27 01:13  andru
+
+	* src/: db.c, dbcache.c, dbcache.h, dbfield.c, dbgather.h,
+	  dbobject.c, dbobjectnav.c, dbobjectvalid.c, dbpgsql.c, dbtest.c,
+	  dbuniqueid.c, dbverifysql.c, dbverifysql.h: Fixed dbverifysql
+	  bugs in parsing, dealing with getting oid in all situations.
+	  Added support modifcation and expansion of sql statement as more
+	  fields are requested.  Fixed id bugs.  Added support for dynamic
+	  caching sizing.
+
+2003-05-26 15:21  andru
+
+	* bondsql/sql_parser.c, src/dbverifysql.c: continued work on
+	  dbveryifysql
+
+2003-05-26 00:31  andru
+
+	* bonddebug/dbmem.c, bonddebug/dbmem.h, bonddebug/debug.c,
+	  bonddebug/debug.h, bondsql/mem.c, bondsql/mem.h,
+	  bondsql/sql_parse_test.c, src/dbtest.c: Working on fixing memory
+	  leaks
+
+2003-05-25 16:54  andru
+
+	* src/dbtoliet.c: fixed memory leak with updating sql statements
+
+2003-05-24 21:55  andru
+
+	* bonddebug/dbmem.h, bonddebug/debug.c, src/Makefile.am,
+	  src/dbmem.c, src/dbmem.h, src/dbtest.c, src/dbverifysql.c,
+	  src/debug.c, src/debug.h: continued work on fixing memory leaks.
+	  removed debug.c and dbmem.c from src.
+
+2003-05-24 21:20  andru
+
+	* src/: dbfield.c, dbmem.h, dbobject.c, dbtest.c, dbverifysql.c,
+	  debug.c: fix memory leak in verifysql. Fixed memory overlap
+	  problem with dbfeild
+
+2003-05-23 04:40  andru
+
+	* src/: dbcache.c, dbfield.c, dbmem.c, dbmem.h, dbobject.c,
+	  dbtest.c, dbuniqueid.c, dbverifysql.c: enabled mem checking for
+	  fixing memory overwrites
+
+2003-05-22 23:33  andru
+
+	* src/: dbfield.c, dbfield.h, dbobject.c, dbuniqueid.c: fixed bug
+	  in finding positions in sql. Fixed populate single method. Got
+	  uniqueid working properly. fixed empty and null item returned
+	  lists.
+
+2003-05-22 00:42  andru
+
+	* src/: dbfield.c, dbverifysql.c: more bug fixes on dbfield. made
+	  it add fields again
+
+2003-05-22 00:26  andru
+
+	* src/: Makefile.am, dbfield.c, dbobject.c, dbverifysql.c: feeling
+	  oh so sleepy removed proof stuff from makefile modified other
+	  files to get select statements to work
+
+2003-05-20 17:47  andru
+
+	* src/: dbfield.c, dbobject.c: bug fixes for updates
+
+2003-05-16 19:21  andru
+
+	* src/: dbtest.c, dbtoliet.c, dbverifysql.c: fixing test 4 5 6
+
+2003-05-15 14:07  andru
+
+	* README, TODO, bondsql/Makefile.am, src/Makefile.am,
+	  src/bond.conf, src/db.c, src/dbbirth.c, src/dbbureaucrat.c,
+	  src/dbcache.c, src/dbcache.h, src/dbclient.c, src/dbdefault.c,
+	  src/dbfield.c, src/dbfield.h, src/dbfilter.c, src/dbgather.c,
+	  src/dbgather.h, src/dbmapme.c, src/dbobject.c, src/dbobjectdel.c,
+	  src/dbobjectnav.c, src/dbobjectvalid.c, src/dbpgsql.c,
+	  src/dbpgsqlgather.c, src/dbpgsqlgather.h, src/dbsuggest.c,
+	  src/dbtest.c, src/dbtoliet.c, src/dbtoliet.h, src/dbuniqueid.c,
+	  src/dbuniqueid.h, src/dbverifysql.c, src/dbverifysql.h,
+	  src/debug.c: major rewrite in progress. work done while in lab.
+	  got to compile again. added support for updates across multiple
+	  tables. support for multiple unique id's, finsihed basetable
+	  transfer. tidyup of code.
+
+2003-05-13 01:19  andru
+
+	* bondsql/sql_parse_test.c, bondsql/sql_parser.c,
+	  bondsql/sql_parser.h, src/Makefile.am, src/dbgather.c,
+	  src/dbgather.h, src/dbverifysql.c, src/dbverifysql.h: Contined
+	  work on the reworking
+
+2003-05-12 17:27  andru
+
+	* src/: dbsuggest.c, dbverifysql.c, dbverifysql.h: more coding
+	  madness
+
+2003-05-12 11:32  andru
+
+	* bondsql/sql_parse_test.c, bondsql/sql_parser.c,
+	  bondsql/sql_parser.h, src/db.c, src/dbfield.c, src/dbpgsql.c,
+	  src/dbsqlparse.c, src/dbverifysql.c, src/dbwrapper.h: Contined
+	  work on moving to more tableless datasets.
+
+2003-05-10 17:13  andru
+
+	* bondsql/sql_parser.c, bondsql/sql_parser.h, src/db.c,
+	  src/dbfield.h, src/dbobject.c, src/dbobject.h, src/dbobjectnav.c,
+	  src/dbverifysql.c, src/dbverifysql.h: comminting broken code
+
+2003-05-09 12:44  andru
+
+	* README, bondsql/sample_sql_statements, docs/parsesql.txt,
+	  src/dbfield.h, src/dbsqlparse.c, src/dbverifysql.c,
+	  src/dbverifysql.h: working on new parsing and verification of sql
+	  component
+
+2003-05-08 23:47  andru
+
+	* bonddebug/debug.h, src/dbobject.c, src/dbobject.h: confusing
+	  myself with the ins and out sof comparing ids and hte hell it
+	  shall generate
+
+2003-04-29 00:36  andru
+
+	* src/dbobjectnav.c: improved warning message
+
+2003-04-10 21:37  andru
+
+	* configure.in, bonddebug/debug.c: Release 0.6.3
+
+2003-04-07 03:37  andru
+
+	* bonddebug/debug.c, src/Makefile.am, src/dbobject.c: minor
+	  modifications nad work
+
+2003-04-04 04:29  andru
+
+	* bonddebug/: debug.c, debug.h: Adding better test suite support.
+
+2003-03-20 21:15  andru
+
+	* Makefile.am, configure.in, bonddebug/.cvsignore,
+	  bonddebug/Makefile.am, bonddebug/dbmem.c, bonddebug/dbmem.h,
+	  bonddebug/debug.c, bonddebug/debug.h, src/Makefile.am: creating a
+	  new library including debugging general code
+
+2003-03-03 12:32  andru
+
+	* src/: Makefile.am, dbcache.h, dbfield.c, dbmapme.c, dbobject.c,
+	  dbobjectnav.c, dbsuggest.c: Minor bugfix in dbsuggest, fix
+	  warnings.
+
+2003-03-03 12:22  francis
+
+	* src/Makefile.am: Commiting the change
+
+2003-02-26 17:03  francis
+
+	* test/qareporterDB: minor improvement
+
+2003-02-26 09:57  francis
+
+	* configure.in: --enable-gtk-debugnote option does works with
+	  ./configure must do "make clean" and rebuild if stale .o files
+	  exist.
+
+2003-02-26 09:55  francis
+
+	* src/debug.c: Minor bug fix: line 607: fp -> globalfp
+
+2003-02-25 17:28  francis
+
+	* src/Makefile.am: ng conflict
+
+2003-02-25 17:07  andru
+
+	* src/: bond.conf, debug.c, debug.h: minor changes to trigger
+	  report
+
+2003-02-25 15:46  andru
+
+	* src/: Makefile.am, debug.c, debug.h: Fixing bug with header file,
+	  Make GTK_DEBUGNOTE define tell bonddb if to enable gtk based
+	  debugging or not.
+
+2003-02-25 15:33  francis
+
+	* src/: debug.c, debug.h: commited
+
+2003-02-25 11:44  francis
+
+	* src/dbobjectdel.c: improved comment
+
+2003-02-25 11:44  francis
+
+	* src/dbobjectnav.c: Removed debug info comments improvements
+
+2003-02-25 11:41  francis
+
+	* src/dbtoliet.c: Removed debuging part
+
+2003-02-25 11:40  francis
+
+	* src/dbdefault.c: Paragraphised comment a bit narrower
+
+2003-02-25 10:26  francis
+
+	* src/dbcache.c: Added minor row information to db_cache_debug()
+
+2003-01-06 17:40  francis
+
+	* test/.cvsignore: Should ignore *.txt files from now on
+
+2003-01-06 17:25  francis
+
+	* src/dbobjectnav.c: Minor update
+
+2003-01-06 17:24  francis
+
+	* src/db.c: The section for calling recursively deletion has been
+	  updated
+
+2003-01-06 17:20  francis
+
+	* src/dbtoliet.c: a few more pieces of debug checking code were
+	  added
+
+2003-01-06 17:19  francis
+
+	* src/: debug.c, debug.h: a few gtk-based popup dialog were added
+	  for debugging purpose
+
+2003-01-06 17:17  francis
+
+	* src/dbfilter.c: commented out debug msg output
+
+2003-01-06 16:57  francis
+
+	* src/dbobjectdel.h: Along with the complete change
+	  'dbobjectdel.c', headers are updated.
+
+2003-01-06 16:56  francis
+
+	* src/dbobjectdel.c: The original algorithm seems to have a serious
+	  flaw, so Francis has totally rewritten. Actually, after finishing
+	  this implementation, Francis has been reminded by one of
+	  Francis's colleague that this can done effortlessly at SQL-level
+	  using cascade condition!!! Anyway, Francis is submitting this
+	  code for compatibility reason and some other unknown possible
+	  usefulness.
+
+2003-01-06 16:40  francis
+
+	* src/dbobject.c: Row delete behaviours has been changed
+
+2003-01-06 15:56  francis
+
+	* src/dbpgsql.c: Added rigorous query result checking
+
+2002-12-30 18:02  andru
+
+	* debian/changelog: Release 0.6.2-1
+
+2002-12-16 12:56  andru
+
+	* src/dbuniqueid.c: Bug fix to dbuniqueid
+
+2002-11-08 15:48  andru
+
+	* src/dbobject.c: renable sql debugging message on what sql
+	  statement is run
+
+2002-11-08 15:18  andru
+
+	* src/dbfilter.c: Fix to remove g_assert on boundary checks
+
+2002-11-04 11:36  andru
+
+	* test/images/: db-test.0, db-test.1, db-test.10, db-test.11,
+	  db-test.12, db-test.13, db-test.14, db-test.15, db-test.16,
+	  db-test.17, db-test.18, db-test.19, db-test.2, db-test.20,
+	  db-test.21, db-test.22, db-test.23, db-test.24, db-test.25,
+	  db-test.26, db-test.27, db-test.28, db-test.29, db-test.3,
+	  db-test.30, db-test.31, db-test.32, db-test.33, db-test.34,
+	  db-test.36, db-test.37, db-test.38, db-test.39, db-test.4,
+	  db-test.5, db-test.6, db-test.7, db-test.8, db-test.9: new test
+	  results
+
+2002-11-03 13:16  andru
+
+	* bondsql/: lexer.l, parser.y: fixing error in parser.y
+
+2002-11-03 13:12  andru
+
+	* bondsql/: lexer.l, parser.y: undoing recent changes to lexer
+
+2002-11-03 13:09  andru
+
+	* debian/changelog: debian release
+
+2002-11-02 18:40  andru
+
+	* ChangeLog, src/dbobject.c: Release 0.6.2
+
+2002-11-02 18:33  andru
+
+	* src/: dbfield.c, dbmapme.h, dbobject.c, dbobject.h,
+	  dbobjectnav.c, dbsqlparse.c, dbsqlparse.h, dbuniqueid.c, debug.c:
+	  Fixed debug.c for message() code to terminate colours.  Fixed
+	  warnings in dbobjectnav.c and dbmapme.h Fixed memory leaks in
+	  dbfield.c, dbsqlparse.c, dbuniqueid.c Added function to extract
+	  fields in failed sql in dbfield.c, dbsqlparse.c Code tidyup
+	  dbobject.[ch]
+
+2002-10-25 22:14  andru
+
+	* bondsql/lexer.l, bondsql/parser.y, src/dbfield.c,
+	  src/dbsqlparse.c: Working on getting fallback methods for
+	  sql_build fails
+
+2002-10-25 18:45  andru
+
+	* src/: dbfield.c, dbuniqueid.c: adding more warning messages into
+	  system
+
+2002-10-25 14:20  andru
+
+	* src/: db.c, dbobject.c, debug.h: Changes i have done a while ago
+	  but never commited.
+
+2002-09-23 11:17  francis
+
+	* src/dbfilter.c: removed debug info
+
+2002-09-23 11:07  francis
+
+	* src/debug.c: removed some comment
+
+2002-09-23 10:33  francis
+
+	* src/: dbbureaucrat.c, dbcache.c, dbcache.h, dbfilter.c, dbmem.h,
+	  dbobject.c, dbobjectdel.c, dbobjectnav.c, dbobjectvalid.c,
+	  dbtoliet.c, debug.c, debug.h: debugging calling included
+
+2002-09-16 13:05  francis
+
+	* test/qareporterDB: Fixed test database configuration for createdb
+	  option
+
+2002-09-11 14:12  francis
+
+	* src/: db.c, dbbirth.c, dbmem.h, dbobject.c: commit to debug
+
+2002-08-22 18:10  francis
+
+	* src/dbsqlparse.c: Added a simple SQL_function (like date())
+	  support. Note that only a constant function works. The main use
+	  is for the showformbyformwithquery() but, still it's messy and
+	  temporary hack. so later it should be redesigned
+
+	  Also added >=, <= operation support
+
+2002-08-22 18:06  francis
+
+	* src/dbmethodmodule.c: fixed void arg method invocation to be
+	  allowed
+
+2002-08-22 18:05  francis
+
+	* src/dbmethod.c: Removed 'arglist' assertion so that void arg is
+	  allowed At this moment, I am not sure if the decision is correct.
+
+2002-08-16 16:57  francis
+
+	* src/dbfilter.c: Improved comments
+
+2002-08-16 16:55  francis
+
+	* bondsql/: lexer.l, parser.y, sql_display.c, sql_parser.h: Added
+	  >=, <= operators...  The consequence can be catastrophic!
+
+2002-08-16 16:29  francis
+
+	* src/dbobjectnav.c: Fixed db_moveto(). Still not sure this really
+	  fixed or introduced another bug
+
+2002-08-15 11:19  andru
+
+	* src/dbsqlparse.c: Bug fix to segfault on showformbyformwithquery
+
+2002-08-13 14:12  andru
+
+	* src/: debug.c, debug.h: Trying not to break binary
+	  compitability...
+
+2002-08-13 13:00  andru
+
+	* src/: debug.c, debug.h: Added in some comments.  Fixed streams on
+	  errors and warnings.	Added support for outputting all
+	  warnings/errors to the debugstream.
+
+2002-08-13 12:15  francis
+
+	* src/debug.h: Changed to reflect resetting colour
+
+2002-08-13 12:09  francis
+
+	* src/debug.c: Fixed omitting the colur resetting
+
+2002-08-13 01:13  andru
+
+	* src/: debug.c, debug.h: Lots of work has been done on rewriting
+	  debug.c and debug.h. I've havn't tested in great detail but i
+	  have the new debugging code to become the new principle.
+
+2002-08-12 18:15  francis
+
+	* src/: debug.c, debug.h: Almost ready to replace working version
+	  of debug msg function series
+
+2002-08-12 18:05  francis
+
+	* src/: debug.c, debug.h: Swapped to new api
+
+2002-08-12 18:04  francis
+
+	* src/debug.h: Changed to new debug system
+
+2002-08-12 17:44  francis
+
+	* src/debug.c: Changed debug_getdebuginfo() API
+
+2002-08-12 17:34  andru
+
+	* src/: debug.c, debug.h: change debuginfo to globaldebuginfo.
+	  wrote wrapper functions to access datastreams
+
+2002-08-12 17:28  francis
+
+	* src/debug.c: Changed the API naming convention back to BOND style
+
+2002-08-12 17:22  andru
+
+	* src/: debug.c, debug.h: Working on debugging code for testing
+	  zones and adding comments
+
+2002-08-12 17:19  francis
+
+	* src/debug.c: Fixed preprocessor directive bugs at function body
+
+2002-08-12 17:03  francis
+
+	* src/debug.c: warning and error msg should work correctly with
+	  break option
+
+2002-08-12 16:58  francis
+
+	* src/debug.c: 0- 100 level assertion added
+
+2002-08-12 16:56  francis
+
+	* src/: debug.c, debug.h: First submit for new debug API Haven't
+	  test it at all yet
+
+2002-08-12 12:18  andru
+
+	* src/: debug.c, debug.h: Updating design specs for new debugging
+	  code
+
+2002-08-10 15:18  andru
+
+	* src/: debug.c, debug.h: Starting work on designing new debugging
+	  system
+
+2002-08-10 15:01  andru
+
+	* src/: db.c, dblooksee.c: code tidyup's
+
+2002-08-02 10:18  francis
+
+	* src/: dbclient.c, dbfilter.c, dbgather.c, dbgather.h: A few
+	  improvement over dbclient.c dbgather.{c,h} dbfilter.c: still need
+	  to work on this more
+
+2002-08-01 10:51  francis
+
+	* src/dbfilter.c: Updated API comment for db_filter_sortbypos()
+
+2002-07-31 11:20  andru
+
+	* src/: dbfield.c, dbmethod.h: Fixed memory leak
+
+2002-07-31 11:07  francis
+
+	* src/dbfilter.c: debug output cleanuped version
+
+2002-07-29 17:14  francis
+
+	* src/dbfilter.h: semicolon missing fixed
+
+2002-07-29 17:10  francis
+
+	* src/dbfield.h: Fixed a redeclaration function problem
+
+2002-07-29 16:42  francis
+
+	* src/dbfilter.h: Added the prototype of function
+	  db_filter_sortbypos prototype
+
+2002-07-29 16:37  francis
+
+	* src/dbfilter.c: db_filter_sortbypos() added.
+
+2002-07-29 12:51  andru
+
+	* src/: dbfilter.h, dbmem.h, dbmethod.c, dbtoliet.c: code tidying.
+
+2002-07-17 08:04  andru
+
+	* bonddb.spec: Patch by Marco for RPM support
+
+2002-07-17 07:24  andru
+
+	* ChangeLog, debian/changelog: Release 0.6.1
+
+2002-07-17 07:04  andru
+
+	* src/dbbirth.c: remove extra memory checking
+
+2002-07-12 13:26  francis
+
+	* src/debug.h: Removed color cos of side fx
+
+2002-07-12 12:22  francis
+
+	* src/debug.h: errormsg and warningmsg will have colours although
+	  it may introduce some side effects
+
+2002-07-11 05:32  andru
+
+	* src/: dbconstraint.c, dbconstraint.h: Minor changes, add c
+	  function to get all cref
+
+2002-07-11 03:39  andru
+
+	* src/: dbconstraint.c, dbconstraint.h, dbobjectdel.c: Added new
+	  function into constrants for getting all the relationships a
+	  table has from a master list.
+
+2002-07-02 14:35  andru
+
+	* src/db.h: [no log message]
+
+2002-07-02 14:15  francis
+
+	* src/: Makefile.am, dbmethodmodule.c, dbmethodmodule.h: method
+	  module mechanism added
+
+2002-07-02 12:09  francis
+
+	* src/Makefile.am: Updated to dbcommentcallback.h header to be
+	  installed
+
+2002-07-02 11:48  francis
+
+	* src/testdbmethod.c: This has been intergrated to dbtest case 42
+
+2002-07-02 11:44  andru
+
+	* src/: Makefile.am, db.h: Modifying api to include dbmethod
+
+2002-07-02 11:44  francis
+
+	* src/: dbgather.c, dbpgsqlgather.c, dbtest.c: Proper init for
+	  field->method updated
+
+2002-07-02 11:27  francis
+
+	* src/: dbgather.c, dbmethod.c, dbmethod.h, safescanner.c: Updated
+	  and removed conflicts
+
+2002-07-02 10:44  francis
+
+	* src/: dbcommentcallback.c, dbcommentcallback.h, dbgather.c,
+	  dbgather.h, dbheader.h: Now DbCommentCallbackDef structure has
+	  been replaced to DbMethodDef
+
+2002-07-01 14:39  andru
+
+	* src/: dbbirth.c, dbmethod.c: Cody tidyup.  Arrgrrr gotos in code
+
+2002-07-01 14:32  francis
+
+	* src/: dbmethod.c, dbmethod.h: updated
+
+2002-07-01 09:56  francis
+
+	* src/dbcommentcallback.c: it won't display comment callback
+	  validity information
+
+2002-07-01 09:54  francis
+
+	* src/: dbcommentcallback.c, dbconstraint.c, dbgather.c: Fixed
+	  cleanup crash bug
+
+2002-07-01 09:37  francis
+
+	* src/: dbcommentcallback.c, dbgather.c, dbmethod.c: Removed
+	  debugging info
+
+2002-06-28 15:34  francis
+
+	* src/Makefile.am: This reflects new dbcommentcallback and dbmethod
+	  support
+
+2002-06-28 15:34  francis
+
+	* src/: dbconstraint.c, dbgather.c, dbgather.h, dbmethod.c,
+	  dbmethod.h, testdbmethod.c: Recent update
+
+2002-06-28 13:45  francis
+
+	* src/testdbcommentcallback.c: Adding a simple testfile
+
+2002-06-28 13:45  francis
+
+	* src/testdbcommentconstraint.c: Renamed to testdbcommentcallback.c
+
+2002-06-28 13:41  francis
+
+	* src/: dbcommentcallback.c, dbcommentcallback.h: The files are
+	  from dbcommentconstraint
+
+2002-06-28 13:40  francis
+
+	* src/: dbcommentconstraint.c, dbcommentconstraint.h: Changed to
+	  dbcommentcallback.{c,h}
+
+2002-06-25 18:20  andru
+
+	* src/dbcommentconstraint.c: documentation modification
+
+2002-06-25 17:36  francis
+
+	* src/: dbcommentconstraint.c, testdbcommentconstraint.c:
+	  committing again not much change
+
+2002-06-25 16:17  francis
+
+	* src/: dbcommentconstraint.c, dbcommentconstraint.h,
+	  testdbcommentconstraint.c: Fearing loss of code, I am committing
+	  to repository
+
+2002-06-25 14:21  andru
+
+	* src/: dbbirth.c, dbmem.c, dbsqlparse.c: Bug fix for memory
+	  overwrites in birth control for sql statements.
+
+2002-06-25 11:14  francis
+
+	* src/: dbmethod.c, dbmethod.h, testdbmethod.c: Fixed more bug.
+	  Still there are memory corruption problem.
+
+2002-06-25 10:49  francis
+
+	* src/: dbmethod.c, dbmethod.h, safescanner.c, safescanner.h,
+	  testdbmethod.c: First check in of the dbmethod
+
+2002-06-24 14:56  andru
+
+	* test/images/: db-test.0, db-test.1, db-test.10, db-test.11,
+	  db-test.12, db-test.13, db-test.14, db-test.15, db-test.16,
+	  db-test.17, db-test.18, db-test.19, db-test.2, db-test.20,
+	  db-test.21, db-test.22, db-test.23, db-test.24, db-test.25,
+	  db-test.26, db-test.27, db-test.28, db-test.29, db-test.3,
+	  db-test.30, db-test.31, db-test.32, db-test.33, db-test.34,
+	  db-test.35, db-test.36, db-test.37, db-test.38, db-test.39,
+	  db-test.4, db-test.5, db-test.6, db-test.7, db-test.8, db-test.9:
+	  Update tests to have recent images
+
+2002-06-24 14:22  andru
+
+	* src/: db.h, dbfield.h: Making sure includes are covered by the
+	  db.h api
+
+2002-06-21 12:25  andru
+
+	* src/: dbgather.h, dbpgsqlgather.c: Extract notnull values from
+	  database
+
+2002-06-21 01:59  andru
+
+	* debian/changelog: To keep uptodate with bond version
+
+2002-06-20 14:31  andru
+
+	* src/: dbbirth.c, dbsqlparse.c, dbsqlparse.h: Major hack to get
+	  birth controls to work across sql statements that are not derived
+	  from relationships
+
+2002-06-20 09:31  andru
+
+	* ChangeLog, src/dbcache.c: Release 0.6.0
+
+2002-06-20 09:30  andru
+
+	* debian/changelog: Debian pre-release
+
+2002-06-19 22:21  andru
+
+	* src/: db.c, dbcache.c: Fix segfault on sometimes deletation...
+
+2002-06-19 22:13  andru
+
+	* src/: .cvsignore, dbcache.c, dbfilter.c, dbmapme.c, dbobject.c:
+	  Fixed deletation related bugs.  Removed extra debugging.  broke
+	  other stuff like adding somehow in process. bugger!
+
+2002-06-19 15:29  andru
+
+	* src/: Makefile.am, dbobjectvalid.h: Remove profile support from
+	  bonddb, add db_isasodeadobject function (ie is a soooo dead a
+	  object )
+
+2002-06-19 15:27  andru
+
+	* src/: dbfilter.c, dbmem.c, dbmem.h, dbobjectvalid.c: Add memory
+	  support fallback, it will generate strange warnings for you at
+	  run time but code should still function if you have binary
+	  incomptiable version.
+
+2002-06-19 14:08  andru
+
+	* debian/changelog: Continued testing version
+
+2002-06-19 13:57  andru
+
+	* src/: dbcache.c, dbfilter.c, dbobject.c: Fix deletation bug.
+
+2002-06-19 11:52  andru
+
+	* debian/changelog: RC for 0.6
+
+2002-06-19 11:48  andru
+
+	* src/dbpgsql.c: Remove debugging option of quit on error
+
+2002-06-18 17:27  andru
+
+	* src/: dbcache.c, dbmem.h, dbobject.c: Fixed courption bug with
+	  cache occasionally going syhco
+
+2002-06-18 16:20  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbmem.c, dbmem.h, dbtest.c:
+	  Attempting to fix some real nasty bugs in memory that only
+	  occasionaly very occasionally appear.  Anyway 1 of 2 known ones
+	  fixed.  Second one is impossibly illusive. Grrrr.  Memory bound
+	  checking is added. Added test 41 which fails for some other
+	  reason.
+
+2002-06-18 13:31  andru
+
+	* src/: db.c, dbbirth.c, dbcache.c, dbfilter.c, dbmapme.c, dbmem.h,
+	  dbobject.c, dbpgsql.c, dbtest.c: Attempting by all means to fix
+	  hell annoying insane cruel inhuman nasty bug
+
+2002-06-18 00:48  andru
+
+	* src/: dbmem.c, dbobjectnav.c: This is the strange thing, I've
+	  Fixed another one of those crazy random crash every now and
+	  again, dont know why bugs and i did it without knowing how i did
+	  it. grrr. agrrr. shite. and all that
+
+2002-06-14 00:13  andru
+
+	* src/: db.h, dbfilter.c: Bug fix for filter
+
+2002-06-13 16:49  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbobject.c: Fixed record deletation
+	  to work with filtered lists
+
+2002-06-13 14:44  andru
+
+	* src/: dbcache.c, dbcache.h, dbmem.c, dbobject.c: Improved memory
+	  debugging support.  Added cache deletation.  Tidy up of deletion
+
+2002-06-12 18:16  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbgather.c, vicprof.c: More speed
+	  optimisations.  Tested new bonddb with other applications.  Fixed
+	  odd segfaults.
+
+	  NOTE TO USERS:  You will need to recompile you applications and
+	  libraries to use new version of bonddb as layout in memory has
+	  changed.
+
+2002-06-12 14:17  andru
+
+	* src/: Makefile.am, db.c, dbbureaucrat.c, dbcache.c, dbcache.h,
+	  dbmem.c, dbmem.h, dbobject.c, dbobject.h, dbobjectnav.c,
+	  dbobjectvalid.c, dbtoliet.c, dbtoliet.h, dbuniqueid.c,
+	  dbuniqueid.h, vicprof.c: Oh yes another major complete change.  I
+	  rewrote all the caching, storing, filting, object retvial,
+	  writing, flushing etc etc etc etc etc etc this morning.  Tests
+	  all seem to pass. Speed is hopefully faster.	Need to check some
+	  other things to make certain.  But yes in summary it all changed.
+	  oh and i release 0.5.9 before this in fear that i would break
+	  everything which i did. well it compiles and runs nows. very
+	  strange.  anyway. later
+
+2002-06-11 17:20  andru
+
+	* bondsql/mem.c, bondsql/mem.h, src/Makefile.am, src/dbmem.c,
+	  src/dbmem.h, src/dbpgsql.c, src/dbsqlparse.c, src/dbtoliet.c,
+	  src/dbuniqueid.c, src/vicprof.conf: Badly insane memory issues.
+	  bad day and all the other site
+
+2002-06-11 15:25  andru
+
+	* bondsql/: mem.c, mem.h: Eggr
+
+2002-06-11 15:25  andru
+
+	* bondsql/: mem.c, mem.h: Opps
+
+2002-06-11 00:36  andru
+
+	* src/: .cvsignore, dbtoliet.c: Improving speed
+
+2002-06-11 00:06  andru
+
+	* src/vicprof.c: What I was trying to say was profiling.  Working
+	  on improving speed of bonddb
+
+2002-06-11 00:06  andru
+
+	* src/: Makefile.am, dbclient.c, dbfilter.c, dbobject.c,
+	  dbuniqueid.c: [no log message]
+
+2002-06-10 22:57  andru
+
+	* debian/changelog: Recent release
+
+2002-06-10 19:47  andru
+
+	* src/dbclient.c: Config file reading bug
+
+2002-06-07 10:44  andru
+
+	* src/dbgather.c: Improve support for picking up what type of
+	  datatype fields are
+
+2002-06-05 14:27  andru
+
+	* src/db.c: Minor bug fix with outofdate api
+
+2002-06-04 00:20  andru
+
+	* ChangeLog, debian/changelog: Releaes 0.5.8
+
+2002-06-04 00:18  andru
+
+	* src/dbclient.c: Bug fix for reading config file
+
+2002-06-03 12:33  andru
+
+	* src/bond.conf: Fixing to be compitable to new bond.conf format
+
+2002-06-01 20:08  andru
+
+	* src/: dbclient.c, dbclient.h: Add support for specifing the
+	  client user interface plugin library in bond.conf files.
+
+2002-05-31 15:21  andru
+
+	* src/: db.c, dbtest.c: Check your row position before doing a
+	  single read
+
+2002-05-31 15:20  andru
+
+	* debian/changelog: Debian release 0.3.7-3
+
+2002-05-31 14:50  andru
+
+	* src/: db.c, db.h, dbbirth.c, dbtest.c: Bug fix for
+	  db_loadobjectbyobject. It now functions correctly.
+
+2002-05-31 14:09  andru
+
+	* src/: db.c, dbfield.c, dbmapme.c, dbobject.c, dbobjectvalid.c,
+	  dbtest.c: Trying to get db_loadobjectbyobject to function
+	  correctly in insane circumstances.
+
+2002-05-31 00:08  andru
+
+	* src/: db.c, dbobject.c: Bug fix for db_loadobjectbyobject().
+	  Getting it to work on fresh new objects.
+
+2002-05-30 18:02  andru
+
+	* debian/changelog: Version increase again.
+
+2002-05-30 17:31  andru
+
+	* debian/changelog, src/dbobjectdel.c: Debian release 0.5.7-2, bug
+	  fix for dbdel
+
+2002-05-30 17:02  andru
+
+	* src/: dbbirth.c, dbbirth.h, dbpgsql.c, dbtest.c: Yes i actually
+	  did some work. Hmmm.
+
+2002-05-30 16:56  andru
+
+	* src/: dbbureaucrat.c, dbobject.c, dbpgsql.c: Fixed bug with
+	  dbbureaucrat sending writes premuturally.  Renable 'die on sql
+	  failure' for debugging purposes.
+
+2002-05-30 14:14  andru
+
+	* debian/changelog: Debian release 0.5.7-1
+
+2002-05-30 13:15  andru
+
+	* src/: dbmem.c, dbmem.h: Improved speed greatly by using
+	  g_list_prepend instead of g_list_append.
+
+2002-05-30 01:27  andru
+
+	* bondsql/Makefile.am: Bug fix for installation of bondsql library
+
+2002-05-30 01:11  andru
+
+	* ChangeLog, debian/changelog: Release 0.5.7
+
+2002-05-30 01:05  andru
+
+	* bondsql/lexer.l, bondsql/mem.c, bondsql/mem.h, bondsql/parser.y,
+	  bondsql/sql_parse_test.c, bondsql/sql_parser.c,
+	  bondsql/sql_tree.c, src/dbmem.c, src/dbmem.h: Added in support
+	  for switching between memory debug mode and fast no memory
+	  testing mode
+
+2002-05-30 00:48  andru
+
+	* src/: dbbureaucrat.c, dbmem.c, dbobject.c, dbtest.c: The most oh
+	  so must fustrating bug fix ever.  dbmem was complaining about
+	  double freeing of the cache on a certain, rare occuring object.
+	  A most painful bug that cost me many days.  And now it doesn't
+	  exist, and i have no idea how it went away. DAMIT! ok its not
+	  like i'm useless or anything and am careless with memory. Its
+	  like i'm just been nice and normal and ban it goes insane.
+
+2002-05-29 11:04  andru
+
+	* src/dbtest.c: Removed last of the memory leaks
+
+2002-05-29 10:39  andru
+
+	* src/dbtest.c: Fix memory leaks in dbtest
+
+2002-05-29 10:37  andru
+
+	* src/: Makefile.am, dbmem.c, dbmem.h, dbobject.c, dbtest.c,
+	  dbtoliet.c, debug.h: Moved memory code from bondsql into src
+	  directory.  Memory leak fixes to dbtoliet,dbobject.
+
+2002-05-29 10:20  andru
+
+	* src/: dbdefault.c, dbobject.c, dbtest.c: Work on fixing memory
+	  leaks in dbdefault
+
+2002-05-29 01:40  andru
+
+	* bondsql/mem.c, src/dbclient.c, src/dbobject.c, src/dbtest.c,
+	  src/dbtoliet.c: Memory leak fixes.  Up to test 18 free of memory
+	  leaks.
+
+2002-05-28 23:12  andru
+
+	* src/: db.c, dbbirth.c, dblooksee.c, dbsqlparse.c, dbsuggest.c,
+	  dbsuggest.h, dbtoliet.c, dbuniqueid.c: More memory leak fixes,
+	  got test 2 and 3 working.
+
+2002-05-28 22:10  andru
+
+	* src/dbbureaucrat.c: Fixed cleanup code
+
+2002-05-28 22:06  andru
+
+	* bondsql/mem.c, src/dbbirth.c, src/dbclient.c, src/dbfield.c,
+	  src/dbobject.c, src/dbsqlparse.c, src/dbtoliet.c: Bug fix for
+	  mem.c Free memory leaks, oh so many memory leaks
+
+2002-05-28 21:39  andru
+
+	* bondsql/mem.c, src/dbpgsqlgather.c: Remove memory leaks on init
+	  and cleanup.	Added support for mem debugging for mem, it'll show
+	  you the readable contents of memory still allocated.	fix memory
+	  leak in dbpgsqlgather
+
+2002-05-28 21:17  andru
+
+	* bondsql/mem.c, bondsql/mem.h, src/advstring.c, src/db.c,
+	  src/dbbirth.c, src/dbbureaucrat.c, src/dbclient.c,
+	  src/dbconstraint.c, src/dbdefault.c, src/dbfield.c,
+	  src/dbfilter.c, src/dbgather.c, src/dbgnomedb.c, src/dblog.c,
+	  src/dblooksee.c, src/dbmapme.c, src/dbobject.c,
+	  src/dbobjectdel.c, src/dboosql.c, src/dbpath.c, src/dbpgsql.c,
+	  src/dbpgsqlgather.c, src/dbsqlparse.c, src/dbsuggest.c,
+	  src/dbtest.c, src/dbtoliet.c, src/dbuniqueid.c, src/debug.h:
+	  Adding in memory wrapper code. Started debugging and fixing all
+	  memory leaks
+
+2002-05-28 17:06  andru
+
+	* bondsql/Makefile.am: Now mem.h should be also installed in
+	  /usr/local/include/bond/
+
+2002-05-28 17:05  andru
+
+	* src/: Makefile.am, dbtest.c, debug.h: mem_* series functions are
+	  used instead of g_* functions
+
+2002-05-28 15:58  andru
+
+	* src/dbobject.c: Memory leak fix
+
+2002-05-28 00:38  andru
+
+	* ChangeLog, debian/changelog: Release 0.5.6
+
+2002-05-28 00:25  andru
+
+	* bondsql/lexer.l, bondsql/parser.y, bondsql/sample_sql_statements,
+	  bondsql/sql_display.c, bondsql/sql_parse_test.c,
+	  bondsql/sql_parser.c, bondsql/sql_parser.h, bondsql/sql_tree.c,
+	  bondsql/sql_tree.h, src/dbtest.c, test/qabondDB,
+	  test/images/db-test.13, test/images/db-test.14,
+	  test/images/db-test.15, test/images/db-test.17,
+	  test/images/db-test.20, test/images/db-test.21,
+	  test/images/db-test.22, test/images/db-test.24,
+	  test/images/db-test.26, test/images/db-test.28,
+	  test/images/db-test.29, test/images/db-test.30,
+	  test/images/db-test.31, test/images/db-test.32,
+	  test/images/db-test.33, test/images/db-test.34,
+	  test/images/db-test.35, test/images/db-test.36,
+	  test/images/db-test.37, test/images/db-test.38,
+	  test/images/db-test.39, test/images/db-test.4,
+	  test/images/db-test.5: Reworked SQL parser to work with INSERT,
+	  UPDATE and functions within SELECT statements.  (work done by
+	  andre and francis) Did imaging and testing.
+
+2002-05-27 11:42  andru
+
+	* src/: db.c, dbtest.c: Bug/design fix for db_loadobjectbyobject. I
+	  have forced it to save newrecords instead of aborting, which
+	  should fix some UI issues in bond. I wrote a test to test if this
+	  is working correctly.
+
+2002-05-26 14:16  andru
+
+	* src/dbobjectvalid.c: Remove excess warning.
+
+2002-05-26 05:07  andru
+
+	* src/: dbfield.c, dbobjectvalid.c, dbtoliet.c: Bug fix for record
+	  adding bug.  If you added a record and not changed anything then
+	  it wouldn't save any previous records you had edited before that.
+	  I stopped record adding from setting changed to FALSE.
+
+2002-05-25 23:07  andru
+
+	* src/dbtest.c: Drinking: . um wrote test to regenerate the failed
+	  adding of records. Yeah u know what i mean.
+
+2002-05-25 19:33  andru
+
+	* src/: dbfield.c, dbobjectvalid.c, dbobjectvalid.h: Bug fix for
+	  field segfault.  Added db_isfilter()
+
+2002-05-23 17:59  andru
+
+	* src/debug.h: Bug fix to debug_output function
+
+2002-05-23 17:51  andru
+
+	* src/: Makefile.am, dbclient.c, dbtoliet.c: Tidy up for dbclient.
+	  Possible SEGFAULT fix for dbtoliet.
+
+2002-05-21 12:20  andru
+
+	* bondsql/.cvsignore, src/Makefile.am: Changing makefile to use
+	  bondsql static linking instead of shared.  This will show a
+	  warning, but hey these libraries should be both constructured on
+	  the same system anyway.
+
+2002-05-21 10:43  andru
+
+	* Makefile.am, bondsql/Makefile.am, src/Makefile.am: Fixed many
+	  makefile issues
+
+2002-05-21 10:27  andru
+
+	* Makefile.am, configure.in, bondsql/.cvsignore,
+	  bondsql/Makefile.am, bondsql/lexer.l, bondsql/mem.c,
+	  bondsql/mem.h, bondsql/parser.y, bondsql/sql_display.c,
+	  bondsql/sql_parse_test.c, bondsql/sql_parser.c,
+	  bondsql/sql_parser.h, bondsql/sql_tree.c, bondsql/sql_tree.h,
+	  src/Makefile.am, src/db.c, src/db.h, src/dbbirth.c,
+	  src/dbfield.c, src/dbobject.c, src/dbsqlparse.c,
+	  src/dbsqlparse.h, src/dbtest.c, src/sql.c, src/sql.h,
+	  src/sqllexer.l, src/sqlparser.y: Removed the old SQL parser and
+	  replaced it with the new parser (bondsql).  Have added support
+	  for select's, and primitive inserts.	Modified makefiles to
+	  handle new bondsql library.  Reduced number of returned records
+	  from a zero length record set to 0, and fixed bugs associated
+	  with this.  Modified birth, default values, loadobjectbyobject to
+	  work correctly with new database objects.
+
+2002-05-19 16:08  andru
+
+	* src/: db.c, dbtest.c: Found problem with zero results returned on
+	  db_loadobjectbyobject, it has no fields returned.  We will have
+	  to fix this I think.
+
+2002-05-19 13:23  andru
+
+	* src/: db.c, db.h, dbobject.c, dbobject.h, dbtest.c: Move db_add
+	  and db_insert into db.c from dbobject.c.
+
+2002-05-17 16:33  andru
+
+	* src/dbobject.c: Bug fix to code I broke (expected to break lots
+	  more... Anyway I've handled empty record sets now and we hope it
+	  works.)
+
+2002-05-17 16:22  andru
+
+	* src/: db.c, dbfilter.c, dbobject.c, dbobject.h: Changed it to
+	  default to 0 record length on running an SQL query.  Warning fix
+	  for dbfilter
+
+2002-05-16 15:11  liam
+
+	* src/: dbclient.c, dbpgsql.c: Changed a return value to an exit in
+	  dbclient.c for errors
+
+2002-05-16 12:26  andru
+
+	* createtestdb.sql, src/dbfilter.c, src/dbfilter.h, src/dbobject.c,
+	  src/dbtest.c: Fixed test 24 and 31. (Had to modify sql sources)
+	  Added in more tests.	Improved object debugging output.  Added in
+	  new API call for filters so you can reverse back to see where you
+	  came from.
+
+2002-05-15 10:08  andru
+
+	* src/dbtest.c: Added in a new test, rearranged the test order.
+	  tidied things up
+
+2002-05-13 17:49  andru
+
+	* ChangeLog, docs/docbugs.txt: Updating docs
+
+2002-05-08 17:20  andru
+
+	* ChangeLog: Release 0.5.5
+
+2002-05-08 17:07  andru
+
+	* src/: dbdefault.c, dbobject.c, dbtoliet.c, debug.h: Bug fix for
+	  tests 5, 13 and 20. Problem with data object creation was fixed
+
+2002-05-07 15:16  andru
+
+	* debian/changelog, src/dbclient.c: Debian release of 0.5.4-1
+
+2002-05-07 14:45  andru
+
+	* src/: dbclient.c, dbfilter.c, dbobject.c, dbtoliet.c: Bug fix for
+	  dbclient, in regard to  the bond.conf files Adding in extra
+	  debugging info for some bug hunting for bond releated issues
+
+2002-05-03 16:57  andru
+
+	* src/: dbobject.c, dbtoliet.c: Code tidyup's.	Bug fix to dbobject
+	  when writing a 0 length string, set it as null because your
+	  assuming the user edited it. this is to do with a bug of someone
+	  enterying a date or number then changing there mind about saving
+	  it, you dont want a zero length string but a null so postgresql
+	  accepts it
+
+2002-05-03 15:00  andru
+
+	* src/dbfilter.c: Segfault bug fix in filtering NULL values
+
+2002-05-02 21:14  andru
+
+	* src/: dbobject.c, dbtest.c: Checking filter code for loadby
+	  object stuff
+
+2002-04-30 01:16  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbobjectvalid.c, dbtest.c: Bug
+	  fixes to filters
+
+2002-04-30 01:16  andru
+
+	* debian/changelog: Debian 0.5.4 release
+
+2002-04-29 15:57  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbheader.h, dbobject.c, dbobject.h,
+	  dbobjectvalid.c: Expanding filter capitablities
+
+2002-04-27 23:29  andru
+
+	* ChangeLog: Release 0.5.3
+
+2002-04-27 23:19  andru
+
+	* src/: dbfilter.c, dbobjectnav.c: Bug fix for filtering, db_moveto
+	  wasn't functioning correctly
+
+2002-04-26 02:53  andru
+
+	* src/dbtest.c: New test to make sure dbfilter works correctly
+
+2002-04-24 10:03  andru
+
+	* src/dbobjectvalid.c: Finishing of some functions. adding comments
+
+2002-04-23 20:55  andru
+
+	* test/images/: db-test.13, db-test.15, db-test.18, db-test.20,
+	  db-test.21, db-test.22, db-test.24, db-test.4, db-test.5:
+	  Updating images of tests
+
+2002-04-23 19:27  andru
+
+	* src/: dbfield.c, dbobject.c, dbtoliet.c: Tried to fix a bug with
+	  SQL queries in regard to looksee.  dbsql does not correctly
+	  resolve thigns like field names and table names and this is due
+	  to bugs and short comings in teh SQL lex parse, it will have to
+	  be rewritten.  I'm ignoring problem for the moment and made
+	  workaround in bond.
+
+2002-04-23 18:51  andru
+
+	* src/: dbfield.c, dbobject.c, dbtoliet.c: Bug fix for adding new
+	  entries to objects - default values now appear Bug fix for
+	  garbage in field attributes Bug fix for getting NULL values from
+	  db and posting to cache
+
+2002-04-23 18:23  andru
+
+	* src/: dbfield.c, dbobject.c, dbpgsql.c, dbtoliet.c: Bug fix for
+	  blank fields
+
+2002-04-23 13:28  andru
+
+	* src/dbclient.c: Moving back to oldish code of looking for
+	  bond.conf first
+
+2002-04-23 12:49  andru
+
+	* src/dbbirth.c: Bug fix, strange occurances happening fixed in
+	  regard to birth
+
+2002-04-22 16:28  andru
+
+	* debian/: changelog, control: Trying to fix dependence issues
+
+2002-04-22 16:14  andru
+
+	* debian/control: Fixing dependences issues
+
+2002-04-22 15:21  andru
+
+	* src/: dbbureaucrat.c, dbclient.c, dbgather.c, dbobject.c,
+	  dbtest.c, dbtoliet.c: Bug fix to the strange not saving properly.
+	  Only checks for clashes of data when a marked write is done now.
+
+2002-04-22 11:25  andru
+
+	* src/dbclient.c: Bug fix for search directory /etc/
+
+2002-04-22 10:22  andru
+
+	* src/: dbclient.c, dbgather.c, dbtest.c: Attempt fix at default
+	  value, is it a function?. so bizare functions by liam will work.
+
+2002-04-22 09:05  andru
+
+	* src/: dbclient.c, dbclient.h: Changed api for db_init().  To
+	  support /etc and /usr/local/etc installation of client
+	  applications.
+
+2002-04-18 20:05  andru
+
+	* test/images/db-test.4: Updating images
+
+2002-04-18 20:04  andru
+
+	* src/dbtoliet.c: Bug fix for segfault
+
+2002-04-18 17:14  andru
+
+	* src/: db.c, dbobject.c, dbtoliet.c: Memory leak fix, move
+	  everything work directly of the cache.  Removed way to much
+	  debugging output
+
+2002-04-18 16:48  andru
+
+	* src/: dbdefault.c, dbobject.c, dbtoliet.c, dbtoliet.h, debug.h:
+	  Add in db_obj_debug Added in a memory leak Fix default value bug
+
+2002-04-18 15:06  andru
+
+	* src/: dbobject.c, dbtoliet.c, dbtoliet.h: Fixed and improved
+	  default value handling
+
+2002-04-17 19:44  andru
+
+	* src/dbbirth.c: Bug fix on incorrectly reporting errors
+
+2002-04-17 15:15  andru
+
+	* debian/changelog: Debian release 0.5.2
+
+2002-04-17 12:11  andru
+
+	* ChangeLog: Release 0.5.2
+
+2002-04-17 11:49  andru
+
+	* src/: dbfilter.c, dbpgsqlgather.c: Tidying up code
+
+2002-04-17 11:44  andru
+
+	* test/images/: db-test.25, db-test.26, db-test.27: Adding in new
+	  images for tests
+
+2002-04-17 11:42  andru
+
+	* test/images/: db-test.0, db-test.1, db-test.10, db-test.11,
+	  db-test.12, db-test.13, db-test.14, db-test.15, db-test.16,
+	  db-test.17, db-test.18, db-test.19, db-test.2, db-test.20,
+	  db-test.21, db-test.22, db-test.23, db-test.24, db-test.3,
+	  db-test.4, db-test.5, db-test.6, db-test.7, db-test.8, db-test.9:
+	  Updating images for the tests
+
+2002-04-17 01:54  andru
+
+	* src/dbtest.c: Fix test 24, for database change
+
+2002-04-17 01:46  andru
+
+	* src/dbpgsqlgather.c: Minor bug fix
+
+2002-04-17 01:40  andru
+
+	* src/: dbpgsqlgather.c, dbpgsqlgather.h: Adding in
+	  db_pg_getversion() so you know what database version of
+	  postgresql your talking to
+
+2002-04-17 01:23  andru
+
+	* src/: dbpgsqlgather.c, dbpgsqlgather.h, dbtest.c: Fix for
+	  postgresql 7.2 api change
+
+2002-04-15 15:36  andru
+
+	* src/: dbfilter.c, dbobjectnav.c, dbobjectnav.h, dbtest.c: More
+	  documentation, extra error messages, a bit of code tidy ups. and
+	  sanity checks
+
+2002-04-15 13:22  andru
+
+	* src/dbsqlparse.c: Add in support for table->field specifications
+	  as well as just the old table.fieldname
+
+2002-04-15 12:16  andru
+
+	* test/qareporterDB: to andru
+
+2002-04-15 12:16  andru
+
+	* test/: obsolete.qatest, qareporterDB, qatest: Organized files
+
+2002-04-15 12:11  andru
+
+	* test/qabondDB: Fixed wrong HTML link problem
+
+2002-04-15 11:22  andru
+
+	* test/qareporterDB: to andru
+
+2002-04-15 11:16  andru
+
+	* test/buildprocessDB: Log message change.
+
+2002-04-15 11:09  andru
+
+	* test/qabondDB: Nothing changed, I guess
+
+2002-04-15 10:59  andru
+
+	* test/qareporterDB: tried to fix cvs update problem
+
+2002-04-15 10:32  andru
+
+	* src/dbobject.c, src/dbpgsqlgather.c, test/images/db-test.0,
+	  test/images/db-test.1, test/images/db-test.10,
+	  test/images/db-test.11, test/images/db-test.12,
+	  test/images/db-test.13, test/images/db-test.14,
+	  test/images/db-test.15, test/images/db-test.16,
+	  test/images/db-test.17, test/images/db-test.18,
+	  test/images/db-test.19, test/images/db-test.2,
+	  test/images/db-test.20, test/images/db-test.21,
+	  test/images/db-test.22, test/images/db-test.23,
+	  test/images/db-test.24, test/images/db-test.3,
+	  test/images/db-test.4, test/images/db-test.5,
+	  test/images/db-test.6, test/images/db-test.7,
+	  test/images/db-test.8, test/images/db-test.9: Updating test
+	  images.
+
+2002-04-14 14:21  baz
+
+	* src/Makefile.am: Finally have killed all the merge errors
+
+2002-04-14 13:11  baz
+
+	* src/Makefile.am: hmm, fixing little things
+
+2002-04-14 13:11  baz
+
+	* src/: Makefile.am, dbwrapper.h: Just a fixing up the ol merge
+	  errors, god bless there little hearts
+
+2002-04-12 03:52  andru
+
+	* src/: db.h, dbobject.c, dbobject.h, dbtoliet.h: Code tidy ups,
+	  adding in includes to db.h which were missing
+
+2002-04-11 22:46  andru
+
+	* ChangeLog, src/dbfilter.c, src/dbfilter.h: More changes to
+	  filtering code
+
+2002-04-11 16:57  andru
+
+	* src/: dbfilter.c, dbfilter.h: Not quite sure what i did..
+
+2002-04-11 16:39  andru
+
+	* src/: Makefile.am, dbfilter.c, dbfilter.h: Expanding filter to
+	  have flags
+
+2002-04-11 12:25  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbobject.c, dbobjectnav.c: Finished
+	  debugging dbfilterit
+
+2002-04-11 12:06  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbobject.c, dbobject.h, dbtest.c:
+	  Bug fixes to filters
+
+2002-04-10 17:21  andru
+
+	* test/qareporterDB: Now qa_bigreport.txt will be locate in test
+	  dir
+
+2002-04-10 16:56  andru
+
+	* test/mail2.pl: HTML Mailer
+
+2002-04-10 16:55  andru
+
+	* test/: qareporterDB, qabondDB: HTML version
+
+2002-04-10 14:24  andru
+
+	* debian/: changelog, rules: building .debs
+
+2002-04-10 13:49  andru
+
+	* configure.in, src/Makefile.am: Building debian package
+
+2002-04-10 11:14  andru
+
+	* ChangeLog, src/dbfilter.c, src/dbfilter.h, src/dbobject.c,
+	  src/dbobject.h: Continued work on filters.  release of 0.5.1
+
+2002-04-10 10:25  andru
+
+	* src/: db.c, dbfield.c, dbfilter.c, dbfilter.h, dbobject.c,
+	  dbobjectvalid.c, dbobjectvalid.h, dbpgsql.c, dbtoliet.c: More
+	  features and functionality to filters.  Bug fixs.  Remove
+	  warnings in code.
+
+2002-04-09 21:09  andru
+
+	* src/: Makefile.am, dbfilter.c, dbfilter.h: Yeah as i said 3 min
+	  ago
+
+2002-04-09 21:06  andru
+
+	* src/: dbfilter.c, dbfilter.h, dbheader.h, dbtoliet.c, dbtoliet.h:
+	  Added in filtering and sorting component for bonddb.	How this
+	  will tie in with everything is still to be thought though but
+	  this should allow you to filter and sort your Objects to get a
+	  temporary snap shot of what you just want
+
+2002-04-09 16:29  andru
+
+	* src/: db.c, dbtest.c: Strangly I have already written the code i
+	  planned to write?? I HATE IT WHEN THE CODES BES LIKE MAJIC LIKE
+	  THAT. No code, do not appear before my eyes. do not just happen
+	  to show up in my code when i want to do some serious hard coding.
+	  esp when i had just spent 3 hours designing how i was gonna do
+	  it. grrr.  So yes, really i just coded this cool new feature to
+	  make table.name work propely and make primary keys not
+	  automaticcaly increment unless you really need em. but damn the
+	  code was already done.
+
+2002-04-09 16:19  andru
+
+	* src/: db.c, db.h, dbdefault.c, dbdefault.h, dbfield.c, dbfield.h,
+	  dbmapme.h, dbobject.c, dbobject.h, dbtest.c, dbtoliet.c,
+	  dbtoliet.h, dbuniqueid.c: Make table.field a forced requirement
+	  in all elements of bonddb. So field+tablename should guarrentee
+	  to be unique
+
+2002-04-08 16:11  andru
+
+	* src/: db.c, dbobject.c: Beautifing the code
+
+2002-04-08 14:15  andru
+
+	* src/: dbfield.c, dbsqlparse.c: Minor bug fixes, adding in ability
+	  to copy dbfields
+
+2002-04-05 16:05  andru
+
+	* src/dbfield.c: Improved one of the functions
+
+2002-04-04 15:18  andru
+
+	* src/db.c, src/dbbirth.c, src/dbobject.c, src/dbtest.c,
+	  src/dbtoliet.c, test/images/db-test.23, test/images/db-test.24:
+	  Bug testing on flushes. tidy up error messages.
+
+2002-04-04 14:43  andru
+
+	* test/qareporterDB: [no log message]
+
+2002-04-04 14:32  andru
+
+	* test/qareporterDB: Fixed executing command for autogen.sh
+
+2002-04-04 14:28  andru
+
+	* test/qareporterDB: Nothing to say
+
+2002-04-04 14:08  andru
+
+	* test/buildprocessDB: Fixed log generation problem
+
+2002-04-04 14:07  andru
+
+	* test/qareporterDB: Fixed database creation problem Also configure
+	  script will be automatically generated
+
+2002-04-04 12:14  andru
+
+	* test/: qareporterDB, buildprocessDB: For andru only
+
+2002-04-04 11:31  andru
+
+	* test/buildprocessDB: The generated change log backup file will be
+	  owned by andru
+
+2002-04-04 11:29  andru
+
+	* test/qareporterDB: Now all the generated files are owned by andru
+
+2002-04-04 11:04  andru
+
+	* test/qareporterDB: slight change
+
+2002-04-04 10:45  andru
+
+	* ChangeLog, src/db.c, src/dbobject.c, src/dbtest.c, test/qatest,
+	  test/images/db-test.0, test/images/db-test.1,
+	  test/images/db-test.10, test/images/db-test.11,
+	  test/images/db-test.12, test/images/db-test.13,
+	  test/images/db-test.14, test/images/db-test.15,
+	  test/images/db-test.16, test/images/db-test.17,
+	  test/images/db-test.18, test/images/db-test.19,
+	  test/images/db-test.2, test/images/db-test.20,
+	  test/images/db-test.21, test/images/db-test.22,
+	  test/images/db-test.3, test/images/db-test.4,
+	  test/images/db-test.5, test/images/db-test.6,
+	  test/images/db-test.7, test/images/db-test.8,
+	  test/images/db-test.9: Release 0.5.0
+
+2002-04-04 10:45  francis
+
+	* test/buildprocessDB: Now CVS runs as andru
+
+2002-04-04 10:39  andru
+
+	* src/: dbbureaucrat.c, dbbureaucrat.h, dbobject.c, dbobject.h,
+	  dbtest.c, dbtoliet.c: shitty stuff not working
+
+2002-04-04 10:07  andru
+
+	* src/: dbbureaucrat.c, dbtest.c, dbtoliet.c: Strange morning
+	  feelings
+
+2002-04-03 16:05  andru
+
+	* src/: db.c, dbbirth.c, dbbureaucrat.c, dbobject.c,
+	  dbobjectvalid.c: Strange going ons are happening. test 24 is
+	  passing, but , might i add but?.  but debugging code that calls
+	  the flush that makes it work is never printed so it really is a
+	  bit of a mistoury to me why it works, but then again i ask if it
+	  ant broke why fix it?.  this is definitly strange stuff, maybe i
+	  need to drink to better understand this.  But (i said but again)
+	  the debugging messages never get printed. so its most percular.
+	  wait maybe, just maybe, something else is causing it to pass
+	  the test. maybe this is it.  funny if it was.  I'm still debating
+	  this in my head. it could be true. what do you think?
+
+2002-04-03 15:05  andru
+
+	* src/: dbbirth.c, dbbirth.h, dbbureaucrat.c, dbbureaucrat.h,
+	  dbobject.c: More mad coding. damn head hurts, losing memory. oh
+	  the age .
+
+2002-04-03 14:05  andru
+
+	* src/dbbirth.c: Cunning coding activities
+
+2002-04-03 14:00  andru
+
+	* src/: dbbirth.c, dbbirth.h, dbobject.c, dbtest.c: Filling in some
+	  functions which wernt quite written
+
+2002-04-02 18:27  andru
+
+	* src/dbobject.c: random coding
+
+2002-04-02 17:47  andru
+
+	* src/: dbobject.c, dbtest.c, dbtoliet.c, dbuniqueid.c: More bug
+	  fixes to make more seg faults. as the visous cycle continues.
+
+2002-04-02 15:55  andru
+
+	* src/dbobject.c, src/dbobjectvalid.c, src/dbtoliet.c,
+	  test/images/db-test.17, test/images/db-test.18,
+	  test/images/db-test.19, test/images/db-test.20,
+	  test/images/db-test.21, test/images/db-test.22: Another bug fix,
+	  get those tests in. 22 still fails
+
+2002-04-02 15:37  andru
+
+	* ChangeLog, src/dbobject.c, src/dbobjectvalid.c, src/dbtest.c,
+	  src/dbuniqueid.c, test/qa_besttime.txt, test/qabondDB,
+	  test/images/db-test.0, test/images/db-test.1,
+	  test/images/db-test.10, test/images/db-test.11,
+	  test/images/db-test.12, test/images/db-test.13,
+	  test/images/db-test.14, test/images/db-test.15,
+	  test/images/db-test.16, test/images/db-test.2,
+	  test/images/db-test.3, test/images/db-test.4,
+	  test/images/db-test.5, test/images/db-test.6,
+	  test/images/db-test.7, test/images/db-test.8,
+	  test/images/db-test.9: Hello.  Fix some of those nasty bugs.	DIE
+	  BUGS DIE!.  And got the tests reimaged so they look correct.	you
+	  go tests go.
+
+2002-04-02 14:35  andru
+
+	* src/: dbobject.c, dbobjectvalid.c, dbtest.c, dbuniqueid.c:
+	  Segfaults are loose.	And my code has taken up insulting me on
+	  the fly.
+
+2002-04-02 11:15  andru
+
+	* src/: dbbirth.c, dbobject.c, dbobjectvalid.c: Bug fixes i hope...
+	  well heres hoping
+
+2002-04-02 10:58  andru
+
+	* src/db.c, src/dbgather.c, src/dbobject.c, src/dbobject.h,
+	  src/dbobjectvalid.c, src/dbobjectvalid.h, src/dbtest.c,
+	  src/dbuniqueid.c, test/.cvsignore, test/qareporterDB: Yes i have
+	  done some work, fancy that. Ok we are doing some more hard line
+	  work on some of that werid arse object verification and
+	  validation.  Are you really valid, well we dont know do we.
+	  Solving problems (trying to) with object addition to objects.
+
+2002-03-30 22:23  andru
+
+	* src/: dbclient.c, dbgather.c, dbgather.h: Added connstr to
+	  database defination so you can find out where you connected to.
+
+2002-03-30 21:15  andru
+
+	* src/: Makefile.am, dbbirth.c, dbclient.c, dbclient.h,
+	  dbdefault.c, dbdefault.h, dbgather.c, dbgather.h, dbpgsql.c,
+	  dbpgsql.h, dbpgsqlgather.c, dbuniqueid.c, dbuniqueid.h: Made me
+	  some more library. ohhh look at that diskspace go byebyes.  Hmmm
+	  i feel sleepy. damit you nikita you send me to sleep. ummmm.
+	  anyway. what i did was make a dbgather thingy library called
+	  bond_gather.so and arn't you proud that i finally learnt how to
+	  spell library? it took me so frieaking long to learn to spell
+	  libary.  hmmm. damit. ok . anyway. go play
+
+2002-03-30 20:09  andru
+
+	* src/: Makefile.am, dbbirth.c, dbbirth.h, dbtest.c, debug.h: While
+	  drunk i seemed to have coded last thursday. the extend of which
+	  is rather unknown to me but i hope this commit doesnt break too
+	  much.  I got it compiling?. I seemed to have gone somewhere else
+	  then before i could commit the work in. oh well.
+
+2002-03-28 16:47  francis
+
+	* test/changeconf.pl: Why this file was gone?
+
+2002-03-28 16:42  francis
+
+	* test/: buildprocessDB, qareporterDB: Hopefully final modification
+
+2002-03-28 15:27  francis
+
+	* test/: buildprocessDB, qabondDB, qareporterDB: Testing scripts.
+	  Slightly changed for bondDB from bond
+
+2002-03-26 10:01  andru
+
+	* src/: dbsqlparse.c, sql.c: Work on parser, not much work though
+
+2002-03-25 18:56  andru
+
+	* ChangeLog, README, src/db.c, src/dbobject.c, src/dbobject.h,
+	  src/dbsqlparse.c, src/dbsqlparse.h, src/dbtoliet.c: Worked on
+	  getting better db_sql support so you can pass any old sql
+	  statement in and it would work.  dropped the cache from the
+	  sqlwrite function.
+
+2002-03-25 11:20  andru
+
+	* src/: db.c, dbdefault.c, dbdefault.h, dbfield.c, dbobject.c,
+	  dbobjectvalid.c, dbpgsqlgather.c, dbpgsqlgather.h, dbtest.c:
+	  Added in default support and support for function calls.  Code
+	  was tested, but the test was comment out as it returns different
+	  results each time, naturally. this is cause its incremental
+	  tests. wah. but it works. good. eh?
+
+2002-03-25 08:33  andru
+
+	* src/Makefile.am, src/db.c, src/dbclient.c, src/dbdefault.c,
+	  src/dbdefault.h, src/dbgather.c, src/dbtest.c, src/dbtoliet.c,
+	  src/sqllexer.l, test/qatest, test/images/db-test.15,
+	  test/images/db-test.16, test/images/db-test.4,
+	  test/images/db-test.6: This is stuff i should have commited a
+	  while ago, but anyway, got some tests going, bug fixes, sanity
+	  checks, start work on defaults. and all that
+
+2002-03-22 18:07  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbobjectdel.c, dbtest.c:
+	  Fixed recusive deletion bug.
+
+2002-03-22 17:21  andru
+
+	* src/: db.c, db.h, dbbirth.c, dbbirth.h, dbbureaucrat.c,
+	  dbbureaucrat.h, dbconstraint.c, dbobject.c, dbtest.c: Fixed very
+	  nasty memory bug in the bureaucrat that sometimes caused a
+	  segfault on programme exit.
+
+	  Got some more tests going.
+
+	  Added in code for adding objects to objects
+
+2002-03-22 11:59  andru
+
+	* src/db.c, src/dbclient.c, src/dbobject.c, src/dbobjectvalid.c,
+	  src/dbpgsql.c, src/dbtest.c, src/dbwrapper.h,
+	  test/images/db-test.13: Get all the tests going perfectly,
+	  removing compiler warnings from the code, fixed some minor bugs.
+	  and other all round good guy work
+
+2002-03-22 00:35  andru
+
+	* ChangeLog, src/db.c, src/db.h, src/dbwrapper.c, src/dbwrapper.h:
+	  Added a non-marked version of db_setvalue, fixed compiler errors
+	  in baz's code. eello!
+
+2002-03-19 11:58  baz
+
+	* src/: dbgnomedb.c, dbgnomedb.h, dbtest.c, dbuniqueid.c,
+	  dbwrapper.c, dbwrapper.h: Procrastinating by commiting, and by
+	  writing stupid log files, maybe if I keep writing this log file
+	  for an hou, then I can avoid doing hard stuff till next week.
+	  Hmmmmmmmm, could be the only option.
+
+2002-03-14 16:04  andru
+
+	* ChangeLog, src/db.c, src/dbobject.c, src/dbtest.c, src/debug.c,
+	  src/debug.h, test/images/db-test.0, test/images/db-test.1,
+	  test/images/db-test.10, test/images/db-test.11,
+	  test/images/db-test.12, test/images/db-test.13,
+	  test/images/db-test.14, test/images/db-test.2,
+	  test/images/db-test.3, test/images/db-test.4,
+	  test/images/db-test.5, test/images/db-test.6,
+	  test/images/db-test.7, test/images/db-test.8,
+	  test/images/db-test.9: Oh thats a big list of changed files.
+	  What i really did was just work on the tests and make sure they
+	  all say they fail. but 15 fails, so feel free to fix that
+	  someone??? anyone?. please?
+
+2002-03-14 10:43  andru
+
+	* src/dbpgsql.c: Removing a debugging line... and i havn't done a
+	  cvs in ages so i want to feel like i'm doing a little work
+
+2002-03-13 15:32  andru
+
+	* ChangeLog, src/dbclient.c, src/dbdefault.c, src/dbobject.c,
+	  src/dbpath.c, src/dbtoliet.c, src/debug.c, src/debug.h: Patchs
+	  submitted by Linas Vepstas <linas@linas.org>
+
+2002-03-13 06:44  andru
+
+	* TODO, src/dbobject.c, src/dbpgsql.c, src/dbuniqueid.c,
+	  src/dbwrapper.h: Oh my I FIXED A BUG!!!. ok no need to get so
+	  excited, the sun hasn't even risen yet. ok there was a weird arse
+	  problem with ,oid insertions and it seems to work now
+
+2002-03-13 05:26  andru
+
+	* src/: db.c, db.h, dbsqlparse.c, dbsuggest.c, dbtest.c: Added a
+	  test, trying to look for strange bug.
+
+2002-03-07 12:37  andru
+
+	* ChangeLog, src/db.c, src/dbobjectdel.c: Fix bug in deletion
+
+2002-03-04 14:47  andre
+
+	* debian/control: dh_compress is um hanging. grrr. crap. and all
+	  that
+
+2002-03-04 11:57  andru
+
+	* src/: dbobject.c, dbobject.h, dbobjectvalid.c, dbobjectvalid.h,
+	  dbtoliet.c: Added in some new fields into dbobject. looked for
+	  bugs
+
+2002-02-28 17:33  andru
+
+	* src/: db.c, db.h, dbmapme.c: Adding a function from dbmapme into
+	  the api
+
+2002-02-28 11:43  andru
+
+	* src/db.h: Nothing changed at all
+
+2002-02-27 15:19  andre
+
+	* debian/: README.Debian, control, rules: A few minor changes
+
+2002-02-27 14:16  andre
+
+	* debian/: bonddb-dev.dirs, bonddb-dev.files, bonddb.dirs,
+	  bonddb.doc-base.ex, bonddb.files: Strange after dead effects
+
+2002-02-27 14:16  andre
+
+	* debian/: bonddb-dev.dirs, bonddb-dev.files, bonddb.dirs,
+	  bonddb.doc-base.ex, bonddb.files, control: I'm like playing
+	  around
+
+2002-02-27 12:01  andre
+
+	* .cvsignore, debian/.cvsignore, debian/bonddb.doc-base.ex,
+	  debian/rules: Got debian working finally... will test now
+
+2002-02-27 11:20  andre
+
+	* debian/: README.Debian, bonddb-dev.dirs, bonddb-dev.files,
+	  bonddb.dirs, bonddb.doc-base.ex, bonddb.files, changelog,
+	  conffiles.ex, control, copyright, cron.d.ex, dirs, docs,
+	  emacsen-install.ex, emacsen-remove.ex, emacsen-startup.ex,
+	  init.d.ex, manpage.1.ex, manpage.sgml.ex, menu.ex, postinst.ex,
+	  postrm.ex, preinst.ex, prerm.ex, rules, shlibs.local.ex,
+	  watch.ex: Adding in template files for debian packaging.  this is
+	  generated from dh_make.
+
+2002-02-26 17:44  andru
+
+	* acconfig.h, autogen.sh, config.sub, configure.in,
+	  src/Makefile.am: Playing around with the make files
+
+2002-02-26 10:29  andru
+
+	* src/: db.c, dbdefault.c: Not much really
+
+2002-02-25 08:57  andru
+
+	* src/: Makefile.am, dbuniqueid.c, sqllexer.l, sqlparser.y: Fixs to
+	  the lexer sql parser so it can understand more complex SQL
+	  statements
+
+2002-02-22 09:54  andru
+
+	* src/: db.h, dbconstraint.c, dbgather.c, dbgather.h, dbheader.h,
+	  dbpgsqlgather.c: Bug fix to dbgather not storing the constraints,
+	  bug fixes to field information gathering. code tidyups and a bit
+	  more documentation.
+
+2002-02-22 07:35  andru
+
+	* ChangeLog, TODO, config.guess, config.sub, src/Makefile.am,
+	  src/dbclient.c, src/dbconstraint.c, src/dbobject.h,
+	  src/dbuniqueid.c: Added a few more header files into the
+	  installed directory, a few minor compiler errors fixed, debugging
+	  messages tidied up and some of the code is tidied up.
+
+2002-02-19 17:34  liam
+
+	* src/: dbconstraint.c, dbgather.c, dbpgsqlgather.c: don't know
+
+2002-01-14 15:00  liam
+
+	* src/: dbconstraint.c, dbgather.c, dbpgsqlgather.c, sqllexer.l,
+	  sqlparser.y: OK, strange things are afoot in bond today.  Getting
+	  crashes running reports, added some debugging code to check
+	  values in dbconstraints.  Started working.  Took out code.
+	  Stopped working.  Put it in. Started working. took it out, kept
+	  working.  Ours not to reason why, ours just to do and die.
+
+	  Liam
+
+2002-01-10 16:58  liam
+
+	* src/: Makefile.am, dbobjectdel.c: OK, all compilitaion errors
+	  fixed.  Will look at whether it works later ;-)
+
+2002-01-10 16:46  baz
+
+	* src/: dbobjectdel.c, dbtest.c, dbuniqueid.c: commiting shit
+
+2002-01-08 17:09  andru
+
+	* src/: db.c, dbobjectdel.c, dbobjectdel.h, dbsuggest.c,
+	  dbsuggest.h: Work done over last few days in moments of weakness,
+	  actual work done on suggest, dbobjectdel, look at it to try and
+	  port and then grow very scared.  db.c... oh well.
+
+2002-01-06 15:30  andru
+
+	* ChangeLog, src/dbdefault.c, src/dbdefault.h: Added another
+	  function into dbdefault, this from memory still isn't be called
+	  by db_createobject and assoc. functions. At the moment bond is
+	  still manually assigning the default values into the object.
+
+2002-01-05 14:05  andru
+
+	* src/db.h: Fixed problem with not including a header file and then
+	  it doing weird weird things.
+
+2001-12-27 16:27  liam
+
+	* src/: db.c, db.h: removed __PORTED stuff from dbaddobjecttoobject
+	  so that I can make bond link properly
+
+2001-12-26 02:05  andru
+
+	* ChangeLog, src/dbbirth.c, src/dbbureaucrat.c: Released 0.4.0
+	  Fixed doc errors.
+
+2001-12-20 02:21  andru
+
+	* src/: Makefile.am, db.h, dbobject.c: Made it install pretty much
+	  everything into the include directory, ran into problems with
+	  client software.  removed warnings for dbobject and modified db.h
+	  to have all header files included
+
+2001-12-19 01:36  andru
+
+	* src/dbobject.c: Fixed documentation
+
+2001-12-19 01:17  andru
+
+	* AUTHORS, README, src/dbobject.c, src/dbuniqueid.c: Removed some
+	  debugging info, fix warning messages
+
+2001-12-19 00:16  andru
+
+	* TODO, test/images/db-test.10, test/images/db-test.13,
+	  test/images/db-test.14, test/images/db-test.2,
+	  test/images/db-test.3, test/images/db-test.4,
+	  test/images/db-test.5: Updating todo list
+
+2001-12-19 00:07  andru
+
+	* src/: db.c, dblooksee.c, dbobjectdel.c, dbsqlparse.c, dbtoliet.c,
+	  dbuniqueid.c, sqllexer.l, sqlparser.y: Fixed all those warning
+	  messages expect for in the bison stuff cause i cna't fix that.
+
+2001-12-18 16:20  andru
+
+	* src/: dbfield.c, dbpgsql.c, dbtest.c, dbuniqueid.c: Found nasty
+	  bug that harrased me for ages.  it was an imaginary bug that
+	  didn't really exist.	I HATE IT WHEN IMAGINERY BUGS STRIKE!
+
+2001-12-18 15:43  nick
+
+	* src/: dbsqlparse.c, dbsqlparse.h, dbtest.c: [no log message]
+
+2001-12-18 14:28  nick
+
+	* src/: dbsqlparse.c, dbsqlparse.h: [no log message]
+
+2001-12-18 13:44  nick
+
+	* TODO, src/db.c, src/dbobject.c, src/dbobject.h, src/dbtoliet.c,
+	  src/dbuniqueid.c: [no log message]
+
+2001-12-18 13:36  andru
+
+	* TODO, src/dbobject.c, src/dbsqlparse.c: Added in TODO item at
+	  bottom.  Added prototype to sbsqlparse.  more debugging info
+
+2001-12-18 13:04  andru
+
+	* docs/: docbugs.txt, setupdbtest, setupdbtest.txt: Added in doc
+	  bugs into section, so we know where problems are occuring in the
+	  documentation
+
+2001-12-18 03:20  andru
+
+	* src/dbmapme.c: mapme must be screwing up, will fix asap not now
+	  as eyes stopped working and i can't see.
+
+2001-12-18 02:54  andru
+
+	* ChangeLog, src/Makefile.am, src/db.h: Releasing 0.3.4 Fixes to
+	  installation script, and db.h to be master header
+
+2001-12-18 01:16  andru
+
+	* ChangeLog, configure.in, docs/setupdbtest, src/Makefile.am,
+	  src/db.h: Fixed installing header files.  Make db.h the big
+	  header file.
+
+2001-12-17 15:27  andru
+
+	* TODO, docs/bonddb_codelayout.png: Adjusting file size.
+	  meaningless update in other words. Damnit i want my changelog
+	  bigger than my sourcecode directory
+
+2001-12-17 15:22  andru
+
+	* docs/bonddb_codelayound.dia, docs/bonddb_codelayout.dia,
+	  docs/bonddb_codelayout.png, src/db.c, src/dbbirth.c: Fixed birth
+	  double free segfault error.  Added in pretty pictures
+
+2001-12-16 05:28  andru
+
+	* ChangeLog, src/dbbirth.c, test/qatest, test/images/db-test.10,
+	  test/images/db-test.11, test/images/db-test.12,
+	  test/images/db-test.13, test/images/db-test.5,
+	  test/images/db-test.7, test/images/db-test.8,
+	  test/images/db-test.9: Fixed bug i created in last commit.
+	  Getting very tired.  Checking the tests, seems 10 and 13 are
+	  screwed.
+
+2001-12-16 05:22  andru
+
+	* src/: dbobject.c, dbtest.c: Added in more tests.  Fix memory leak
+	  in not cleaning up birth
+
+2001-12-16 03:49  andru
+
+	* ChangeLog, TODO, src/db.c, src/dbobject.c, src/dbtoliet.c,
+	  src/dbuniqueid.c, test/images/db-test.1, test/images/db-test.14,
+	  test/images/db-test.2, test/images/db-test.3,
+	  test/images/db-test.4, test/images/db-test.5: Releasing 0.3.3
+
+	  Heavly testing of the code, sanity checks all up.  Fixed bug with
+	  loadall, and occsaional write backs.
+
+2001-12-16 02:17  andru
+
+	* src/: dbobject.c, dbtoliet.c: I'm so stupid soemtimes, i'm
+	  putting this on the todo list
+
+2001-12-16 02:08  andru
+
+	* src/: db.c, dbobject.c, dbtoliet.c, dbuniqueid.c: feek feek feek
+
+2001-12-16 01:52  andru
+
+	* src/: db.c, dbobject.c: Arr this is so frustrating it so dont
+	  work agr
+
+2001-12-16 01:41  andru
+
+	* src/: db.c, dbobject.c, dbtoliet.c, dbuniqueid.c: I've really
+	  screwed things up now. Doing some debugging to try and fix the
+	  occasional glitch with writing and now it dont free objects at
+	  all. oh no
+
+2001-12-16 00:50  andru
+
+	* src/dbuniqueid.c: picking up where i left off...
+
+2001-12-14 16:42  andru
+
+	* src/: db.c, dbbureaucrat.c, dbbureaucrat.h, dbtoliet.c: Fixed
+	  nasty bug in flushing. Sanity checks on the code.  Did some
+	  tidy-ups.
+
+2001-12-14 15:40  andru
+
+	* src/: dbbureaucrat.c, dbobject.c, dbuniqueid.c: Released 0.3.2
+	  Code cleaned up a bit, tidied things, removed excessive debug
+	  messages, ran more tests.
+
+2001-12-14 03:47  andru
+
+	* ChangeLog, test/images/db-test.1, test/images/db-test.14,
+	  test/images/db-test.2, test/images/db-test.3,
+	  test/images/db-test.4, test/images/db-test.5,
+	  test/images/db-test.6: I finally manaage to escape the deadly
+	  throws of the night air and scary 80's hip hop techno disco
+	  flashing lights music and oh so much aclhomelee
+
+2001-12-14 00:51  andru
+
+	* src/: dbbirth.c, dbuniqueid.c: Ohhh man i am the grestest
+	  programmeer while incredibly drunk. i cant belive that i so got
+	  it working so so so unbeliveable. it like goes. I'm like getting
+	  hasseled to leave now. but thought i just gotta say un
+	  belviervablel great. wohoo i t like works, .yahhhhh!.  I got to
+	  code more often like this.  it really does impove the quality of
+	  my code. even if you dont belvie me its so true. i code
+	  awfusoomlylw hile  uncontraboly drunk. I like even debug and test
+	  properly to. and the drum and bass is like good as well. As the
+	  music moves us all.
+
+	  oh ps.  loadbojectsbyobjects now works
+
+2001-12-14 00:37  andru
+
+	* src/: db.c, db.h: arrr drunk people want to make me stop coding
+	  no dont stop me i must contine coding. damn you and your need to
+	  go to clubs. wait maybe it'll be fun?,.  maybe... hmmm. this is a
+	  very big dision i feel. wait what if someone else shows up to
+	  work wanting to code? what if?.  arrrrrrr
+
+2001-12-13 23:31  andru
+
+	* src/: db.c, db.h, dbmapme.c, dbobject.c, dbtest.c: Been drinking
+	  a bit tooo much but meet very nice girlies.
+
+2001-12-13 20:03  andru
+
+	* src/: dbbirth.c, dbobject.c, dbtest.c: A few more of those lovely
+	  bug fixes, in regard to loadbyobject stuff
+
+2001-12-13 19:06  andru
+
+	* src/db.c, src/dbobject.c, src/dbobject.h, src/dbpgsql.c,
+	  src/dbtest.c, src/dbtoliet.c, test/images/db-test.2,
+	  test/images/db-test.3, test/images/db-test.4,
+	  test/images/db-test.5: Insertion like yeah works. And yeah like
+	  it works yeah.  Been drinking too much of that damn water. need
+	  to go to the toliet again.  (yes i fixed some bugs there to)
+
+2001-12-13 18:20  andru
+
+	* ChangeLog, src/db.c, src/dbfield.c, src/dbobject.c, test/qatest,
+	  test/images/db-test.1, test/images/db-test.2,
+	  test/images/db-test.3, test/images/db-test.4,
+	  test/images/db-test.5: Mr bond has been though a car wash before
+	  liam and isn't afraid of anything, expect maybe redheads.
+
+2001-12-13 17:43  liam
+
+	* src/: dbtest.c, dbuniqueid.c: preparing to cleanse directory
+	  captain...  commiting in porgress...	delete to follow...  ha ha
+	  ha, i get to delete your arse, however briefly, mr bond
+
+2001-12-13 17:41  andru
+
+	* test/: .cvsignore, qatest, images/blank, images/db-test.0: Adding
+	  in test suite.
+
+2001-12-13 17:15  andru
+
+	* configure.in, src/Makefile.am, src/db.c, src/db.h,
+	  src/dbobject.c: Version 0.3.1 released.  Fixed up some
+	  installation errors.	Minor attempts to try and fix bugs...
+
+2001-12-13 02:26  andru
+
+	* ChangeLog, docs/dependences.txt, src/dbtest.c, src/dbtoliet.c:
+	  Yeah umm it seems inserting records dont work. well have to come
+	  back to this one tommorow
+
+2001-12-13 01:53  andru
+
+	* src/: dbbureaucrat.c, dbbureaucrat.h, dbtoliet.c, dbtoliet.h: Got
+	  writing back to database done. ..
+
+2001-12-13 00:33  andru
+
+	* src/: dbbureaucrat.c, dbbureaucrat.h, dbobject.c, dbtoliet.c:
+	  More bug fixes, still working on sqlwritesCVS:
+	  ----------------------------------------------------------------------
+
+2001-12-12 14:26  andru
+
+	* ChangeLog, TODO, src/dbobject.c, src/dbtest.c, src/dbtoliet.c,
+	  src/dbtoliet.h: Working on object writing
+
+2001-12-12 02:53  andru
+
+	* src/: dbfield.c, dbobject.c, dbobjectvalid.c, dbtest.c: Ok we
+	  have like going.  Yeeahaah! whos daa man. I'm daa man.
+
+	  i'll shutup now.  sssh dru ssh
+
+2001-12-12 02:19  andru
+
+	* src/: db.c, dbtest.c: Woohooo it works. Well not compeltely. but
+	  it reads fields now and like correctly puts stuff there where
+	  blah
+
+2001-12-12 02:04  andru
+
+	* src/: dbfield.c, dbsuggest.c, dbuniqueid.c: Hmmmm weird results
+	  from code. says it doesn't work but doesn't segfault or gassert.
+	  ...
+
+2001-12-12 01:34  andru
+
+	* TODO, src/dbfield.c, src/dbuniqueid.c: got me another bug
+
+2001-12-12 00:48  andru
+
+	* src/: db.c, dbbirth.c, dbfield.c, dbobject.c, dbpgsql.c,
+	  dbtest.c, dbuniqueid.c, dbuniqueid.h, dbwrapper.c, dbwrapper.h: I
+	  think i fixed some bugs. possible. or at least made it worst. ps.
+	  i screwed up all your tests baz. pps. laim you girls blouse
+
+2001-12-11 23:55  andru
+
+	* src/: dbpgsql.c, dbtest.c, dbuniqueid.c, dbuniqueid.h,
+	  dbwrapper.h: Kinda like bug fixes you know
+
+2001-12-11 23:28  andru
+
+	* ChangeLog, src/dbobject.c, src/dbtest.c, src/dbuniqueid.c:
+	  Watching microsoft dancingmonkeyboy video for motivational
+	  purposes.  Man this makes me exicited.
+
+2001-12-11 19:37  andru
+
+	* src/: dbtest.c, dbuniqueid.c: I am evil arch villain and you will
+	  die liam. die liam die. i slay laim.	hehehe. (that very evil
+	  arch villain laugh).
+
+	  you expect me to talk? no bond i expect you to die.
+
+	  wait bond is having real dillema deciding who is reall the bad
+	  guy around here. arrgrr just slay liam
+
+2001-12-11 19:27  andru
+
+	* src/: dbtest.c, dbuniqueid.c: poor liam
+
+2001-12-11 19:19  andru
+
+	* src/: dbobject.c, dbtest.c: Update bug fix for double write to
+	  cache
+
+2001-12-11 19:09  andru
+
+	* src/: db.c, dbobject.c, dbtest.c: Arr lots of code changes. Oi
+	  liam stop swearing at the logs
+
+2001-12-11 19:05  liam
+
+	* src/: dbfield.c, dbmapme.c, dbobject.c, dbtest.c: FUCK BOND
+
+2001-12-11 18:11  liam
+
+	* src/: db.c, dbclient.c, dbclient.h, dbobject.c, dbobjectdel.c,
+	  dbtest.c: FUCK I HATE BOND.
+
+	  I know you love it Dru, but I finally understand what all those
+	  supervillains in 007 films felt like.  I too wish to destroy Bond
+	  in truly horrible ways, like feeding him to pirhana's or slicing
+	  him in half or something like that.
+
+	  DIE BOND DIE!
+
+	  mwaa haaa haa haaa haaaaaa....
+
+2001-12-11 18:00  andru
+
+	* src/: db.c, dbfield.c, dbobject.c, dbtoliet.c: More random
+	  changes as my headache digs deeper into the world of the unknown
+
+2001-12-11 17:14  andru
+
+	* src/: dbobject.c, dbtest.c: More test fix ups, slight bug fixes
+
+2001-12-11 16:54  andru
+
+	* src/: dbfield.c, dbobject.c, dbsqlparse.c: Fixed a few bugs,
+	  woohoo it runs query now
+
+2001-12-11 16:31  andru
+
+	* src/: Makefile.am, dbfield.c, dbsuggest.c: Umm trying to find
+	  segfault, pissing me off. grr
+
+2001-12-11 10:39  baz
+
+	* src/: dbbirth.c, dbuniqueid.c: Added some error messages
+
+2001-12-11 03:21  andru
+
+	* ChangeLog, TODO: forgot TODO update. soz baz
+
+2001-12-11 03:20  andru
+
+	* src/: dbbirth.c, sqllexer.l: bug fixes. zzZzzz
+
+2001-12-11 02:41  andru
+
+	* src/: db.c, dbbirth.c, dbfield.c, dbobject.c, dbtest.c: Exicting
+	  stuff, it runs a screwed up sql statement
+
+2001-12-11 02:15  andru
+
+	* ChangeLog, config.guess, config.sub, ltmain.sh, src/Makefile.am,
+	  src/dbbirth.c, src/dbfield.c, src/dbfield.h, src/dbobject.c,
+	  src/dbtest.c: Hmmm some tricky stuff now. I'm kinda misplacing
+	  myself and all and its like agrr this stuff is ik
+
+2001-12-10 23:31  andru
+
+	* src/: dbfield.c, dbobject.c, dbpgsql.h: About to watch movie.
+	  umm. moved some stuff around. realised i still got to code some
+	  stuff. oops. i take back the last cvs commit message as its all a
+	  lie
+
+2001-12-10 23:24  andru
+
+	* TODO, src/dbfield.c, src/dbfield.h, src/dbsqlparse.c,
+	  src/dbsqlparse.h, src/dbuniqueid.c, src/dbuniqueid.h: Finished up
+	  coding for dbfield, well minus the testing of course and all the
+	  countless changes that are bound to arrise.  hmmm. and fixed a
+	  bunch of warnings in other places
+
+2001-12-10 20:51  liam
+
+	* src/dbpath.c: Fixed up calls to adv_strcmp so that they were
+	  repeated 5 times.  Copied advstring.c from the bonddb/src
+	  directory to the bond directory.
+
+2001-12-10 17:29  andru
+
+	* ChangeLog, TODO: Wrote some more toto's while i was out debugging
+	  some apps that actually use bonddb.  wow its amazing what you
+	  learn when you revisit your own code
+
+2001-12-10 16:15  baz
+
+	* src/dbfield.c: Filled in some freeing functions
+
+2001-12-10 15:54  baz
+
+	* src/: dbsuggest.c, dbtest.c: it works I tell you it works
+
+2001-12-10 15:32  andru
+
+	* src/: dbfield.c, dbfield.h: Get umm ... um done more update stuff
+
+2001-12-10 15:22  baz
+
+	* src/: dbsuggest.c, dbtest.c: Trying to fix db_suggest_wildcard
+
+2001-12-10 15:05  andru
+
+	* src/: dbfield.c, dbfield.h: More dbfield stuff oh so much more of
+	  the jolly stuff. hmm
+
+2001-12-10 14:38  andru
+
+	* src/: dbfield.c, dbfield.h: Ok more field work. a few more
+	  functions written. a few more prototypes
+
+2001-12-10 14:37  baz
+
+	* src/dbsuggest.c: wrote db_suggest_wildcard but I dont trust it,
+	  sifty functions need testing
+
+2001-12-10 14:18  baz
+
+	* src/: db.c, dbfield.c, dbsuggest.c, dbuniqueid.c: Whohoo my
+	  dbtest function succeeded, not that I thought it wasnt going to
+	  or anything
+
+2001-12-10 14:06  andru
+
+	* src/: dbfield.c, dbfield.h, dbobject.c: Fix parse error. dbfield
+	  updates
+
+2001-12-10 13:59  baz
+
+	* src/: dbfield.c, dbfield.h, dbuniqueid.c: just trying to make
+	  sense of it all
+
+2001-12-10 13:44  baz
+
+	* src/: dbfield.c, dbsuggest.c, dbsuggest.h: updated some comments
+	  moved function header to dbsuggest, I've gone commiting crazy
+
+2001-12-10 13:37  andru
+
+	* ChangeLog, TODO, src/dbfield.c: DbField stuff. more work.
+	  umdeoda. I hear chainsaw on phone. scary
+
+2001-12-10 13:36  baz
+
+	* src/: dbfield.c, dbtest.c: db_field_getbyfield is all go
+
+2001-12-10 13:26  baz
+
+	* src/: dbfield.c, dbsqlparse.c, dbuniqueid.c: Almost finished
+	  fixing db_verifysql_other just one last bug
+
+2001-12-10 12:04  andru
+
+	* src/dbfield.c: More prototypes written. a bit more docs. and now
+	  off for food
+
+2001-12-10 11:54  andru
+
+	* src/dbfield.c: Fixing that damn umm. fregiging. ummm. shite.
+	  umm. thing. with like conflicts. and no not that cool konflict
+	  music either
+
+2001-12-10 11:43  baz
+
+	* src/: dbfield.c, dbsqlparse.c, dbtest.c, dbuniqueid.c: fixing
+	  some errors in my functions, whoops
+
+2001-12-10 11:21  andru
+
+	* src/dbfield.c: Fixing silly parse errors
+
+2001-12-10 11:17  andru
+
+	* src/: dbfield.c, dbfield.h, dbsqlparse.c, dbsuggest.c: Added in a
+	  few new functions, not quite written. Randomly inserting spaces
+	  into baz's code just though throw cvs off. hhaha evil plan is
+	  working
+
+2001-12-10 11:12  baz
+
+	* src/: dbsqlparse.c, dbsqlparse.h, dbtest.c: some new dbsqlparse
+	  functions to play with
+
+2001-12-10 10:50  baz
+
+	* src/: db.h, dbbirth.c, dbsqlparse.c, dbtest.c, dbuniqueid.c: just
+	  commiting some tests and new funcs and stuff
+
+2001-12-10 04:09  andru
+
+	* src/: db.c, dbobject.c, dbobjectnav.c, dbobjectvalid.c, dbtest.c,
+	  dbtoliet.c, dbuniqueid.c: The first of many many bug fixes. oh
+	  this is gonna take a while
+
+2001-12-10 01:25  andru
+
+	* TODO, src/advstring.c, src/db.c, src/db.h, src/dbbureaucrat.c,
+	  src/dbclient.c, src/dbobject.c, src/dbobjectvalid.c,
+	  src/dbtest.c: Continued work on dbtest.  Problems with flow
+	  though processes
+
+2001-12-10 00:34  andru
+
+	* ChangeLog, TODO, configure.in, docs/setupdbtest, src/dbtest.c:
+	  Dumping bondsql and moving it back into teh bonddb
+
+2001-12-09 04:31  andru
+
+	* ChangeLog, TODO: Updated todo list. going to sZz.zZ
+
+2001-12-09 03:31  andru
+
+	* src/: db.h, dbclient.c, dbconstraint.h, dbfield.h, dbgather.h,
+	  dbobject.h, dbobjectvalid.c, dbobjectvalid.h, dbpgsql.h,
+	  dbpgsqlgather.c, dbwrapper.h: Showing liam inner workings of
+	  bonddb. Fixed up odd things in code on the way though, like
+	  adding spaces, removing spaces
+
+2001-12-08 20:11  andru
+
+	* src/: db.c, dbobjectvalid.c, dbobjectvalid.h: Off to play with
+	  the crowds
+
+2001-12-08 19:30  liam
+
+	* src/advstring.c: [no log message]
+
+2001-12-08 19:25  andru
+
+	* src/: dbobject.c, dbobjectvalid.c, dbobjectvalid.h: Hungry, need
+	  food.  Halfway though dbobjectvalid stuff, will finish when get
+	  back. hopefully
+
+2001-12-08 19:16  liam
+
+	* src/advstring.c: Changed adv_strcmp. Added an xtra level of
+	  matching, to differentiate between xblahy abd xblah
+
+2001-12-08 18:40  andru
+
+	* src/: dbobjectvalid.c, dbobjectvalid.h: Reworking the object
+	  validation code for new design
+
+2001-12-08 15:16  andru
+
+	* src/: advstring.c, advstring.h, dbconstraint.h, dbdefault.c,
+	  dbdefault.h: Running out of places to remove the __PORTED's from.
+	  All seems to work fine. on a good stretch. yah
+
+2001-12-08 15:06  andru
+
+	* src/: db.h, dbobjectnav.c, dbobjectnav.h: Added in rest of
+	  dbobjectnav functions
+
+2001-12-08 04:33  andru
+
+	* src/: db.c, db.h, dbbureaucrat.h, dblooksee.c, dblooksee.h: Got
+	  dblooksee code ported, pratically finished of db. Theres a
+	  function in db (addobjects tingy) which isn't ported yet but i
+	  left it because i dont think i will need it anymore. also removed
+	  some warnings from teh bureaucrats, never satifisying some people
+	  eh?
+
+2001-12-08 04:15  andre
+
+	* ChangeLog, README, configure.in: Added in makefiles for seperate
+	  libbondsql libary.
+
+2001-12-07 22:13  andru
+
+	* ChangeLog, docs/bonddb_codelayound.dia: [no log message]
+
+2001-12-07 22:13  andru
+
+	* src/: db.c, dbtest.c: Added sql parsing support
+
+2001-12-07 22:04  andru
+
+	* src/: sql.c, sql.h, sqllexer.l, sqlparser.y: Finished SQL parser.
+	  For the moment anyway
+
+2001-12-07 17:46  andru
+
+	* src/: db.c, db.h, dbobject.c, dbobject.h: Added in deletation
+
+2001-12-07 15:47  andru
+
+	* src/: db.c, db.h, dbmapme.c, dbmapme.h, dbobject.c, dbobject.h,
+	  dbobjectnav.c: Mad Coding!
+
+2001-12-07 04:09  andru
+
+	* ChangeLog, src/db.c, src/db.h: Going to zZzz
+
+2001-12-07 02:28  andru
+
+	* src/: db.c, db.h: db_Getobjectbyfield written
+
+2001-12-06 22:49  andru
+
+	* src/: db.c, dbbirth.c, dbfield.c, dbobject.h, dbuniqueid.c: Axe
+	  still swings. A lot of just straight cutting without pasting.
+	  mmmmm.. so many hours of work go byebyes.  I thinking it would be
+	  cool to have some sort of automatic graphing thingy for cvs which
+	  shows the horror of all this cutting. like 30% of this file gone
+	  etc on this commet.  PS. I've got a schooter. hehe
+
+2001-12-06 22:20  andru
+
+	* ChangeLog, src/db.c, src/db.h, src/dbbirth.c, src/dbobject.c,
+	  src/dbobject.h, src/dbobjectvalid.c, src/dbobjectvalid.h: Toilet
+	  break. (did i spell it right there for a first time??) Wrote some
+	  more db.c calls and just the headers for dbobject.c. I added a
+	  space into dbbirth.  And did a bit of moving and a bit of
+	  cutting.
+
+2001-12-06 21:48  andru
+
+	* src/: dbbirth.c, dbobject.c, dbtest.c: Fixed memory overwrite bug
+	  in baz's code. to do with re_allocs with sizeof(gchar) instead of
+	  sizeof(gchar*).
+
+2001-12-06 19:18  andru
+
+	* src/: dbbirth.c, dbbirth.h: Added header for new function, wrote
+	  some documentation. it's very hot. will go to beach
+
+2001-12-06 18:20  andru
+
+	* ChangeLog, src/db.c, src/dbbirth.c, src/dbbirth.h, src/dbfield.c,
+	  src/dbobject.c, src/dbobject.h: Very hot again. very tired again.
+	  Start some more proptypes. odd code clean up.  bit of shuffling
+	  around. made docs compile.
+
+2001-12-06 17:59  baz
+
+	* src/dbbirth.c: Tried to test functions but could not best the seg
+	  faults
+
+2001-12-06 17:42  baz
+
+	* src/: dbbirth.c, dbbirth.h, dbfield.h, dbsqlparse.c, dbtest.c,
+	  dbuniqueid.c: some db_birth functions and stuff
+
+2001-12-06 14:01  andru
+
+	* src/dbbirth.c: Fixed compiler error
+
+2001-12-06 13:47  baz
+
+	* src/dbuniqueid.c: Just commiting for commits sake
+
+2001-12-06 13:45  andru
+
+	* ChangeLog, src/dbbirth.c, src/dbfield.c, src/dbuniqueid.c,
+	  src/dbuniqueid.h: I'm just doing my commit. Ok i been doing some
+	  neat cod eon birth. and nearly coded same function as baz. hello
+	  baz.
+
+2001-12-06 13:23  baz
+
+	* src/: dbfield.c, dbtest.c, dbuniqueid.c: Some new functions been
+	  written, should probably test them someday.
+
+2001-12-06 12:10  baz
+
+	* src/: dbtest.c, dbuniqueid.c, dbuniqueid.h: Fixed some compile
+	  errors in dbuniqueid functions, wrote a test for them in dbtest,
+
+2001-12-06 04:20  andru
+
+	* src/: dbuniqueid.c, sql.c, sql.h: Fixed andre's code so it
+	  compiles.  And i so fixed finally that nasty I AM SO WEIRD! gcc
+	  not compiler bug error thingy stab it in the dark damn thing
+
+2001-12-06 04:12  andru
+
+	* src/: db.c, dbbirth.c, dbbirth.h, dbconstraint.c, dbfield.h,
+	  dbheader.h, dbmapme.c, dbmapme.h, dbobject.c, dbobjectdel.h,
+	  dbobjectnav.c, dbpgsql.c, dbsqlparse.c, dbtoliet.c, dbuniqueid.c,
+	  dbuniqueid.h: DAMN YOU RMS. damn buggy gcc. wont frigging compile
+	  and its like no errors.  i hate finding bugs in compiler. its the
+	  worst annoying thing. cause its like compile bitch compile. and
+	  it doesn't. and its so not your fault. blah
+
+2001-12-06 03:34  andru
+
+	* src/: db.c, dbfield.c, dbobject.c, dbobject.h, dbobjectvalid.c:
+	  Well. Hmm. Still here coding. placebo playing. And I think i've
+	  finsihed restructing for the moment. Moving onto linking errors
+	  now
+
+2001-12-06 03:21  andru
+
+	* src/: Makefile.am, db.c, db.h, dbbirth.c, dbbirth.h,
+	  dbconstraint.c, dbfield.c, dbgather.c, dbgather.h, dbheader.h,
+	  dbmapme.c, dbobject.c, dbobject.h, dbobjectdel.c, dbobjectdel.h,
+	  dboo.c, dbpath.c, dbpath.h, dbtest.c: Restrcture dbobject again
+	  to a better naming scheme. (api change again i know).  renamed
+	  dbconstraints to dbconstraint. Just to make it fit nicer with
+	  everything else. consitant is good.
+
+2001-12-06 02:31  andru
+
+	* src/: db.c, db.h, dbbirth.c, dbbirth.h, dbconstraint.c,
+	  dbconstraint.h, dbfield.c, dbfield.h, dbheader.h, dbobject.c,
+	  dbobject.h: Did some major coding. (Yeah i always do major
+	  coding, just sometimes its a bit more than others. ). anyway. Did
+	  the whole birth thingy... Leaving only death.  Also made the
+	  whole loadbyobject etc thing easier to manage. still a few other
+	  things to tidy up. Thinking about restructing yet again for what
+	  i just did.
+
+2001-12-06 01:01  andru
+
+	* src/: .cvsignore, dbbirth.c, dbfield.c, dbfield.h: A bit more
+	  work done on birth and field
+
+2001-12-05 19:21  andru
+
+	* configure.in, src/Makefile.am, src/dbbirth.h, src/dbfield.h,
+	  src/dbgather.h, src/dbheader.h, src/dbobject.h,
+	  src/dbobjectdel.h, src/dbpath.h, src/dbpgsql.h, src/dbtoliet.h,
+	  src/dbuniqueid.h: I screw up things. hmmm. i also edit andre's
+	  cvs logs. ok i think some stuff is here. but i'm not sure what
+	  went missing. oops
+
+2001-12-05 19:03  andre
+
+	* src/: dbbirth.c, dbbirth.h, dbfield.h, dbgather.h, dbheader.h,
+	  dbobject.c, dbobject.h, dbobjectdel.h, dbpath.h, dbpgsql.h,
+	  dbsqlparse.c, dbtoliet.h, dbuniqueid.c, dbuniqueid.h,
+	  dbwrapper.h, sql.c, sql.h, sqllexer.l, sqlparser.y: Added in
+	  fancy arse sql parser.  Modified all the header files with new
+	  design for layout, code bonddb to compile, but not link. ps i'm a
+	  french poohead.
+
+2001-12-05 18:59  andre
+
+	* src/: Makefile.am, db.c: Added in fancy arse sql parser.
+	  Modified all the header files with new design for layout, code
+	  bonddb to compile, but not link. ps i'm a french poohead.
+
+2001-12-05 16:54  baz
+
+	* src/: dbsqlparse.c, dbsqlparse.h, dbtest.c, dbuniqueid.c,
+	  dbuniqueid.h: Wrote db_id_verifysql and its two daughter
+	  functions for postgresql and non-postgresql dbs did write a test
+	  for it but damn it all I forgot to save dbtest.c
+
+2001-12-05 16:27  andru
+
+	* src/: dbbirth.c, dbbirth.h: New cvs server again, well we just
+	  put a new harddrive. a few oddities with commits during backups
+	  causing possible some version loses. so readding.  blah. you know
+	  the drill
+
+2001-12-05 13:19  andru
+
+	* src/: Makefile.am, db.c, dbbirth.h, dbobject.h, dbuniqueid.c,
+	  dbuniqueid.h: Updating before upgrading frederick
+
+2001-12-05 12:55  andru
+
+	* src/: dbbirth.h, dbobjectbirth.h: A bit of renaming, and we going
+	  to expand the birthing role.
+
+2001-12-04 18:04  andru
+
+	* src/: db.c, db.h, dbuniqueid.c: Its so damnnn damnn hot. very
+	  uncomfortable.  coding going slow
+
+2001-12-04 14:29  baz
+
+	* src/: db.c, dbdefault.c, dbmapme.c, dbobjectdel.h, dbsuggest.h,
+	  dbuniqueid.c: Fixing some compile errors and stuff
+
+2001-12-04 10:34  andru
+
+	* src/dbmapme.c: Re-enabliging the code
+
+2001-12-04 06:22  andru
+
+	* ChangeLog, src/db.c, src/dbobject.c, src/dbobjectnav.c,
+	  src/dbobjectnav.h: Frederick cvs server is now updated and new
+	  and fancy. as much as the cvs server can be
+
+2001-12-04 03:55  andru
+
+	* src/: dbbureaucrat.c, dbobject.c, dbsuggest.c: Do a bit of
+	  logging. Do a bit of mapping.  And suggest where it all came from
+
+2001-12-04 03:19  andru
+
+	* src/: Makefile.am, db.c, dbbureaucrat.c, dbbureaucrat.h,
+	  dbobject.c, dbsuggest.c, dbsuggest.h: Added the dbsuggest thingy.
+	  Havn't coded it yet but i will one day. well hopefully by the
+	  time i want to do a read.  Added in support for doing flushing.
+
+2001-12-04 02:41  andru
+
+	* ChangeLog, src/dbobject.c, src/dbtoliet.c: Clock was out a bit.
+	  oops. eyes feel sleep. we still here coding. hmmm
+
+2001-12-04 02:01  andru
+
+	* ChangeLog, src/db.c, src/dbobject.c, src/dbobject.h,
+	  src/dbobjectvalid.c, src/dbtoliet.c: I'm a lumber jack and i'm
+	  ok, i work all night and sleep all day...
+
+2001-12-03 16:30  andru
+
+	* src/dbobjectnav.c: Upgrading cvs server so commiting my work now
+
+2001-12-03 15:56  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbuniqueid.c, dbuniqueid.h:
+	  Still working away. getting object creation sweet. all that sort
+	  of things.  weather is hot. phone keeps ringing.
+
+2001-12-03 14:05  baz
+
+	* src/: dbbureaucrat.c, dbbureaucrat.h, dbgather.h,
+	  dbobjectvalid.c, dbpgsqlgather.c, dbtoliet.c, dbuniqueid.c: Fixed
+	  more compile errors
+
+2001-12-03 13:13  baz
+
+	* src/: dbpgsql.c, dbpgsql.h, dbuniqueid.h: Fixed some compile
+	  errors
+
+2001-12-03 13:09  andru
+
+	* src/: db.c, db.h, dbobject.c, dbobjectvalid.c: Need more energy
+	  drinks. Bizare compiling warnings for no particular reason.
+	  Working on object writes etc with sanity checks. This is before i
+	  even start testing
+
+2001-12-03 12:37  andru
+
+	* src/: dbconstraint.c, dbobject.c, dbobjectbirth.h, dbtoliet.c,
+	  dbtoliet.h: Still more coding. Have got db_addwrite working.
+	  thinking about write backs
+
+2001-12-03 04:10  andru
+
+	* src/: dbobject.c, dbobject.h, dbtoliet.c: Sleep time... ZzzzZZzz
+
+2001-12-03 03:56  andru
+
+	* ChangeLog, docs/newapi.txt: Another reminder. IT COMPILES!!!
+
+2001-12-03 03:55  andru
+
+	* src/: Makefile.am, db.c, db.h, dbclient.c, dbdefault.c, dblog.c,
+	  dbobjectnav.c, dbobjectvalid.c, dbpgsql.c, dbpgsqlgather.c,
+	  dbtoliet.c, dbuniqueid.c, dbwrapper.h: IT COMPILES!!!!!!
+
+2001-12-03 02:43  andru
+
+	* ChangeLog, src/Makefile.am, src/dbbureaucrat.c,
+	  src/dbbureaucrat.h, src/dbfield.c, src/dbobject.c, src/dbtest.c,
+	  src/dbtoliet.c, src/dbwrapper.c: Been watching fightclub.
+	  Anyway. Got it nearly linking. So much closer.
+
+2001-12-02 23:18  andru
+
+	* src/: Makefile.am, db.c, dbbureaucrat.c, dbbureaucrat.h,
+	  dbconstraint.c, dblog.c, dbmapme.c, dbobjectdel.c, dbobjectnav.c,
+	  dbobjectvalid.c, dbobjectvalid.h, dboo.h, dboosql.c, dboosql.h,
+	  dbpath.c, dbtoliet.c, dbtoliet.h, dbuniqueid.c, dbuniqueid.h: Wow
+	  what a huge giant lists of commits. I've been doing some hell
+	  coding.  I've like coded everything. In this soo little time. nah
+	  actually i'm trying to make the damn thing compile. Note a huge
+	  amount of #ifdef __PORTED ....  #endif's now in the code. I've
+	  basically done that to the 95% of the code that i havn't ported
+	  yet. Oh joy i cant wait to get into this. not. oh please someone
+	  save me from the repeativeness of c&p.
+
+2001-12-02 22:19  andru
+
+	* src/: db.c, dbfield.h, dblooksee.c, dbobject.c, dbobject.h,
+	  dbtoliet.h, dbuniqueid.h: Trying oh so trying to make things
+	  compile. its awfully complex here.
+
+2001-12-02 21:16  andru
+
+	* src/: db.c, dbtoliet.c, dbuniqueid.c, dbuniqueid.h: Working on
+	  db_createobjcet and making sure everything supports it
+
+2001-12-01 20:03  andru
+
+	* src/: dbobject.c, dbobject.h, dbtoliet.c, dbuniqueid.c,
+	  dbuniqueid.h: Well I say. Ok its real hot. still coding.
+	  rethinking a few of the ideas of caching and id's.  Will try and
+	  make things compile sometime. i hope
+
+2001-12-01 15:56  andru
+
+	* ChangeLog, src/dbobject.c, src/dbobject.h, src/dbobjectvalid.h,
+	  src/dbpgsql.c, src/dbtoliet.c, src/dbtoliet.h, src/dbuniqueid.c,
+	  src/dbuniqueid.h: Doing stuff i forgot to submit in a previous
+	  life.
+
+2001-11-30 05:14  andru
+
+	* src/: dbobject.c, dbobject.h, dbobjectbirth.h, dbobjectvalid.h,
+	  dbtoliet.c, dbtoliet.h: Sun is rising
+
+2001-11-30 03:44  andru
+
+	* src/: dbbureaucrat.c, dbbureaucrat.h, dbfield.c, dbfield.h,
+	  dbobject.c, dbobject.h, dbtoliet.c, dbtoliet.h, dbuniqueid.c,
+	  dbuniqueid.h: Deletion spree.  It feels so wrong.
+
+2001-11-29 23:57  andru
+
+	* src/: Makefile.am, db.c, dbbureaucrat.c, dbbureaucrat.h,
+	  dbfield.c, dbfield.h, dbobject.c, dbobject.h, dbobjectvalid.c,
+	  dbtoliet.c, dbtoliet.h, dbuniqueid.c, dbuniqueid.h: Coding
+	  continues.... This is a real mess of a business here.
+
+2001-11-29 21:23  andru
+
+	* src/: db.c, db.h, dbbureaucrat.h, dbfield.h, dbobject.h,
+	  dbuniqueid.c: Eyes going funny. Maybe i'm blind
+
+2001-11-29 20:30  andru
+
+	* src/: db.c, dbfield.c, dbfield.h, dbobject.h, dbobjectbirth.h,
+	  dbuniqueid.c, dbuniqueid.h: Coffee hits me. Dru codes madly.
+
+2001-11-29 19:33  andru
+
+	* src/: db.c, db.h, dbbureaucrat.h, dbobject.c, dbobject.h,
+	  dboopath.c, dboopath.h, dbpath.c, dbpath.h, dbpgsql.h,
+	  dbuniqueid.h: The whole thing starts to chagne some more.......
+
+2001-11-29 15:55  andru
+
+	* src/: Makefile.am, dbclient.c, dbclient.h, dbgather.c,
+	  dbobject.h, dboopath.h, dbpgsqlgather.h, dbtoliet.c, dbtoliet.h,
+	  dbuniqueid.h, dbwrapper.h: Compiling woes.  Damn warning lying.
+	  I'm blaming this one on gcc for been very silly. grr.
+
+2001-11-29 13:48  andru
+
+	* src/: dbpgsql.h, dbtoliet.c, dbtoliet.h: More coding.
+
+2001-11-29 04:15  andru
+
+	* src/: dbtoliet.c, dbtoliet.h, dbuniqueid.h: More writing of
+	  toliet. finishing up for today.
+
+2001-11-28 16:58  andru
+
+	* src/: Makefile.am, dbbureaucrat.h, dblog.c, dblog.h, dbobject.c,
+	  dbpgsql.c, dbpgsql.h, dbpgsqlgather.c, dbpgsqlgather.h,
+	  dbtoliet.c, dbtoliet.h, dbuniqueid.h, dbwrapper.c, dbwrapper.h:
+	  It is very hot.  Code tidy-ups.  Code written for toliet. lots of
+	  toliet stuff.
+
+2001-11-28 01:42  andru
+
+	* ChangeLog, src/dbobject.h, src/dbtoliet.h, src/dbuniqueid.h:
+	  Purposefully screw up up core Object structure.
+
+2001-11-27 16:37  liam
+
+	* src/: db.c, dbconstraint.c, dbdefault.c, dblooksee.c, dbobject.c,
+	  dbobjectnav.c, dbpgsql.c, dbpgsqlgather.c: OK, all your christmas
+	  presents are now wrapped.  Don't be disappointed when, unwrapped,
+	  they're still just PQ calls.
+
+2001-11-27 16:19  liam
+
+	* src/: db.c, dbclient.c, dbconstraint.c, dbdefault.c, dblooksee.c,
+	  dbobject.c, dbobjectvalid.c, dbpgsql.c, dbpgsql.h,
+	  dbpgsqlgather.c: some PQ calls have been wrapped, wrapping still
+	  in progress, oh goody...
+
+2001-11-27 12:49  andru
+
+	* src/dbpgsqlgather.c: Not much to say here.
+
+2001-11-27 12:25  andru
+
+	* ChangeLog, src/Makefile.am, src/dbgather.c, src/dbgather.h,
+	  src/dbpgsqlgather.c, src/dbpgsqlgather.h: Breaking up of gather
+	  to make porting a lot easier.  Functions are more defined in role
+	  now.
+
+2001-11-27 03:59  andru
+
+	* src/: dbgather.c, dbgather.h, dbpgsqlgather.c, dbpgsqlgather.h:
+	  Still here. moving functions around .changing calls to blah.
+
+2001-11-27 03:43  andru
+
+	* src/dbwrapper.h: ZzzzzzzZZ
+
+2001-11-27 03:38  andru
+
+	* src/: dbgather.c, dbpgsql.c, dbpgsql.h, dbpgsqlgather.c,
+	  dbpgsqlgather.h, dbuniqueid.c, dbuniqueid.h: Added in new files
+	  for gathering information from the database, being postgresql
+	  specific.  More code for dbpgsql. no idea if file works. but hey
+	  i think i wrote all the functions and atleast its documented.
+
+2001-11-27 03:18  andru
+
+	* ChangeLog, src/dbpgsql.c, src/dbpgsql.h: Damn Civilization 3
+	  interfering with my coding. damn you sid damn you.
+
+2001-11-22 21:54  andru
+
+	* src/: dbclient.c, dbgather.c, dbgather.h, dbpgsql.c, dbpgsql.h:
+	  More work on porting to generic database.  dbgather.c/.h scares
+	  me big time, but the code looks pretty if you look at it on a
+	  specific angle.
+
+2001-11-22 21:17  andru
+
+	* src/: dbclient.c, dbclient.h, dbgather.c, dbpgsql.c, dbpgsql.h,
+	  dbuniqueid.c, dbwrapper.h: dbclient modified to work with dbpgsql
+	  and pgwrapper.
+
+2001-11-22 20:37  andru
+
+	* src/: Makefile.am, dbpgsql.c, dbpgsql.h, dbtoliet.h, dbwrapper.c,
+	  dbwrapper.h: Added in abstration layer from postgresql, part of
+	  gnome-db port.
+
+2001-11-22 19:22  andru
+
+	* ChangeLog, docs/object.txt, reference/.cvsignore,
+	  reference/Makefile.am, src/dblog.c, src/dbtoliet.h,
+	  src/dbuniqueid.c, src/dbuniqueid.h: Note: LAST COMMIT BEFORE
+	  TOTAL BREAKAGE!. I WARN YOU NOW. It gets real scary from here on
+	  in.
+
+	  Adding in Makefile to create reference documentation.  Simple
+	  documentation for objects, still needs work.	Bug fixes and
+	  modifications for dblog.c.  Rework dbtoliet to its truer self.
+	  Adjust design for dbuniqueid.
+
+2001-11-22 16:37  andru
+
+	* src/: dblog.c, dblog.h, main.c: Removal of main.c helloworld
+	  file, how that get there?.  Wrote logging features for database.
+
+2001-11-22 15:20  andru
+
+	* src/: Makefile.am, dbbureaucrat.c, dbbureaucrat.h, dbtoliet.h,
+	  dbuniqueid.c, dbuniqueid.h: Adding in new freshly written,
+	  freshly bug filled dbbureaucrat files. Also more work on
+	  dbuniqueid and dbtoliet restructing started.
+
+2001-11-21 17:23  andru
+
+	* src/: Makefile.am, dbuniqueid.c, dbuniqueid.h: Adding in
+	  dbuniqueid files
+
+2001-11-21 17:14  baz
+
+	* src/db.c: i really dont know
+
+2001-11-21 17:09  andru
+
+	* src/dbclient.c: Put in code documentation
+
+2001-11-21 16:45  baz
+
+	* src/db.c: Trying to comment files for gtk-doc
+
+2001-11-21 03:41  andru
+
+	* src/: dbclient.c, dbclient.h, dbobject.h: Updated code to include
+	  javadoc documentation and testing it with some scripts i wrote.
+	  Hmm. well it kinda works.
+
+2001-11-21 03:01  andru
+
+	* NEWS, createtestdb.sql, docs/overview.txt, src/createtestdb.sql:
+	  Updating docs yet again.. i can't make up my mind
+
+2001-11-21 01:58  andru
+
+	* README, src/bond.conf, src/createtestdb.sql: Updating
+	  documentation, adding database default data for testing
+
+2001-11-21 01:50  andru
+
+	* README, TODO: Updated cause i have a headache
+
+2001-11-20 21:38  andru
+
+	* src/: bond.conf, dbclient.c: Added configuration file for
+	  testing, bug fixes to dbclient
+
+2001-11-20 20:50  andru
+
+	* Makefile.am: Makefile fix.
+
+2001-11-20 20:48  andru
+
+	* Makefile.am, README, configure.in: Added in refrence
+	  documentation.
+
+2001-11-20 18:55  andru
+
+	* COPYING: Removing synlink
+
+2001-11-20 17:43  andru
+
+	* .cvsignore, ChangeLog, src/.cvsignore: Bringing change logs
+	  uptodate. Bringing history files over from CVS
+
+2001-11-20 17:39  andru
+
+	* src/dbtest.c: Start breakup of dbtest
+
+2001-11-20 17:21  andru
+
+	* INSTALL, config.guess, config.sub, install-sh, ltmain.sh,
+	  missing, mkinstalldirs: Resubmitting CVS links
+
+2001-11-20 17:12  andru
+
+	* .ccview-metafile.xml, .cvsignore, ChangeLog, Makefile.am, NEWS,
+	  acconfig.h, autogen.sh, configure.in, src/.cvsignore,
+	  src/Makefile.am, src/main.c: Initial revision
+
+2001-11-20 17:12  andru
+
+	* .ccview-metafile.xml, .cvsignore, ChangeLog, Makefile.am, NEWS,
+	  acconfig.h, autogen.sh, configure.in, src/.cvsignore,
+	  src/Makefile.am, src/main.c: Rebuild of bonddb
+
+2001-11-20 12:34  baz
+
+	* src/: dbobject.c, dbtest.c: Changed postit and dbobject to
+	  prevent crashing when it tries to update objcets that dont exist.
+	  Added new api call, bond_formclear -> still need to move the
+	  bulk of method this to a new method in roof.c
+
+2001-11-20 10:06  baz
+
+	* src/dbobject.c: some small changes to dbobject
+
+2001-11-19 15:49  baz
+
+	* src/: dbobject.c, dbtest.c: Changed knownbugs, added code to
+	  allow for not specifying ,oid in select statements, did some tab
+	  work.
+
+2001-11-19 11:41  andru
+
+	* TODO: Updating documentation
+
+2001-11-19 11:40  andru
+
+	* src/dbclient.c: Fixed bugs in dbclient and bond with memory
+	  freeing.  stickpaper, attempt to fix the jobtype bug.
+
+2001-11-18 21:12  andre
+
+	* src/dbtest.c: Made changes to get initial actual reports running.
+	  Nothing major.
+
+2001-11-18 16:50  andru
+
+	* src/dbclient.c: Attempt to fix segfault in dbclient
+
+2001-11-18 15:49  liam
+
+	* src/dbclient.c: Changed the stuff for reading config - new
+	  function db_readallconfig in dbclient.
+
+2001-11-18 15:33  liam
+
+	* src/: dbclient.c, dbclient.h: [no log message]
+
+2001-11-17 17:52  andru
+
+	* src/dbobjectvalid.c: Fixed bug in adding to emtpy record set.
+
+2001-11-17 15:27  liam
+
+	* src/dbclient.c: yeah, changed stuff, fuck i hate vi as an
+	  editor...ODOCOB:s :askdjfl
+	  ODOBOAOCOBODOCOBODOCOBOBODOCOAODasdf CsdfasdfVS:
+	  ----------------------------------------------------------------------
+
+2001-11-17 14:01  andru
+
+	* src/: db.c, dbobjectdel.c: Many bug fixes to deletion.
+
+2001-11-15 14:36  andru
+
+	* src/dbobjectnav.c: Fix to bug report by baz
+
+2001-11-15 01:47  andru
+
+	* TODO: Todo and changelog updates.  dropdown, fixed some silly
+	  habbits.  Also got orginal default values to work for it.
+	  changes the api a bit for dropdown boxes in order to do this
+	  though. hmmm.
+
+2001-11-15 00:51  andru
+
+	* src/dbobject.c: Code tidy up and better documenation for
+	  dbobject.  Adding support for casual dropdown boxes.	Fixing bug
+	  with not specifying the value of a dropdown box, and it not
+	  saving it properly.
+
+2001-11-14 23:05  andru
+
+	* src/dbobject.c: Reworking flushing of objects completely oh yet
+	  again.  What version is this file now? Anyway the main function
+	  has now been broken up to lots of little ones and better error
+	  handling has been added.
+
+2001-11-14 16:20  andru
+
+	* src/: db.c, dbobject.c: Added nasty fix to design flaw i
+	  discovered, for massed operations on database involving writes
+	  dbobject falls over so added temporay clause to not refresh
+	  recordset if more than 100 records.  Fixed some bugs in
+	  db_getfieldstr.  Other minor bug fixes.
+
+2001-11-14 14:20  baz
+
+	* src/: db.c, dbobjectdel.c: wrote bond_movenext and bond_moveprev
+	  for api.c
+
+2001-11-14 04:23  andru
+
+	* src/: dbobject.c, dbobject.h: Added support for objects create
+	  without needing a source query.
+
+2001-11-13 17:53  andru
+
+	* src/db.c: Clean up debugging.  Fixed bug in db_loadall in
+	  relation to additions to the list
+
+2001-11-13 05:28  andru
+
+	* src/dbobjectnav.c: Minor bug fix to bug fix
+
+2001-11-13 05:02  andru
+
+	* src/: db.c, dbobject.c, dbobjectnav.c, dbobjectvalid.c,
+	  dbobjectvalid.h: Getting tidish so will sleep for a few hours.
+	  db.c, reaffiriming flushing.	objevtvalid, doing the whole
+	  flushing thing yet again. Same goes for dbobject.  Fixed bug in
+	  postit in regard to updating form correctly.	Code tidyup in
+	  formfresh in superglue.  Fixed memory leak and warnings in
+	  globalgtk.
+
+2001-11-13 04:26  andru
+
+	* src/: db.c, dbobject.c: Fixed up db_getfieldint function.
+	  dbobject, fixed minor write cache problem.  api, still work on
+	  getting the showrecord stuff going proper and sensible.
+
+2001-11-13 03:17  liam
+
+	* src/dbgather.c: [no log message]
+
+2001-11-13 02:31  andru
+
+	* src/db.c: Fixed some nasty coding in globalgtk.  Fixed big in api
+	  with form refreshing and editing of clists.
+
+2001-11-12 13:09  andru
+
+	* src/: dbobjectdel.c, dbobjectdel.h, dbtest.c: Adding object
+	  delete into API.
+
+2001-11-08 05:13  andru
+
+	* src/: db.c, dbobject.c, dbobjectvalid.c: Fixed bug in iwantu with
+	  dropdown boxes knowning when stuff changes. Fixed bug in
+	  dbobjectvalid for write cache, fixed bug in dbobject for addwrite
+	  code, fixed bug in additives for multiple source forms.  Time for
+	  zzZZZzzzZZzzz. later people.
+
+2001-11-08 04:08  andru
+
+	* src/dbobject.c: Working though more continue use bugs that may
+	  occur in system.
+
+2001-11-08 00:17  andru
+
+	* src/dbobject.c: Bug fixes to everything i systemmatically broke
+	  before hand.	Woohoo for strangly working stuff.
+
+2001-11-07 23:39  andru
+
+	* src/dbobject.c: Starting to readdress api functions, in regard to
+	  additives. Will rework the way objects are corresponded to other
+	  objects to make it simplier and smoother in the api.
+
+2001-11-07 23:18  andru
+
+	* src/: dbobject.c, dbobjectvalid.c: Getting closer to making majic
+	  stuff happen.  Oh its all majic. We have some bug fixes here,
+	  logic fixes, and a wee bit more discovers in the way of bugs.
+
+2001-11-07 02:48  andru
+
+	* src/dbobject.c: Removed some unnessary debugging code.  Fixed a
+	  nasty bug i created in the task of fixing a bug. Hmmmmmm. Opps
+
+2001-11-07 02:40  andru
+
+	* src/dbobject.c: Ok i have so fixed that bug now with bizare not
+	  save it sometimes events.  Caused by not empting the write cache
+	  when you have a not completed record and sitting around waiting
+	  for it to be filled up with data. Quite logical really when you
+	  come to think about it.
+
+2001-11-07 02:36  andru
+
+	* src/db.c: Code tidyups.  Make 'em look nice.
+
+2001-11-06 23:59  andru
+
+	* src/: dbobject.h, dbtoliet.c, dbtoliet.h: Added the toliet code,
+	  though I'm rethinking my flushing procedures so the toliets may
+	  not be needed.  I'm quite sure i've fixed the major annoying bug
+	  of things not saving.  ps. toliet stop.
+
+2001-11-06 17:05  andru
+
+	* src/: db.c, dbsqlparse.c: Next development release to testers...
+	  will start breakages soon Bug fix for zero length fields.
+
+2001-11-06 15:52  andru
+
+	* src/: db.c, dbobject.c, dbobject.h: Exprementing with a new
+	  database design, did some pre proto-typing work.  Still debating
+	  on the need to redo the write ahead caching and object storage
+	  system.
+
+2001-11-06 13:01  andru
+
+	* src/: db.c, dbobjectvalid.c: Minor bug fixes, more error messages
+
+2001-11-05 13:30  andru
+
+	* src/: db.c, dbobject.c, dbobjectvalid.c, dbtest.c: Added new
+	  test, trying to track down bizare bug with objects sometimes not
+	  been written back to backend db.
+
+2001-11-03 17:20  andru
+
+	* src/: db.c, dbmapme.c, dbobjectnav.c, dbobjectvalid.c: Woohoo
+	  annoying bug fixed.  Also many other bugs fixed
+
+2001-11-02 17:07  andru
+
+	* src/: db.c, dbobjectvalid.c, dbobjectvalid.h: Code tidy up for
+	  new dbobjectvalid code.  Rework filters to include better support
+	  for remote table lookup. There were possible problems before with
+	  fields names been the same name in different tables which has
+	  been resolved.
+
+2001-11-02 03:25  andru
+
+	* README: Release 008 version.	Modifing docs to say this.
+
+2001-11-02 03:17  andru
+
+	* src/: dbobject.c, dbobjectnav.c, dbobjectvalid.c,
+	  dbobjectvalid.h, dbtest.c: Fixed bugs with object flushing.
+	  Continued to debug and expand the dbobjectvalid boolean code.
+	  Made test 46 now work
+
+2001-11-01 21:21  andru
+
+	* src/: dbobject.c, dbtest.c: Get test 11 going, more work at
+	  upding code for new boolean stuff
+
+2001-11-01 18:04  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbobjectvalid.c,
+	  dbobjectvalid.h: Finishing modification of dbobject and db to fit
+	  with boolean cheaking from dbobjectvalid.  Still to seriously
+	  debug the code.
+
+2001-11-01 15:15  andru
+
+	* src/: db.c, dbobject.c, dbobjectvalid.c, dbobjectvalid.h: I've
+	  created a code grave yard. This has nothing to do with halloween
+	  been yesterday, it is to do with the painful event of not been
+	  able to bring myself to delete perfectly working code which i
+	  laboured over for so very long.
+
+2001-11-01 14:55  andru
+
+	* src/: db.c, dbobjectvalid.c, dbobjectvalid.h: Reworking db to the
+	  new boolean stuff
+
+2001-11-01 14:27  andru
+
+	* src/: db.c, db.h, dbobjectvalid.c, dbobjectvalid.h: Fixed major
+	  annoying bug.  Started on another rework of the database object
+	  system.  I'm adding boolean logic functions so you no longer have
+	  to do if statements everywhere to check conditions. exciting
+	  stuff
+
+2001-11-01 13:53  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbtest.c: Commiting
+	  documenation additions and minor bug fixes from last night.  Got
+	  test 46 working, tidied up debugging code.
+
+2001-10-31 04:51  andru
+
+	* src/db.c: Working towards fixing infinite write loop.  Test suite
+	  pass
+
+2001-10-31 02:23  andru
+
+	* src/dbobject.c: Hate it when i realise i have broken oh so much.
+
+2001-10-29 16:42  andru
+
+	* src/: dbobjectnav.c, dbobjectnav.h: Reworking clists yet again.
+	  Code tidy up.  Filtering, begin rework.
+
+2001-10-29 14:50  andru
+
+	* TODO, src/dbobjectnav.c: Todo list updated.  Biglists bug fixes.
+	  Better error checking for dbobjectnav.  Filter bug fixes.
+
+2001-10-29 07:09  andru
+
+	* src/dbobjectdel.c: zzZZzzzZzzz
+
+2001-10-29 06:45  andru
+
+	* src/dbobjectdel.c: Shit it no not work still
+
+2001-10-29 06:12  andru
+
+	* src/: dbobjectdel.c, dbobjectdel.h, dbtest.c: Object deletation
+	  now reworked, debugging must continue
+
+2001-10-29 04:37  andru
+
+	* src/: dbobjectdel.c, dbobjectdel.h, dbtest.c: Problem with deep
+	  extraction. Will re-write again. joys of prototyping
+
+2001-10-29 03:30  andru
+
+	* src/: dbobjectdel.c, dbobjectdel.h, dbtest.c: Restructure object
+	  deletation, fixed some bugs
+
+2001-10-29 02:54  andru
+
+	* src/: dbobjectdel.c, dbobjectdel.h, dbtest.c: Started
+	  re-engeerining object recusive deletation.  Added some
+	  documentation
+
+2001-10-29 02:21  andru
+
+	* src/: dbobjectdel.c, dbtest.c: Adding in recusive deletion.  Test
+	  suite 49 added to test deletes
+
+2001-10-29 01:18  andru
+
+	* src/: db.h, dbobjectdel.c, dbobjectdel.h: Continued work on
+	  implimenting recusive deletion. Inital base functions done.
+
+2001-10-28 20:16  andru
+
+	* src/: dbobjectdel.c, dbobjectdel.h: Started working on recusive
+	  deletation
+
+2001-10-28 19:53  andru
+
+	* src/db.c: Woohoo it works. So appears. So good. Lots of good
+	  stuff. This calls for a drink. Maybe i should realease? Nah lets
+	  make some more bugs.
+
+2001-10-27 19:04  andru
+
+	* src/dbobjectdel.h: Recusive object deletion
+
+2001-10-26 08:25  andru
+
+	* TODO, src/db.c, src/dbobject.c: A few more bug fixes, a few more
+	  bugs created. still smoothing out api.  very tired so will sleep
+	  now.
+
+2001-10-26 07:52  andru
+
+	* src/: db.c, dbobject.c: Many more bug fixes, code tidy ups and
+	  working on making API smoother
+
+2001-10-26 06:42  andru
+
+	* src/dbobject.c: Bug Fix.  Me trying to fix cvs
+
+2001-10-25 21:00  andru
+
+	* src/: db.c, dbobjectnav.c: More bug fixes
+
+2001-10-25 20:44  andru
+
+	* src/: db.c, dbobject.c, dbobjectnav.c: Fixed nasty stale objects
+	  problem.  Also did some other minor stuff
+
+2001-10-23 17:33  andru
+
+	* src/: db.c, db.h, dbobject.c, dbobject.h, dbtest.c: Fixed nasty
+	  bug in db object code with write back caches.  This will
+	  hopefully fix some other problems
+
+2001-10-22 22:45  andru
+
+	* src/: db.c, dbobject.c, dbtest.c: Added a new test to trial and
+	  nail the strange object stuff
+
+2001-10-21 14:01  andru
+
+	* src/: db.c, dbobject.c: Greater attempts to get proper clist
+	  refreshs to occur. still remains a mistory but code better now.
+	  as in less of ikky as ikky is before.
+
+2001-10-20 22:25  andru
+
+	* src/: dbclient.c, dbtest.c: Continue roof suite, more fix fixes
+
+2001-10-20 22:14  andru
+
+	* README: Doc additions
+
+2001-10-20 22:05  andru
+
+	* src/dbtest.c: Continue to work on test suite. Fix minor problems
+	  with dropdowns, and test calls. Reminder you now have to use
+	  dropdown_fb_set before and after dropdowns are used. Will fix
+	  sometime so you dont explicitiy need to. but its a good habbit to
+	  use it anyway
+
+2001-10-20 21:59  andru
+
+	* src/dbtest.c: Dropdowns are screwed in tests. work in pratice.
+	  i'm confused
+
+2001-10-20 21:36  andru
+
+	* src/dbtest.c: Test suite sweep, andre did some work as me in
+	  reports. Norty andre, so cleaning up some stuff. Also we got
+	  change log going.
+
+2001-10-20 21:28  andru
+
+	* src/: dbtest.c, debug.c: Modified dropdown boxes in regard to
+	  there buffering and blindfold so it should correctly work now,
+	  also put more checking into drop down tests to make it easier in
+	  future. added check list for when releasing packages.
+
+2001-10-20 19:50  andru
+
+	* src/db.c: * Unknown stuff for db * Attempt to fix bug with
+	  dependent widgets not registering a value change
+
+2001-10-16 21:32  andru
+
+	* src/dblooksee.c: * Fixed bug in filtering causing seg fault *
+	  Fixed bug in searhing that caused seg fault
+
+2001-10-16 08:34  andru
+
+	* src/: db.c, dbobject.c, dbobject.h: * Got adding object on forms
+	  kinda working, found another bug with drop down changes.  *
+	  Started work on re-organising callbacks
+
+2001-10-16 06:28  andru
+
+	* src/: db.c, dbobject.c, dbsqlparse.c, dbsqlparse.h: * Added
+	  suport for invalid charaters. Or at least started adding support
+	  for it * Work to fix refresh bug
+
+2001-10-15 10:08  andru
+
+	* src/: db.c, dbmapme.c, dbobject.c, dbobject.h, dbobjectnav.c,
+	  dbtest.c: * Arr this is been annoying. Should work I think,.
+	  though doesnt
+
+2001-10-14 10:18  andru
+
+	* src/: db.c, db.h, dbobject.c, dbobject.h: * Get test 1 to work
+	  again, fouled up something sometime but dont know how or when.
+	  but it should work now.  * Code tidy up
+
+2001-10-14 09:34  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbobjectnav.c, dbtest.c,
+	  debug.h: * Got test 46 going. For appending records to an
+	  existing object. Hmmmm
+
+2001-10-12 03:01  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbobjectnav.c, dbobjectnav.h:
+	  * Fixing adding objects to object lists
+
+2001-10-11 20:58  andru
+
+	* src/: dbobject.c, dbobjectnav.c, dbobjectnav.h, dboosql.c: *
+	  Initial import of bond reports
+
+2001-10-11 11:31  andru
+
+	* src/: dboopath.c, dboosql.c, dboosql.h: * Tired. must sleep
+
+2001-10-11 08:08  andru
+
+	* src/: dbclient.c, dbobject.c, dbobject.h, dboo.c, dboo.h,
+	  dboopath.c, dboopath.h, dboosql.c, dboosql.h, debug.c: *
+	  Remodeling of object structure * Minor bug fixes, adjustments,
+	  tidyups for sticky, roof etc.  * Move debug_init into db_init,
+	  this solved a common problem for users of libbonddb not
+	  initalising the debugging.
+
+2001-10-11 01:03  andru
+
+	* src/: db.c, db.h, dbobjectnav.c: * Deletion of object support
+	  into api * Remove db_length function as very similar function by
+	  the name of db_rownumber
+
+2001-10-10 22:03  andru
+
+	* src/: dboo.c, dboo.h, dbsqlparse.c, dbtest.c: * Kill warings *
+	  Started the table digging in oo
+
+2001-10-10 08:24  andru
+
+	* src/: dboo.c, dboo.h, dbtest.c: * Path table.name stuff pretty
+	  much done now.
+
+2001-10-10 05:00  andru
+
+	* src/: dboo.c, dboo.h: * Partial work in progress. Toliet Stop!
+
+2001-10-10 04:12  andru
+
+	* src/: dboo.c, dboo.h: * Changing structure a bit more again.	*
+	  Modified libbonddb to now depend on the advstring stuff. oops.
+	  hey advstring is some pretty shitty code anyway. arrr insane
+	  goto's but i didn't write it. someone please rewrite this decent
+	  for me one day?? well at least it works at moment
+
+2001-10-10 03:07  andru
+
+	* src/: dboo.c, dboo.h, dbtest.c: * more work on the whole
+	  table.name stuff. seems to work for stage one of coding
+
+2001-10-10 00:11  andru
+
+	* src/: dboo.c, dboo.h: * Continued work on path table.field stuff
+
+2001-10-09 23:34  andru
+
+	* src/: dboo.c, dboo.h, dbsqlparse.c, dbtest.c: * Adding the ddoo
+	  support. This will make some things obsolete, but hey thats life
+
+2001-10-09 07:07  andru
+
+	* src/: dbobjectnav.c, dbsqlparse.c: * Bug fixes, copy object
+	  support (still needs more work at a later date.  have ignored for
+	  time being) * I have worked around problesmt to ignore problem.
+	  hmm
+
+2001-10-08 09:45  andru
+
+	* src/: dblooksee.c, dbmapme.c, dbmapme.h, dbobject.c, dbobject.h,
+	  dbobjectnav.c, dbobjectnav.h: * New dbobject navigation file,
+	  copy bits out of dbobject that don't really belong there.  *
+	  Found another few bugs, yet to fix though.  * Added support to
+	  copy db objects.  * postit and superglue debugging and minor
+	  tweaks.
+
+2001-10-08 06:43  andru
+
+	* src/advstring.c: * another bug is squashed.  * another evening is
+	  procastinated
+
+2001-10-07 03:29  andru
+
+	* src/: db.c, db.h, dbmapme.c, dbmapme.h, dbobject.c, dbobject.h: *
+	  Stuff i did the other day but have no memory of it
+
+2001-10-03 04:39  andru
+
+	* src/: db.c, dbgather.c, dbmapme.c, dbsqlparse.c: * Break and Fix!
+	  * Big lists fix to handle table.name, but code very messy at
+	  moment. needs work.  * Code tidy up on lots of stuff * filter
+	  start rewrite then give up and go back to old code
+
+2001-10-02 07:41  andru
+
+	* src/: db.c, dbgather.c, dbmapme.c, dbsqlparse.c: * Oh what a
+	  might run of bug fixes. I still feel sick * Major work to do
+	  elsewhere functions to work, and table.field stuff.  * Segfault
+	  fixes for NULLS around the place * Stupid glade didnt' save which
+	  caused me to think major stuff broken
+
+2001-10-01 22:12  andru
+
+	* src/: dbmapme.c, dbsqlparse.c: * Impleinting table.field into
+	  alias generation.  * Bug fix in sticky * Finishing code for doing
+	  this table.field thing
+
+2001-10-01 21:00  andru
+
+	* src/: db.c, db.h, dbmapme.c, dbmapme.h, dbsqlparse.c,
+	  dbsqlparse.h: * Adding Db support for getting fields in embedded
+	  objects.  * Added a few more string support functions to support
+	  this
+
+2001-10-01 19:27  andru
+
+	* src/: db.c, dbclient.c, dbobject.c: * Installation changes to
+	  bond to make it work on site
+
+2001-09-29 21:22  andru
+
+	* TODO, src/db.c, src/dbobject.c, src/dbtest.c: * More testing
+	  stuff * bug fixes to make tests go. like nasty infinte loop
+
+2001-09-28 20:22  andru
+
+	* src/: db.c, dbconstraint.c, dbconstraint.h, dbgather.c,
+	  dbgather.h, dbtest.c: * THE BIG 100 for dbtest!!!!!! * No other
+	  comments
+
+2001-09-28 02:42  andru
+
+	* src/: db.c, dbobject.c: * Fix bug with write ahead cache * Add
+	  something
+
+2001-09-28 02:31  andru
+
+	* src/: dbdefault.c, dbdefault.h: * Lots of work to make bug free
+	  done in early hours of morning. or so the story goes
+
+2001-09-28 02:30  andru
+
+	* src/advstring.c: * oh this file is bad. Will need a rewrite
+	  completly at some point. minor bug fixes. WHO USED THE GOTO's in
+	  their code!!????
+
+2001-09-28 02:28  andru
+
+	* src/dblooksee.c: * bug fixes for searching
+
+2001-09-25 17:02  andru
+
+	* src/: dbdefault.c, dbdefault.h: * Wrote functions now. So should
+	  work. like be able to get default vales from functions and alike
+
+2001-09-25 05:43  andru
+
+	* src/dbobject.c: * oops left some debugging messages in there so
+	  just cleaned that up
+
+2001-09-25 05:42  andru
+
+	* src/: dbobject.c, dbobject.h: * started extending write ahead
+	  cache before i realised i was stupid and fixed bug in clearobject
+	  to make everything all better
+
+2001-09-24 18:13  andru
+
+	* src/dblooksee.c: * Debug looksee code, fixed a lot of segfaults.
+	  though still havn't finished
+
+2001-09-24 18:12  andru
+
+	* src/: dbclient.c, dbclient.h: * Fix connection to db code to be
+	  more nicer
+
+2001-09-24 18:12  andru
+
+	* src/: debug.c, debug.h: * Fixed initialising and cleanup
+	  functins, fix bugs in config file reading, tidy up code.
+
+2001-09-24 18:11  andru
+
+	* src/dbgather.h: * Add extern for globaldb
+
+2001-09-18 22:57  andru
+
+	* src/: db.c, dbtest.c: * bug fix to db * bug fix to db again
+
+2001-09-18 13:14  andru
+
+	* src/: db.c, dbtest.c: * db minor bug fixed in cache * dbtest
+	  modifications * idefault bug fix
+
+2001-09-17 23:39  andru
+
+	* src/dbtest.c: * Attempts to fix bugs, debugging message tidyups
+
+2001-09-17 10:59  andru
+
+	* src/: dbgather.c, dbtest.c, debug.h: * continued work on the
+	  debugging front. previous modules that did work mistersily stop
+	  working. Will work hard to make sure all are go.
+
+2001-09-16 11:15  andru
+
+	* src/dbtest.c: * master enter bug for displaying umm. live update
+	  thing fixed. wasn't in there. was in dbtest. but i got some code
+	  added to roof.c to fix that. thats the new api call
+
+2001-09-16 11:09  andru
+
+	* src/dbtest.c: * just letting you know i know where the problem is
+	  and am proceeding to fix it. sometime. but first an addtiontion
+	  to roof api. I thought of a new function
+
+2001-09-16 10:45  andru
+
+	* src/dbtest.c: * masterenters was just working for live forms but
+	  not closed forms. Well it was but doesn't since a moment ago. no
+	  idea wha ti did. but will fix now
+
+2001-09-16 09:48  andru
+
+	* src/: dbmapme.c, dbobject.c, dbtest.c: * master enter bug fixes *
+	  biglists, fixed that damned annoying bug tht was tehre for ages
+	  with dataroof clean up. oh liam is going to love me for fixing
+	  that one. Oh what an annoying one that is * dbtest, tidy up of
+	  tests, masteredit tests.  * filterit, tighter debugging code *
+	  stickypaper, clean up debugging code
+
+2001-09-16 04:32  andru
+
+	* src/: dbtest.c, debug.c, debug.h: * tidy up of dbtest, fix a few
+	  debugging code errors * masterenters, more code done. still nto
+	  sure if works
+
+2001-09-15 20:56  baz
+
+	* src/: db.c, dbtest.c: Wrote test for bond_showformbyform and
+	  fixed a couple of problems with it.
+
+2001-09-15 18:47  baz
+
+	* src/dbtest.c: Fixed all compile errors with hitmenow.c Added new
+	  test is dbtest for api.
+
+2001-09-15 18:44  andru
+
+	* src/dbtest.c: * make it compile. oops
+
+2001-09-15 18:20  andru
+
+	* src/: db.h, dbtest.c: * I NEED MORE COFFEE AND MORE V.  in a side
+	  note it sunday morning, no sunday afternoon now. and i have no
+	  idea what changes too place cause they arn't mine. arn't mine i
+	  tell you.  So i was thinking we could have a beach party or
+	  something CVS
+	  ----------------------------------------------------------------------
+
+2001-09-15 18:13  baz
+
+	* src/dbtest.c: More changes to hitmenow.c and dbtest
+
+2001-09-10 18:18  baz
+
+	* src/dbtest.c: Fixed up some bugs in hitmenow.c, added test to
+	  dbtest.c
+
+2001-09-02 03:44  liam
+
+	* src/dbtest.c: * F**kings filters F**king filters F**king filters
+	  * (this commit is done by liam not dru, for the record)
+
+2001-08-30 09:40  andru
+
+	* src/: dbtest.c, debug.c: * More more testing. GTK tests up to 21
+	  now cleared. a few minor bugs fixed.	* Changes to debugging info
+	  to pass tests also done
+
+2001-08-30 08:15  andru
+
+	* src/: db.c, dbgather.c, dbobject.c, dbtest.c: * DB test suite
+	  complete.  Minor bug fixes made, minor modifcations to debugging
+	  message also made to keep tests consistant
+
+2001-08-30 06:33  andru
+
+	* src/dbtest.c: * begin test sweap again. ignore idefault bug as
+	  well. to hard to fix. but know it is a buffer problem with data
+	  not been refreshed enough.
+
+2001-08-29 22:45  andru
+
+	* src/dbtest.c: * fixed blindfold bug with filter information been
+	  stored. ti would break if more than 1 dropdown box on a form *
+	  filterit, added debugging information reports * reduce debug
+	  traffic on idefault
+
+2001-08-29 20:36  andru
+
+	* src/dbtest.c: * agrr dropdown boxes. bug fixes. attempt. extend
+	  api. bug they dont work.  grrrr. well do but dont set value on
+	  demand. to do with blindfolds.  * idefault. more work to get
+	  master to work properly
+
+2001-08-28 10:46  andru
+
+	* src/dbtest.c: * i will have to rewrite master default updates. oh
+	  shit. existing code has many major design flaws when handling
+	  complex stuff which i didn't thnk of when i started. oh joy. so
+	  now i rewrite.
+
+2001-08-28 07:55  andru
+
+	* src/dbtest.c: * breakup of idefault to add a new module called
+	  masterenters. This is to do with default master aliases.  Hmmm
+	  yes.	* fixed idefault compiler problem * more work to get
+	  idefault master working * fixed bug i just made (arn't i
+	  wonderful?)
+
+2001-08-28 00:43  andru
+
+	* src/: dbtest.c, debug.c, debug.h: * more debugging support * got
+	  blindfold working properly. hopefully for last time. oh please
+	  let it be for the last time * dropdown ... related to blindfold *
+	  idefault, attempt to debug masteredit
+
+2001-08-27 03:10  liam
+
+	* src/dbtest.c: woooohoooo
+
+	  biglists now getting the correct values
+
+2001-08-27 02:55  andru
+
+	* src/: dbmapme.c, dbtest.c: * new problems emerge with idefaults
+	  and dropdowns?.  * fixed problems . forgot where but were bugs *
+	  strange coding.
+
+2001-08-27 02:17  andru
+
+	* src/dbtest.c: Right its all liams faults. liam and his seg
+	  faulting code. ok so it was me that forgot to put in the break.
+	  but hey. your code seg faults liam. sascha says that we should
+	  write a programme that turns segfaults into ladybirds.  jolly
+	  good show what.
+
+2001-08-27 02:12  andru
+
+	* src/: dbmapme.c, dbobject.c, dbtest.c: Bitch.  you really are.
+	  you know that.  damn you damn you to heck stop seg faulting
+	  grrrr.
+
+	  i seg you. as revenge.  i'll go map with destroying my own memory
+	  userspace as revenge. grrr
+
+	  oh thats right. change log.  blindfold. bug fixes rest attempt to
+	  control the segs
+
+2001-08-26 20:03  andru
+
+	* src/dbtest.c: * ok it still doesnt work agrr. but i feel really
+	  tired. monday. apeewwow * renaming of blindfold functions to make
+	  more standard.  * a lot mor edebuggnig. works on forms now with 1
+	  dropdown boxd, but fails on forms with 2.
+
+2001-08-26 03:59  andru
+
+	* src/dbtest.c: * aout now i realise stuf fis broke. ddd *
+	  relaistic changelogs are not satusque.  * framebuffer and
+	  idefault stuffw as done
+
+2001-08-26 03:08  liam
+
+	* src/: dbclient.c, dbtest.c: Changes? Who knows... More testing
+	  for dbtest biglists and shite like that.
+
+2001-08-25 00:19  liam
+
+	* src/: db.c, dbtest.c: changes of course
+
+2001-08-25 00:18  andru
+
+	* src/dbtest.c: * relise idefault acutally works.  * shells for
+	  some bigtests
+
+2001-08-24 10:35  andru
+
+	* src/dbtest.c: * more tests for idefault, strange i found
+	  soemthing that proves more bugs in idefault * postit, i did
+	  something here. i can't reember the function i added
+
+2001-08-23 20:49  andru
+
+	* src/dbtest.c: * woohoo test for idefault passing. now to write
+	  some more that'll break stuff * globalgtk, more error checking *
+	  dropdown, more error checking. fix minor bug
+
+2001-08-23 19:25  baz
+
+	* src/dbtest.c: Started on the hitmenow.c functions
+
+2001-08-23 18:51  andru
+
+	* src/: dbconstraint.c, dbconstraint.h: * idefault, more testing *
+	  dbconstraints, added function for testing * globalgtk, code tidy
+	  up.
+
+2001-08-23 17:43  baz
+
+	* src/dbtest.c: Just updating and commiting stuff
+
+2001-08-23 17:40  andru
+
+	* src/: dbobject.c, dbtest.c: * Merge of code. Damn me for
+	  forgeting to do cvs update yesterday. Sorry baz.  * idefault,
+	  more bug fixing. oh the humanity
+
+2001-08-23 17:12  baz
+
+	* src/dbtest.c: added some spin button stuff and new dbtest stuff
+
+2001-08-23 06:40  andru
+
+	* src/: db.c, dbobject.c, dbtest.c: * play around with db to make
+	  it work with defaults. hope to not break stuff oh please dont let
+	  me break stuff * i'm sure i did more idefault stuff * qatest,
+	  support for single test studies
+
+2001-08-23 02:10  andru
+
+	* src/: db.c, dbtest.c: * idefault extension and debugging
+
+2001-08-21 23:52  andru
+
+	* src/: db.c, dbconstraint.c: * more work on default link
+	  widgets...  * adding in autogen support
+
+2001-08-19 21:29  andru
+
+	* src/dbtest.c: * dropdown box, inital work on frame buffers *
+	  rename of function in dropdown * tidy up of iwantu * more work on
+	  idefault
+
+2001-08-19 19:29  andru
+
+	* src/dbmapme.c: * put back to edit box. try and fix dbmapme
+
+2001-08-19 04:45  andru
+
+	* src/: dbgather.c, dbtest.c: * more debugging for idefault, lots
+	  of debugging.  * back from dundin * related debugging for things
+	  influencing idefault
+
+2001-08-16 09:58  andru
+
+	* AUTHORS: * updated the documentation. Tidyied up directories
+
+2001-08-16 09:36  andru
+
+	* src/: dbgather.c, dbgather.h, dbtest.c: * FIXED THAT DAMN MEMORY
+	  BUG. sorry for the yelling but that took a freaking age to fix
+	  and me very annoyed at myself for it. grrr dru grrr. no idea what
+	  else i broke in the process
+
+2001-08-15 09:42  andru
+
+	* src/: dbconstraint.c, dbgather.c, dbtest.c: * first test for
+	  idefault written and debugged * postit, trying to fix
+	  defaultvalue and strange memory overwrite bug
+
+2001-08-15 07:12  andru
+
+	* src/dbtest.c: * added script for creating soldier database,
+	  compilents of liam * idefault, dbtest. Finished writing
+	  functions. entering testing phase now.
+
+2001-08-15 04:55  andru
+
+	* src/dbgather.c: * shit all
+
+2001-08-15 04:47  andru
+
+	* src/: dbconstraint.c, dbconstraint.h, dbtest.c: * postit, fix
+	  double free bug * dbconstraints, fix memory leak * dbtest, not
+	  much * idefaults, procastinaation...
+
+2001-08-15 04:30  liam
+
+	* src/dbtest.c: [no log message]
+
+2001-08-15 04:15  liam
+
+	* src/dbtest.c: starting to test biglist
+
+2001-08-15 02:17  andru
+
+	* TODO: * documentation stuff. well the allusion of it.  *
+	  globalgtk, update header file * get idefault to compile
+
+2001-08-13 22:07  andru
+
+	* src/: db.h, dbconstraint.h, dbgather.c: * Fixed makefile bug with
+	  libary genration * added new widget wrappers for globalgtk, done
+	  by baz.  * did something to dbgather * modified roof to record
+	  what widgets have default to speed up process * idefault, lots
+	  more work to get it going
+
+2001-08-12 21:06  andru
+
+	* src/: dblooksee.c, dbobject.c, dbobject.h: * fix looksee warnings
+	  * ponder idefault * add db_movelast to dbobject
+
+2001-08-12 20:35  andru
+
+	* src/dblooksee.c: * code tidy up
+
+2001-08-12 20:34  andru
+
+	* src/dbtest.c: * fixed dbtest for looksee api change * idefault,
+	  more work on getting it to work
+
+2001-08-12 07:20  andru
+
+	* src/dbtest.c: * Start work on both complex and simple default
+	  values. the complex ones is where one field defaults to another
+	  field, where-ever it may be. hmmm complex. yes i know.  *
+	  globalgtk, prototypes for new widget reading and setting
+	  functions * stickypaper, ground work for default values
+
+2001-08-12 02:42  andru
+
+	* src/dbtest.c: * Yaah for ctrl-z in glimmer. Lost all the new
+	  tests for api in dbtest, but got back somehow.
+
+2001-08-12 02:31  liam
+
+	* src/: advstring.c, dbgather.c, dblooksee.c, dblooksee.h,
+	  dbtest.c: work, please...
+
+2001-08-12 02:30  andru
+
+	* src/: dbgather.c, dbgather.h, dbtest.c: * dbgather, start work on
+	  default values for widgets * dropdown, bug fixes * postit, test
+	  and get working * superglue. .. woohoo we now have it displaying
+	  full on forms
+
+2001-08-11 23:16  andru
+
+	* src/dbtest.c: * Bug fixes for lots of stuff * More advanced tests
+	  for cross dependent drop down boxes
+
+2001-08-11 19:08  andru
+
+	* src/dbtest.c: * merging stuff
+
+2001-08-11 19:07  liam
+
+	* src/: dbconstraint.c, dbtest.c: Nice
+
+2001-08-11 19:01  andru
+
+	* src/dbtest.c: * Another test for dropdown boxes written to make
+	  sure it goes good and nice
+
+2001-08-11 18:42  liam
+
+	* src/: dbconstraint.c, dbconstraint.h, dbtest.c: better
+
+2001-08-11 18:38  liam
+
+	* src/: dbconstraint.c, dbconstraint.h, dbtest.c: ARRRRGGGHHH!
+
+2001-08-11 17:36  andru
+
+	* src/: dbconstraint.c, dbconstraint.h, dbtest.c: * casual
+	  relatoionship stuff
+
+2001-08-10 01:00  andru
+
+	* src/: dbgather.c, dbgather.h: * support for field comments
+
+2001-08-09 07:40  andru
+
+	* src/: db.c, db.h, dbtest.c: * db, added db_getfield * fixed
+	  bonddb.glade incorecct widget naming * minor bugs in dropdown *
+	  test suite passed. ready for next module now
+
+2001-08-08 20:56  andru
+
+	* src/: dbgather.c, dbtest.c: * Making coffee. Need V as well i
+	  think. No money. someone pay me? * Dependences now fully tested
+	  and debugged. all seems ok but who knows for certain.
+
+2001-08-08 04:59  andru
+
+	* src/dbtest.c: * Fix warning and linker errors so whole project
+	  now builds. WOOHOOOOO, I think this is a big milestone. though
+	  still a long way to go people * added additivies to makefile *
+	  iwantu bugs fixed.  * stickypaper, more debuging info on depends
+	  * started running tests again for stable again before moving on
+	  high level api or biglists
+
+2001-08-07 10:34  andru
+
+	* TODO: todo file.
+
+2001-08-07 03:33  andru
+
+	* src/: dbtest.c, debug.c, debug.h: I like this music And i drank
+	  to much coffee so not change log today
+
+2001-08-06 03:26  andru
+
+	* src/dbtest.c: * begginning test suite for next application
+
+2001-08-06 00:55  andru
+
+	* src/dbtest.c: * Fix for sticky paper bug with more complex forms
+
+2001-08-05 09:35  andru
+
+	* src/: db.c, db.h, dbmapme.c, dbmapme.h, dbtest.c: * Code
+	  beautifying. So it looks nice and pretty.
+
+2001-08-05 09:25  andru
+
+	* src/: db.c, dbobject.c, dbobject.h, dbtest.c: * Another dropdown
+	  test * Add loadfirst function to db api * Add support for
+	  checking constraints to see if correctly set
+
+2001-08-05 08:52  andru
+
+	* src/: db.c, dbmapme.c, dbobject.c, dbtest.c: * Update some of the
+	  tests to newer images cause of data changes * Fixed some stuff i
+	  broke but tests picked up * Fixed bug in db_readfield, in regard
+	  to caching * Fixed dbmapme bug
+
+2001-08-05 02:00  andru
+
+	* src/: db.c, dbconstraint.c, dbgather.c, dbobject.c, dbtest.c: *
+	  constraints bug fixed by andre * proper handling for freeing up
+	  of query results in db in error conditions * make tests pass
+	  again. attempt anyway
+
+2001-08-04 23:07  liam
+
+	* src/dblooksee.c: code merging
+
+2001-08-04 23:06  andru
+
+	* src/dbtest.c: * Dropdown code, passes test conditions on simple
+	  one dropdown box
+
+2001-08-04 20:50  andru
+
+	* src/: db.c, dbtest.c: * Better error messages in db and dropdown
+	  * Fix to search test * filterit bug fix
+
+2001-08-03 00:34  andru
+
+	* src/dbtest.c: * merge changes * test suite for dropdowns
+
+2001-08-02 06:59  andru
+
+	* src/: db.c, db.h, dbobject.h: * break up of dropdown into 2
+	  files, iwantu and dropdown.  * make dropdown compile.... just. oh
+	  will be so many bugs. and rewrites * fix of supporting stuff
+
+2001-08-01 08:04  andru
+
+	* src/: db.c, dbmapme.c, dbmapme.h, dbobject.c, dbobject.h: * Break
+	  up of make file into smaller sections * Filterit, now compiles.
+	  still to test * Fixes and addtions to db code
+
+2001-08-01 07:21  andru
+
+	* src/: db.c, db.h, dbgather.h, dbobject.c, dbtest.c: * Porting of
+	  API level files to new db.  This is first step, to get to
+	  compile. A lot of work is still to be done.  * Slight additions
+	  to db code.  * Stickypaper, not sure what i did * Superglue, make
+	  it compile. just * Filterit, This big task, complete restructure
+	  of it.
+
+2001-08-01 03:09  liam
+
+	* src/: debug.c, debug.h: Trying to commit this crap again
+
+2001-08-01 02:48  andru
+
+	* src/dbtest.c: Looksee debugging Dependeces finish search test
+
+2001-07-31 19:03  andru
+
+	* src/dbgather.c: addition of the function for generating
+	  dependences of widgets. It'll pass the widgets looking for a
+	  dependency.
+
+2001-07-31 03:41  andru
+
+	* src/: dbconstraint.c, dbgather.c, dbgather.h, dbmapme.h,
+	  dbtest.c: * Stickypaper, complete rewrite of alias references.
+	  Was based on old   geas system so was completely redone. like
+	  completly. unforuntly i have	 to rewrite the rest of everything
+	  else now
+
+2001-07-30 10:46  andru
+
+	* src/: dbgather.c, dbgather.h, dbmapme.c, dbobject.c, dbobject.h,
+	  dbsqlparse.c, dbsqlparse.h, dbtest.c: * can i make more jokes
+	  about stickypaper been sticky???
+
+2001-07-30 10:00  andru
+
+	* src/: dbmapme.c, dbmapme.h: * new object mapping module. Will
+	  allow for references across tables,	so you can load fields in
+	  remote tables without too much difficults
+
+2001-07-30 04:42  andru
+
+	* src/dbtest.c: * making it link. This is just for the gtk module,
+	  rest comes later
+
+2001-07-30 04:09  andru
+
+	* src/: dbgather.c, dbtest.c: * more more port
+
+2001-07-30 03:38  andru
+
+	* src/dbtest.c: * more porting * more porting again
+
+2001-07-30 02:32  andru
+
+	* src/: db.c, dbgather.c, dbgather.h: * few more db additions, *
+	  sticky paper been very sticky. aggrr
+
+2001-07-29 22:30  andru
+
+	* src/: dbgather.c, dbgather.h, dbtest.c: * More porting, lots more
+	  portinf * roof, port not tested * db api, extend functioanlity
+
+2001-07-29 05:00  andru
+
+	* src/: db.c, dbobject.c: * i thin kwe have both been working on
+	  the addiditives * drop of objs from roof * db/dbobject bug fix.
+	  very allsuive one * all tests are go!!!!!!!!
+
+2001-07-29 04:58  liam
+
+	* src/: db.c, dbgather.c, dbgather.h, dbtest.c: Stopping work now -
+	  enjoy.
+
+2001-07-29 04:26  andru
+
+	* src/: db.c, db.h: * db_lookthought function
+
+2001-07-29 04:16  andru
+
+	* src/: db.c, db.h, dbgather.c, dbobject.c, dbobject.h, dbtest.c: *
+	  more porting stuff * addition of db_lookthought class function *
+	  moving around of a few functions
+
+2001-07-29 03:40  andru
+
+	* src/dbobject.c: * leak fixed in dbobject
+
+2001-07-29 03:24  andru
+
+	* src/dbobject.c: * 4 memory leaks dead in their pants
+
+2001-07-29 03:10  andru
+
+	* src/: db.c, dbconstraint.c, dbobject.c, dbtest.c: * fixing places
+	  where i forget to clear up quereis
+
+2001-07-29 02:48  andru
+
+	* src/: db.c, dbclient.c, dbobject.c: * big bug with flushing found
+
+2001-07-29 02:17  andru
+
+	* src/: db.c, db.h, dbclient.c, dbclient.h, dbconstraint.c,
+	  dbgather.c, dbgather.h, dblooksee.c, dblooksee.h, dbobject.c,
+	  dbobject.h, dbsqlparse.c, dbsqlparse.h, dbtest.c: * work to fix
+	  up seg faults
+
+2001-07-29 01:53  andru
+
+	* src/: dbconstraint.c, dbtest.c: * nort prob with makefile which i
+	  just fixed
+
+2001-07-29 01:11  liam
+
+	* src/dbtest.c: fixed it
+
+2001-07-29 01:02  andru
+
+	* src/: dbclient.c, dbconstraint.c, dbtest.c: * ccmalloc working
+	  now.	* man this took a while, a start on mem. debugging also
+	  beginning
+
+2001-07-29 00:59  liam
+
+	* src/: db.c, dbclient.c, dbconstraint.c, dbgather.c, dblooksee.c,
+	  dblooksee.h, dbtest.c: Work dammit!
+
+2001-07-29 00:09  andru
+
+	* src/dbtest.c: i see
+
+2001-07-28 21:48  andru
+
+	* src/: dbclient.c, dbconstraint.c: a few memory leaks fixed
+
+2001-07-28 19:48  andru
+
+	* src/: dblooksee.c, dblooksee.h: * makefile minor modif.  *
+	  looksee work at porting * addition of sorting to dblooksee
+
+2001-07-27 06:00  andru
+
+	* src/dbtest.c: I'm Drunk!.  CVS commit time before i kill stuff
+
+2001-07-26 22:36  andru
+
+	* src/dbtest.c: * Makefile fixes * sample glade file added for
+	  testing
+
+2001-07-26 22:24  andru
+
+	* src/: db.c, db.h, dbobject.c, dbtest.c: * Added patch to get
+	  around libglade problems with not having my patch in libary.	*
+	  Makefile redone. arrr. took a while. to allow more generic
+	  non-dependent modules for testing.  * porting of files to db_
+	  still continues
+
+2001-07-25 19:53  andru
+
+	* src/: db.c, db.h: * Dropped the geas stuff.  * Addition of
+	  db_objectloadall class to db.* * Got .h files to compile nicely *
+	  Postit, got to compile
+
+2001-07-25 03:02  andru
+
+	* src/: dbobject.c, dbobject.h, dbtest.c: Objectbyobject and
+	  addobjecttoobject code.  Testing functions for both
+
+2001-07-24 20:59  andru
+
+	* src/: db.c, db.h, dbconstraint.c, dbconstraint.h, dbgather.c,
+	  dbgather.h, dbsqlparse.c, dbsqlparse.h, dbtest.c, debug.c,
+	  debug.h:
+	  not sure what i modieifed, but hey. its here.  actually its jus
+	  tmodification of test code to support not printing line numbers
+	  so testing isn't screwed up
+
+2001-07-24 05:49  andru
+
+	* src/dbtest.c: Quality Assurance Code.
+
+	  Will run test simulation on code to find any possible errors
+
+2001-07-24 04:19  liam
+
+	* src/: dbgather.c, dbgather.h: datetime added, printf removed.
+
+2001-07-24 03:24  andru
+
+	* src/dbconstraint.c: cause we dont need a programme
+
+2001-07-24 03:24  liam
+
+	* src/: dbgather.c, dbgather.h: Just about done...
+
+2001-07-24 02:44  liam
+
+	* src/: dbgather.c, dbgather.h, dbtest.c: Altering the
+	  generalisetype function in dbgather.c and inserting testing code
+	  into dbtest.c
+
+2001-07-24 02:27  andru
+
+	* src/: dbconstraint.c, dbconstraint.h: addition of new functions
+	  to constracts, bug fix for freeup
+
+2001-07-24 01:23  andru
+
+	* src/: dbconstraint.c, dbconstraint.h: relationship information
+
+2001-07-24 01:22  andru
+
+	* src/: db.c, db.h, dbclient.c, dbclient.h, dbgather.c, dbgather.h,
+	  dblooksee.c, dblooksee.h, dbobject.c, dbobject.h, dbsqlparse.c,
+	  dbsqlparse.h, dbtest.c, debug.h: Data merge..... I tried this so
+	  many times.  but it keeps doing nasty things.
+
+	  Anyway.  This is the major merge between the 2 source trees.	db*
+	  code is still independent but the makfile contains the code
+	  needed to test it. Its a seperate main() file in dbtest.c to test
+	  the new db code.
+
+2001-06-11 17:38  andru
+
+	* AUTHORS, src/advstring.c, src/advstring.h: Initial revision
+
+2001-06-11 17:38  andru
+
+	* AUTHORS, src/advstring.c, src/advstring.h: [no log message]
+

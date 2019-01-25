@@ -1,0 +1,23 @@
+Source: bonddb
+Section: devel
+Priority: optional
+Maintainer: Andrew Hill <andru@treshna.com>
+Build-Depends: debhelper (>> 3.0.0)
+Standards-Version: 0.4.2
+
+Package: bonddb-dev
+Architecture: any
+Depends: bonddb (= ${Source-Version}), libc6-dev, libglib1.2-dev
+Description: Object oriented wrapper for postgres
+ Bonddb is an abstraction layer for C/C++ to allow
+ easy access and edit data sources without having
+ to continually do sql statements.
+ 
+Package: bonddb
+Architecture: any
+Depends: ${shlibs:Depends}, libglib1.2 (>= 1.2.0), libpgsql2 (>= 7.2-3) | libpgsql2.1 (>= 7.1)
+Suggests: postgresql
+Description: Object oriented wrapper for postgres
+ Bonddb is an abstraction layer for C/C++ to allow
+ easy access and edit data sources without having
+ to continually do sql statements.

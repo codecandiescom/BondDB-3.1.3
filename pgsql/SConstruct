@@ -1,0 +1,29 @@
+Import('env','usrlocal', 'pg')
+
+pgenv = env.Clone()
+
+if int(pg):
+	pgenv.Append(CCFLAGS = '-D_PGSQL')
+  # add support for postgresql 
+  # --- can't use pg_config when cross-compiling... ---
+	if env['XMINGW'] :
+		PG_CCFLAGS=''
+		PG_LINKFLAGS=''
+	else:
+		PG_CCFLAGS = '-I`pg_config --includedir`'
+		PG_LINKFLAGS = '-L`pg_config --libdir`' 
+	pgenv.Append(CCFLAGS=PG_CCFLAGS, LINKFLAGS=PG_LINKFLAGS)
+	pgenv.Append(LIBS='pq');
+	if pgenv['XMINGW'] or pgenv['PLATFORM'] == 'win32': 
+		pgenv.Append(LIBS='ws2_32');
+
+pgenv.Append(CCFLAGS='-Ibonddb')
+
+# Source files
+list = Split('binding_pgsql.c')
+
+# print list
+l = pgenv.SharedLibrary('#lib/bonddb2_pgsql',list)
+
+env.InstallPerm(usrlocal+'lib',l,0444)
+env.Alias('install', usrlocal+'lib')

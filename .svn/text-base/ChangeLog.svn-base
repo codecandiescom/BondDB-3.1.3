@@ -1,0 +1,1209 @@
+------------------------------------------------------------------------
+r1139 | liam | 2007-03-06 06:46:21 +1300 (Tue, 06 Mar 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+The grammar nazi strikes again...
+
+------------------------------------------------------------------------
+r1137 | andru | 2007-03-05 21:43:57 +1300 (Mon, 05 Mar 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+stop g_assert and quit gracefully
+
+------------------------------------------------------------------------
+r1136 | andru | 2007-03-05 20:50:58 +1300 (Mon, 05 Mar 2007) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbinit.c
+
+Code tidyup.
+Stop error causing death
+
+------------------------------------------------------------------------
+r1120 | andru | 2007-03-02 00:03:59 +1300 (Fri, 02 Mar 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbobj.c
+
+stop g_assert's that occurrs sometimes
+
+------------------------------------------------------------------------
+r1116 | liam | 2007-02-28 04:20:27 +1300 (Wed, 28 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/SConstruct
+
+Oops, those were the testing permissions.  Set to _useful_ permissions now.  The behaviour of the standard env.Install is to keep whatever the permissions where of the existing files, so it normally worked for most people.  This one is much more certain to work, however.
+
+------------------------------------------------------------------------
+r1115 | liam | 2007-02-28 04:16:53 +1300 (Wed, 28 Feb 2007) | 3 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bonddb/SConstruct
+
+Fix Scons permission bugs (bugzilla bug 66).  Kindly used code from
+http://www.scons.org/cgi-sys/cgiwrap/scons/moin.cgi/InstallTargets
+
+------------------------------------------------------------------------
+r1107 | andru | 2007-02-24 20:53:06 +1300 (Sat, 24 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+Fixed write tests so they pass now
+
+------------------------------------------------------------------------
+r1105 | andru | 2007-02-24 19:11:44 +1300 (Sat, 24 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbid.c
+
+Fixing bug 58. Crashes on jumpto in bonddb
+
+------------------------------------------------------------------------
+r1098 | andru | 2007-02-22 17:24:30 +1300 (Thu, 22 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+
+Fixing compile warning
+
+------------------------------------------------------------------------
+r1083 | liam | 2007-02-19 23:37:06 +1300 (Mon, 19 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+Grammar nazi commit; fix courupt -> corrupt
+
+------------------------------------------------------------------------
+r1075 | jasen | 2007-02-16 11:46:19 +1300 (Fri, 16 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+
+bugfix, hmm..
+
+------------------------------------------------------------------------
+r1042 | andru | 2007-02-09 00:54:17 +1300 (Fri, 09 Feb 2007) | 13 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbid.c
+
+random spamming attempt.
+Charles requests i menton the word sex to make it more like true spam.
+I shall add the phrases key phrases to help in securing this as spam.
+
+I am Alfred Abbas the son of late Michael Abbas, I am  25 Years old and my sister Mabel is 18 years old, our father died  3 years ago in a gold mine in Mende town, Republic of  sierra Leone .
+
+He was into legal gold mining ,he has succeeded in saving $8 millions dollars during his Business on Gold, before he went on a trip to Republic of Cote D'Ivoire West Africa near by country to our country to save his money for security reasons because of the political problem in our country  And that we should seek for a foreign partner in any country of our choice where we will transfer this money for investment purpose for our future life.
+
+rolex  Replica Classics  
+We are glad to offer you F.D.A approved Genuine Viagra. 
+
+
+
+------------------------------------------------------------------------
+r1018 | jasen | 2007-02-05 12:31:23 +1300 (Mon, 05 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+bugfix to mem_concatenate_string
+
+------------------------------------------------------------------------
+r1017 | jasen | 2007-02-05 11:13:05 +1300 (Mon, 05 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbtest.c
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+   M /bonddb/trunk/createtestdb.sql
+
+needs tables 'with oids' for postgresql 8
+
+------------------------------------------------------------------------
+r1014 | andru | 2007-02-05 00:47:42 +1300 (Mon, 05 Feb 2007) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbid.c
+
+
+oops fix
+
+------------------------------------------------------------------------
+r1013 | andru | 2007-02-05 00:30:46 +1300 (Mon, 05 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk
+   M /bonddb/trunk/bonddb
+   M /bonddb/trunk/bonddb/bonddbid.c
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+   M /bonddb/trunk/bonddb/bonddbwrite.h
+   M /bonddb/trunk/lib
+
+Fixing bug when updating/inserting data into multiple tables from one data source.
+
+------------------------------------------------------------------------
+r1008 | jasen | 2007-02-02 14:18:15 +1300 (Fri, 02 Feb 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+mem_concatenate_list null-data segfault fix
+
+------------------------------------------------------------------------
+r994 | jasen | 2007-01-29 14:06:07 +1300 (Mon, 29 Jan 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+
+oops
+
+------------------------------------------------------------------------
+r992 | jasen | 2007-01-29 11:16:05 +1300 (Mon, 29 Jan 2007) | 5 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bonddb/bonddbplugin.c
+
+added automatic "OS=UNIX" or "OS=WIN32" to bcconfig for use with ifconfig
+on bond.
+
+small tweak to debug output.
+
+------------------------------------------------------------------------
+r936 | liam | 2007-01-14 22:52:27 +1300 (Sun, 14 Jan 2007) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbfilter.c
+
+Just notes indicating where the badness in bonddbfilter is.  Some details in the comment in the source file, no code changes.
+
+------------------------------------------------------------------------
+r855 | andru | 2006-12-10 23:55:24 +1300 (Sun, 10 Dec 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bonddb/bonddbarray.c
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+memory bug fixes
+
+------------------------------------------------------------------------
+r733 | jasen | 2006-11-03 16:46:16 +1300 (Fri, 03 Nov 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcdebug.c
+
+bugfix exceptionfiles
+
+------------------------------------------------------------------------
+r695 | liam | 2006-10-14 21:22:43 +1300 (Sat, 14 Oct 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbparse.c
+
+Allow keywords to be followed by a tab character - it makes for neater SQL anyway, some of the stuff I've seen sitting around...  I should have been born German :D
+
+------------------------------------------------------------------------
+r694 | jasen | 2006-10-13 14:03:15 +1300 (Fri, 13 Oct 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon.pc
+
+
+typo
+
+------------------------------------------------------------------------
+r658 | jasen | 2006-09-28 10:48:30 +1200 (Thu, 28 Sep 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon.pc
+   M /bonddb/trunk/bonddb.pc
+
+fix for windows builds again
+
+------------------------------------------------------------------------
+r655 | jasen | 2006-09-26 17:12:15 +1200 (Tue, 26 Sep 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/SConstruct
+
+exporeted bonddbpurify
+
+------------------------------------------------------------------------
+r651 | andru | 2006-09-25 21:51:34 +1200 (Mon, 25 Sep 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/ChangeLog
+
+Release 2.2.5
+
+------------------------------------------------------------------------
+r650 | andru | 2006-09-25 21:49:58 +1200 (Mon, 25 Sep 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcgarbage.c
+
+check for nulls
+
+------------------------------------------------------------------------
+r630 | jasen | 2006-09-21 10:06:59 +1200 (Thu, 21 Sep 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon.pc
+   M /bonddb/trunk/bonddb.pc
+
+fix for windows build process
+
+------------------------------------------------------------------------
+r608 | jasen | 2006-09-15 12:36:33 +1200 (Fri, 15 Sep 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+
+minor bugfix.
+
+------------------------------------------------------------------------
+r577 | andru | 2006-08-30 01:19:59 +1200 (Wed, 30 Aug 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbobj.h
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+fixing problem with bonddbwrite not always writing based on order of adding data.
+
+------------------------------------------------------------------------
+r572 | jasen | 2006-08-23 09:54:41 +1200 (Wed, 23 Aug 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+
+comments
+
+------------------------------------------------------------------------
+r536 | jrlefou | 2006-08-07 18:07:23 +1200 (Mon, 07 Aug 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbid.c
+   M /bonddb/trunk/bonddb/bonddbid.h
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbtest.c
+
+adding Jump to  
+
+------------------------------------------------------------------------
+r531 | andru | 2006-08-01 01:38:42 +1200 (Tue, 01 Aug 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbtest.conf
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+fixing problem where writes are lost occasionally on double changes with mixed marking.
+
+------------------------------------------------------------------------
+r530 | jrlefou | 2006-07-30 17:54:52 +1200 (Sun, 30 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+   M /bonddb/trunk/createdb_mysql.sql
+   M /bonddb/trunk/mysql/binding_mysql.c
+
+more MYSQL 
+
+------------------------------------------------------------------------
+r523 | jrlefou | 2006-07-27 16:09:27 +1200 (Thu, 27 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/mysql/binding_mysql.c
+
+desactiving mysql in SConstruc    
+
+------------------------------------------------------------------------
+r521 | jrlefou | 2006-07-26 17:49:51 +1200 (Wed, 26 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bonddb/SConstruct
+   M /bonddb/trunk/bonddb/bonddbtest.c
+   M /bonddb/trunk/bonddb/bonddbtest.conf
+   M /bonddb/trunk/createdb_mysql.sql
+   A /bonddb/trunk/mysql
+   A /bonddb/trunk/mysql/SConstruct
+   A /bonddb/trunk/mysql/binding_mysql.c
+
+mysql support
+
+------------------------------------------------------------------------
+r514 | andru | 2006-07-23 23:40:28 +1200 (Sun, 23 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbtest.c
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+Fixing memory leak 
+
+------------------------------------------------------------------------
+r508 | jasen | 2006-07-20 19:05:46 +1200 (Thu, 20 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bondcommon/bcmem.h
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/bonddb/bonddbfield.h
+   M /bonddb/trunk/bonddb/bonddbtest.c
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+more improvements 
+
+------------------------------------------------------------------------
+r479 | jasen | 2006-07-17 14:55:09 +1200 (Mon, 17 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/bonddb/bonddbobj.c
+
+bugfix
+
+------------------------------------------------------------------------
+r472 | andru | 2006-07-17 12:26:11 +1200 (Mon, 17 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   A /bonddb/trunk/src/README
+
+fixing compiling warnings
+
+------------------------------------------------------------------------
+r471 | jrlefou | 2006-07-17 12:13:40 +1200 (Mon, 17 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/bonddb/bonddbplugin.h
+   M /bonddb/trunk/bonddb/bonddbtest.c
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+sending nextvalue to the master, ie the remote write connection 
+
+------------------------------------------------------------------------
+r465 | jasen | 2006-07-14 13:34:34 +1200 (Fri, 14 Jul 2006) | 1 line
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+
+------------------------------------------------------------------------
+r464 | jasen | 2006-07-14 12:30:31 +1200 (Fri, 14 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+oops^3
+
+------------------------------------------------------------------------
+r462 | jasen | 2006-07-13 13:44:51 +1200 (Thu, 13 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+oops^2
+
+------------------------------------------------------------------------
+r461 | jasen | 2006-07-13 13:44:25 +1200 (Thu, 13 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+oops
+
+------------------------------------------------------------------------
+r460 | jasen | 2006-07-13 13:43:47 +1200 (Thu, 13 Jul 2006) | 4 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bondcommon/bcmem.h
+
+mem_concatenate_list(list,start,glue,end) 
+ turns a g_list of strings into a string which must be mem_free'd
+ 
+
+------------------------------------------------------------------------
+r457 | jrlefou | 2006-07-12 15:25:51 +1200 (Wed, 12 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbinit.c
+
+upgrade the remote write config read from[D the config file   
+
+------------------------------------------------------------------------
+r453 | jasen | 2006-07-12 13:34:25 +1200 (Wed, 12 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bondcommon/bcmem.h
+
+list-glueing function mem_concatenate_list
+
+------------------------------------------------------------------------
+r442 | jrlefou | 2006-07-10 12:17:49 +1200 (Mon, 10 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+split the writond to remode database
+
+------------------------------------------------------------------------
+r441 | jrlefou | 2006-07-08 17:28:09 +1200 (Sat, 08 Jul 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbglobal.h
+   M /bonddb/trunk/bonddb/bonddbinit.c
+   M /bonddb/trunk/bonddb/bonddbinit.h
+   M /bonddb/trunk/bonddb/bonddbtest.conf
+
+remote_write
+
+
+------------------------------------------------------------------------
+r433 | andru | 2006-07-06 23:33:54 +1200 (Thu, 06 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbobj.h
+   M /bonddb/trunk/bonddb/bonddbrecord.c
+   M /bonddb/trunk/bonddb/bonddbrecord.h
+
+Added bonddb_undo() function to abort mistakes made
+
+------------------------------------------------------------------------
+r422 | andru | 2006-07-03 23:55:16 +1200 (Mon, 03 Jul 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbinit.c
+   M /bonddb/trunk/bonddb/bonddbinit.h
+   M /bonddb/trunk/bonddb/bonddbplugin.c
+   M /bonddb/trunk/bonddb/bonddbplugin.h
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+Broken binary compitablity. Opps. dont know away around.
+Added function to find out what groups a user belongs to.
+
+------------------------------------------------------------------------
+r418 | andru | 2006-07-03 14:06:52 +1200 (Mon, 03 Jul 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/src
+
+Removing gcc 4.0 specific call
+
+------------------------------------------------------------------------
+r416 | andru | 2006-06-30 11:28:37 +1200 (Fri, 30 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+removing bad error message
+
+------------------------------------------------------------------------
+r404 | andru | 2006-06-29 02:12:17 +1200 (Thu, 29 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bondcommon
+   M /bonddb/trunk/bonddb/bonddbinit.c
+   M /bonddb/trunk/src
+
+Fixing optimisation code for RELEASE=1
+
+------------------------------------------------------------------------
+r394 | andru | 2006-06-27 13:04:33 +1200 (Tue, 27 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbid.c
+
+fixing compiling error
+
+------------------------------------------------------------------------
+r393 | andru | 2006-06-27 12:00:41 +1200 (Tue, 27 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/createtestdb.sql
+
+added some default value thingy to improve test data slightly
+
+------------------------------------------------------------------------
+r392 | andru | 2006-06-27 11:51:38 +1200 (Tue, 27 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbid.c
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbrecord.c
+   M /bonddb/trunk/bonddb/bonddbrecord.h
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+Fixing bug with deletions sometimes causing db record courption
+
+------------------------------------------------------------------------
+r391 | jasen | 2006-06-27 10:44:07 +1200 (Tue, 27 Jun 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcdebug.c
+
+some random improvement
+
+
+------------------------------------------------------------------------
+r387 | andru | 2006-06-26 16:58:03 +1200 (Mon, 26 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb2.pc
+
+updating version info
+
+------------------------------------------------------------------------
+r382 | andru | 2006-06-26 13:53:22 +1200 (Mon, 26 Jun 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bc.c
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bondcommon/bcconfig.h
+   M /bonddb/trunk/bondcommon/bcmem.h
+   M /bonddb/trunk/bonddb/bonddbinit.c
+   M /bonddb/trunk/bonddb/bonddbinit.h
+   M /bonddb/trunk/bonddb/bonddbplugin.c
+
+Added ability to change values stored in config files.
+Added function to find last error on failed connection.
+
+------------------------------------------------------------------------
+r360 | andru | 2006-06-20 16:21:04 +1200 (Tue, 20 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bonddb/bonddbplugin.c
+
+minor work trying to fix problems with config files. problem unrelated
+
+------------------------------------------------------------------------
+r354 | jasen | 2006-06-16 15:16:18 +1200 (Fri, 16 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bondcommon/bcmem.h
+
+mem_IsTrue/Is_False/Is_Equal string functions.
+
+------------------------------------------------------------------------
+r353 | jasen | 2006-06-15 11:18:41 +1200 (Thu, 15 Jun 2006) | 4 lines
+Changed paths:
+   M /bonddb/trunk/README
+   M /bonddb/trunk/bondcommon/bcconfig.c
+
+oops
+
+
+
+------------------------------------------------------------------------
+r352 | jasen | 2006-06-15 11:16:01 +1200 (Thu, 15 Jun 2006) | 1 line
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bondcommon/bcconfig.h
+
+
+------------------------------------------------------------------------
+r341 | andru | 2006-06-13 21:42:33 +1200 (Tue, 13 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/ChangeLog
+
+Release 2.2.4
+
+------------------------------------------------------------------------
+r340 | jasen | 2006-06-13 21:30:58 +1200 (Tue, 13 Jun 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+Fixing nasty error in postgresql binding that failed to get default values
+sometimes
+
+------------------------------------------------------------------------
+r339 | jasen | 2006-06-13 20:57:15 +1200 (Tue, 13 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/SConstruct
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+Removing mem_error function and used errormsg instead
+
+------------------------------------------------------------------------
+r338 | andru | 2006-06-13 20:40:47 +1200 (Tue, 13 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+Caused exit instead of g_assert
+
+------------------------------------------------------------------------
+r336 | andru | 2006-06-13 17:18:40 +1200 (Tue, 13 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+Flushing contents before g_asserting.
+
+------------------------------------------------------------------------
+r331 | andru | 2006-06-13 00:03:51 +1200 (Tue, 13 Jun 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbarray.c
+   M /bonddb/trunk/bonddb/bonddbid.c
+   M /bonddb/trunk/bonddb/bonddbid.h
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbobj.h
+   M /bonddb/trunk/bonddb2.pc
+
+trying to fix bonddbarray segfault
+dealing with bonddbid problems
+
+------------------------------------------------------------------------
+r328 | andru | 2006-06-12 15:50:05 +1200 (Mon, 12 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondsql/sql_parser.c
+
+adding checking of sql statement
+
+------------------------------------------------------------------------
+r318 | andru | 2006-06-06 01:39:04 +1200 (Tue, 06 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bondcommon/bcmem.h
+
+Added function which will tell you if memory is allocated or not
+
+------------------------------------------------------------------------
+r315 | jasen | 2006-06-02 16:55:50 +1200 (Fri, 02 Jun 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   D /bonddb/trunk/config.log
+
+new build file
+
+
+------------------------------------------------------------------------
+r308 | jasen | 2006-06-01 17:42:14 +1200 (Thu, 01 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/config.log
+   M /bonddb/trunk/pgsql/SConstruct
+
+updates for latest scons
+
+------------------------------------------------------------------------
+r305 | jasen | 2006-06-01 16:51:43 +1200 (Thu, 01 Jun 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bonddb/bonddbplugin.c
+
+improvements to plugin loading
+
+------------------------------------------------------------------------
+r304 | jasen | 2006-06-01 14:59:04 +1200 (Thu, 01 Jun 2006) | 4 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbplugin.c
+   M /bonddb/trunk/bonddb/bonddbtest.conf
+
+replaced plugin code - now uses LD_LIBRARY_PATH('nix) or PATH(win32) after
+trying current dir.
+
+
+------------------------------------------------------------------------
+r301 | jasen | 2006-05-30 15:22:57 +1200 (Tue, 30 May 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+supressesd stack address test on windows, fixed windows build
+
+------------------------------------------------------------------------
+r295 | andru | 2006-05-30 00:04:05 +1200 (Tue, 30 May 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbarray.c
+
+allow for weird sql in array queries
+
+------------------------------------------------------------------------
+r291 | andru | 2006-05-16 00:25:21 +1200 (Tue, 16 May 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+Fixing nasty bug in bonddbfield which sometimes caused segfault
+
+------------------------------------------------------------------------
+r208 | andru | 2006-04-25 17:41:43 +1200 (Tue, 25 Apr 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+fixing bug in record sets with no primary key
+
+------------------------------------------------------------------------
+r197 | jasen | 2006-04-10 10:32:10 +1200 (Mon, 10 Apr 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bondcommon/bcdebug.c
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+mem_debugging still noisy 
+
+------------------------------------------------------------------------
+r196 | jasen | 2006-04-10 09:56:06 +1200 (Mon, 10 Apr 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bc.c
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+checkmem too noisy
+
+------------------------------------------------------------------------
+r149 | jasen | 2006-03-09 12:11:50 +1300 (Thu, 09 Mar 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bc.c
+
+config memory report bug fixed
+
+
+------------------------------------------------------------------------
+r148 | jasen | 2006-03-09 11:55:30 +1300 (Thu, 09 Mar 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bc.c
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/bondcommon/bcmem.c
+
+mem-debugging messages
+
+------------------------------------------------------------------------
+r146 | jasen | 2006-03-08 16:13:03 +1300 (Wed, 08 Mar 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcconfig.c
+
+final tweaks
+
+------------------------------------------------------------------------
+r143 | jasen | 2006-03-08 11:45:52 +1300 (Wed, 08 Mar 2006) | 5 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bondcommon/bcconfig.c
+   M /bonddb/trunk/config.log
+
+upgraded bcconfig to report filename.conf as 
+
+  bcconfig_getvalue("_config_file");
+
+
+------------------------------------------------------------------------
+r117 | jasen | 2006-02-22 15:39:17 +1300 (Wed, 22 Feb 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bondcommon/bcmem.c
+   M /bonddb/trunk/bondcommon/bcmem.h
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbobj.h
+   M /bonddb/trunk/config.log
+
+getfieldbyindex
+
+------------------------------------------------------------------------
+r108 | andru | 2006-02-10 10:53:54 +1300 (Fri, 10 Feb 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbobj.h
+
+Fixing missing declaring of _Exec
+
+------------------------------------------------------------------------
+r101 | andru | 2006-02-09 01:05:28 +1300 (Thu, 09 Feb 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bonddb2.pc
+
+Release 2.2.3
+
+------------------------------------------------------------------------
+r95 | andru | 2006-02-01 21:43:52 +1300 (Wed, 01 Feb 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbparse.c
+
+fixed memory leak
+
+------------------------------------------------------------------------
+r93 | andru | 2006-02-01 02:01:43 +1300 (Wed, 01 Feb 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/bonddb/bonddbid.c
+
+Fixed segfault i added on some conditions.
+Improved id error handling slightly
+
+------------------------------------------------------------------------
+r91 | andru | 2006-02-01 01:41:19 +1300 (Wed, 01 Feb 2006) | 6 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbarray.c
+   M /bonddb/trunk/bonddb/bonddbfield.c
+   M /bonddb/trunk/bonddb/bonddbid.c
+   M /bonddb/trunk/bonddb/bonddbloadby.c
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbobj.h
+   M /bonddb/trunk/bonddb/bonddbparse.c
+   M /bonddb/trunk/bonddb/bonddbparse.h
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+Breaking binary compability badly.
+Fixing bug with SQL VIEWS that stopped them been shown correctly.
+Allowed to have results that dont have any primary keys in them.
+Handling of parsing a lot better, with the default parser been a lot
+more liberal.
+
+------------------------------------------------------------------------
+r83 | andru | 2006-01-27 00:48:05 +1300 (Fri, 27 Jan 2006) | 3 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/bonddb/bonddbrecord.c
+   M /bonddb/trunk/bonddb/bonddbrecord.h
+   M /bonddb/trunk/bonddb/bonddbtest.c
+   M /bonddb/trunk/bonddb/bonddbwrite.c
+
+Fixed bug with deletes causing bonddb objects to have problem under certain delete conditions
+Added BonddbClass* debugging function that shows all records.
+
+------------------------------------------------------------------------
+r75 | jasen | 2006-01-25 10:38:10 +1300 (Wed, 25 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bondcommon/bc.c
+   M /bonddb/trunk/config.log
+
+fixed builing for windows, added profiling as a seperate build option
+
+------------------------------------------------------------------------
+r64 | andru | 2006-01-23 15:45:02 +1300 (Mon, 23 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/src/dbcache.c
+   M /bonddb/trunk/src/dbfilter.c
+   M /bonddb/trunk/src/dblooksee.c
+   M /bonddb/trunk/src/dbmasteroftable.c
+   M /bonddb/trunk/src/dbobjectvalid.c
+   M /bonddb/trunk/src/dbtoliet.c
+   M /bonddb/trunk/src/dbverifysql.c
+
+Fixing old compiler bugs in bonddb/src. Mostly to do with printf's and invalid arguments passed along with gcc4 errors
+
+------------------------------------------------------------------------
+r57 | jasen | 2006-01-19 12:38:42 +1300 (Thu, 19 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon/bcdebug.c
+   M /bonddb/trunk/bondcommon/bcdebug.h
+   M /bonddb/trunk/bonddb/bonddbarray.c
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/pgsql/binding_pgsql.c
+
+debugging function calls checked for printf formats
+
+------------------------------------------------------------------------
+r47 | andru | 2006-01-18 10:31:41 +1300 (Wed, 18 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/SConstruct
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/config.log
+
+Disabled old bonddb library version 1 by default. Bug reported by Jose Maria Mencia.
+
+------------------------------------------------------------------------
+r38 | andru | 2006-01-17 17:49:27 +1300 (Tue, 17 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bonddb/bonddbobj.c
+   M /bonddb/trunk/config.log
+
+Added bonddb_sql_exec() function to execute SQL statments but not return a bonddb class object. this is useful for inserts and function calling in postgresql
+
+------------------------------------------------------------------------
+r9 | andru | 2006-01-15 22:34:44 +1300 (Sun, 15 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon
+   M /bonddb/trunk/bonddb
+   M /bonddb/trunk/bondsql
+   M /bonddb/trunk/lib
+   M /bonddb/trunk/pgsql
+   M /bonddb/trunk/src
+
+Setting up ignore properties
+
+------------------------------------------------------------------------
+r8 | andru | 2006-01-15 22:03:09 +1300 (Sun, 15 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk/bondcommon
+   M /bonddb/trunk/lib
+
+trying again on ignore properties
+
+------------------------------------------------------------------------
+r7 | andru | 2006-01-15 22:01:44 +1300 (Sun, 15 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk
+   M /bonddb/trunk/bonddb
+   M /bonddb/trunk/bondsql
+   M /bonddb/trunk/lib
+   M /bonddb/trunk/pgsql
+   M /bonddb/trunk/src
+
+Setting up cvs ignore stuff
+
+------------------------------------------------------------------------
+r6 | andru | 2006-01-15 21:57:46 +1300 (Sun, 15 Jan 2006) | 2 lines
+Changed paths:
+   M /bonddb/trunk
+   M /bonddb/trunk/bonddb
+   M /bonddb/trunk/bondsql
+   M /bonddb/trunk/config.log
+   M /bonddb/trunk/src
+
+Setting ignores up
+
+------------------------------------------------------------------------
+r5 | andru | 2006-01-15 21:47:35 +1300 (Sun, 15 Jan 2006) | 2 lines
+Changed paths:
+   A /bonddb
+   A /bonddb/trunk
+   A /bonddb/trunk/.ccview-metafile.xml
+   A /bonddb/trunk/AUTHORS
+   A /bonddb/trunk/COPYING
+   A /bonddb/trunk/ChangeLog
+   A /bonddb/trunk/ChangeLog.orig
+   A /bonddb/trunk/INSTALL
+   A /bonddb/trunk/Makefile.am
+   A /bonddb/trunk/Makefile.in
+   A /bonddb/trunk/README
+   A /bonddb/trunk/SConstruct
+   A /bonddb/trunk/TODO
+   A /bonddb/trunk/aclocal.m4
+   A /bonddb/trunk/bondcommon
+   A /bonddb/trunk/bondcommon/Makefile.am
+   A /bonddb/trunk/bondcommon/Makefile.in
+   A /bonddb/trunk/bondcommon/SConstruct
+   A /bonddb/trunk/bondcommon/bc.c
+   A /bonddb/trunk/bondcommon/bc.h
+   A /bonddb/trunk/bondcommon/bcconfig.c
+   A /bonddb/trunk/bondcommon/bcconfig.h
+   A /bonddb/trunk/bondcommon/bcdebug.c
+   A /bonddb/trunk/bondcommon/bcdebug.h
+   A /bonddb/trunk/bondcommon/bcgarbage.c
+   A /bonddb/trunk/bondcommon/bcgarbage.h
+   A /bonddb/trunk/bondcommon/bcmem.c
+   A /bonddb/trunk/bondcommon/bcmem.h
+   A /bonddb/trunk/bondcommon/testmem.c
+   A /bonddb/trunk/bondcommon.pc
+   A /bonddb/trunk/bondcommon.pc.in
+   A /bonddb/trunk/bonddb
+   A /bonddb/trunk/bonddb/SConstruct
+   A /bonddb/trunk/bonddb/bonddb.h
+   A /bonddb/trunk/bonddb/bonddbarray.c
+   A /bonddb/trunk/bonddb/bonddbarray.h
+   A /bonddb/trunk/bonddb/bonddbfield.c
+   A /bonddb/trunk/bonddb/bonddbfield.h
+   A /bonddb/trunk/bonddb/bonddbfilter.c
+   A /bonddb/trunk/bonddb/bonddbfilter.h
+   A /bonddb/trunk/bonddb/bonddbglobal.h
+   A /bonddb/trunk/bonddb/bonddbid.c
+   A /bonddb/trunk/bonddb/bonddbid.h
+   A /bonddb/trunk/bonddb/bonddbinit.c
+   A /bonddb/trunk/bonddb/bonddbinit.h
+   A /bonddb/trunk/bonddb/bonddbkey.c
+   A /bonddb/trunk/bonddb/bonddbkey.h
+   A /bonddb/trunk/bonddb/bonddbloadby.c
+   A /bonddb/trunk/bonddb/bonddbloadby.h
+   A /bonddb/trunk/bonddb/bonddbobj.c
+   A /bonddb/trunk/bonddb/bonddbobj.h
+   A /bonddb/trunk/bonddb/bonddbparse.c
+   A /bonddb/trunk/bonddb/bonddbparse.h
+   A /bonddb/trunk/bonddb/bonddbplugin.c
+   A /bonddb/trunk/bonddb/bonddbplugin.h
+   A /bonddb/trunk/bonddb/bonddbpurify.c
+   A /bonddb/trunk/bonddb/bonddbpurify.h
+   A /bonddb/trunk/bonddb/bonddbrecord.c
+   A /bonddb/trunk/bonddb/bonddbrecord.h
+   A /bonddb/trunk/bonddb/bonddbtest.c
+   A /bonddb/trunk/bonddb/bonddbtest.conf
+   A /bonddb/trunk/bonddb/bonddbwrite.c
+   A /bonddb/trunk/bonddb/bonddbwrite.h
+   A /bonddb/trunk/bonddb.pc
+   A /bonddb/trunk/bonddb.pc.in
+   A /bonddb/trunk/bonddb2.pc
+   A /bonddb/trunk/bonddebug
+   A /bonddb/trunk/bonddebug/Makefile.am
+   A /bonddb/trunk/bonddebug/dbmem.c
+   A /bonddb/trunk/bonddebug/dbmem.h
+   A /bonddb/trunk/bonddebug/debug.c
+   A /bonddb/trunk/bonddebug/debug.h
+   A /bonddb/trunk/bondsql
+   A /bonddb/trunk/bondsql/Makefile.am
+   A /bonddb/trunk/bondsql/Makefile.in
+   A /bonddb/trunk/bondsql/SConstruct
+   A /bonddb/trunk/bondsql/lexer.l
+   A /bonddb/trunk/bondsql/mem.c
+   A /bonddb/trunk/bondsql/mem.h
+   A /bonddb/trunk/bondsql/parser.y
+   A /bonddb/trunk/bondsql/sample_sql_statements
+   A /bonddb/trunk/bondsql/sql_display.c
+   A /bonddb/trunk/bondsql/sql_parser.c
+   A /bonddb/trunk/bondsql/sql_parser.h
+   A /bonddb/trunk/bondsql/sql_parser_test.c
+   A /bonddb/trunk/bondsql/sql_tree.c
+   A /bonddb/trunk/bondsql/sql_tree.h
+   A /bonddb/trunk/bootstrap
+   A /bonddb/trunk/config.guess
+   A /bonddb/trunk/config.h.in
+   A /bonddb/trunk/config.log
+   A /bonddb/trunk/config.sub
+   A /bonddb/trunk/configure
+   A /bonddb/trunk/configure.in
+   A /bonddb/trunk/createdb_mysql.sql
+   A /bonddb/trunk/createtestdb.sql
+   A /bonddb/trunk/debian
+   A /bonddb/trunk/debian/README.Debian
+   A /bonddb/trunk/debian/bonddb-dev.dirs
+   A /bonddb/trunk/debian/bonddb-dev.files
+   A /bonddb/trunk/debian/bonddb.dirs
+   A /bonddb/trunk/debian/bonddb.doc-base.ex
+   A /bonddb/trunk/debian/bonddb.files
+   A /bonddb/trunk/debian/changelog
+   A /bonddb/trunk/debian/conffiles.ex
+   A /bonddb/trunk/debian/control
+   A /bonddb/trunk/debian/copyright
+   A /bonddb/trunk/debian/cron.d.ex
+   A /bonddb/trunk/debian/dirs
+   A /bonddb/trunk/debian/docs
+   A /bonddb/trunk/debian/emacsen-install.ex
+   A /bonddb/trunk/debian/emacsen-remove.ex
+   A /bonddb/trunk/debian/emacsen-startup.ex
+   A /bonddb/trunk/debian/init.d.ex
+   A /bonddb/trunk/debian/manpage.1.ex
+   A /bonddb/trunk/debian/manpage.sgml.ex
+   A /bonddb/trunk/debian/menu.ex
+   A /bonddb/trunk/debian/postinst.ex
+   A /bonddb/trunk/debian/postrm.ex
+   A /bonddb/trunk/debian/preinst.ex
+   A /bonddb/trunk/debian/prerm.ex
+   A /bonddb/trunk/debian/rules
+   A /bonddb/trunk/debian/shlibs.local.ex
+   A /bonddb/trunk/debian/watch.ex
+   A /bonddb/trunk/depcomp
+   A /bonddb/trunk/docs
+   A /bonddb/trunk/docs/bonddb_codelayout.dia
+   A /bonddb/trunk/docs/dependences.txt
+   A /bonddb/trunk/docs/docbugs.txt
+   A /bonddb/trunk/docs/newapi.txt
+   A /bonddb/trunk/docs/object.txt
+   A /bonddb/trunk/docs/overview.txt
+   A /bonddb/trunk/docs/parsesql.txt
+   A /bonddb/trunk/docs/setupdbtest.txt
+   A /bonddb/trunk/gda
+   A /bonddb/trunk/gda/SConstruct
+   A /bonddb/trunk/gda/binding_gda.c
+   A /bonddb/trunk/install-sh
+   A /bonddb/trunk/lib
+   A /bonddb/trunk/ltmain.sh
+   A /bonddb/trunk/missing
+   A /bonddb/trunk/mkinstalldirs
+   A /bonddb/trunk/pgsql
+   A /bonddb/trunk/pgsql/SConstruct
+   A /bonddb/trunk/pgsql/binding_pgsql.c
+   A /bonddb/trunk/reference
+   A /bonddb/trunk/reference/Makefile.am
+   A /bonddb/trunk/reference/Makefile.in
+   A /bonddb/trunk/rmbootstrap
+   A /bonddb/trunk/src
+   A /bonddb/trunk/src/Makefile.am
+   A /bonddb/trunk/src/Makefile.in
+   A /bonddb/trunk/src/SConstruct
+   A /bonddb/trunk/src/advstring.c
+   A /bonddb/trunk/src/advstring.h
+   A /bonddb/trunk/src/db.c
+   A /bonddb/trunk/src/db.h
+   A /bonddb/trunk/src/dbbirth.c
+   A /bonddb/trunk/src/dbbirth.h
+   A /bonddb/trunk/src/dbbureaucrat.c
+   A /bonddb/trunk/src/dbbureaucrat.h
+   A /bonddb/trunk/src/dbcache.c
+   A /bonddb/trunk/src/dbcache.h
+   A /bonddb/trunk/src/dbclient.c
+   A /bonddb/trunk/src/dbclient.h
+   A /bonddb/trunk/src/dbcommentcallback.c
+   A /bonddb/trunk/src/dbcommentcallback.h
+   A /bonddb/trunk/src/dbconstraint.c
+   A /bonddb/trunk/src/dbconstraint.h
+   A /bonddb/trunk/src/dbdefault.c
+   A /bonddb/trunk/src/dbdefault.h
+   A /bonddb/trunk/src/dbfield.c
+   A /bonddb/trunk/src/dbfield.h
+   A /bonddb/trunk/src/dbfilter.c
+   A /bonddb/trunk/src/dbfilter.h
+   A /bonddb/trunk/src/dbgather.c
+   A /bonddb/trunk/src/dbgather.h
+   A /bonddb/trunk/src/dbgda.c
+   A /bonddb/trunk/src/dbgda.h
+   A /bonddb/trunk/src/dbgdagather.c
+   A /bonddb/trunk/src/dbgdagather.h
+   A /bonddb/trunk/src/dbheader.h
+   A /bonddb/trunk/src/dblog.c
+   A /bonddb/trunk/src/dblog.h
+   A /bonddb/trunk/src/dblooksee.c
+   A /bonddb/trunk/src/dblooksee.h
+   A /bonddb/trunk/src/dbmapme.c
+   A /bonddb/trunk/src/dbmapme.h
+   A /bonddb/trunk/src/dbmasteroftable.c
+   A /bonddb/trunk/src/dbmasteroftable.h
+   A /bonddb/trunk/src/dbmethod.c
+   A /bonddb/trunk/src/dbmethod.h
+   A /bonddb/trunk/src/dbmethodmodule.c
+   A /bonddb/trunk/src/dbmethodmodule.h
+   A /bonddb/trunk/src/dbmysql.c
+   A /bonddb/trunk/src/dbmysql.h
+   A /bonddb/trunk/src/dbmysqlgather.c
+   A /bonddb/trunk/src/dbmysqlgather.h
+   A /bonddb/trunk/src/dbobject.c
+   A /bonddb/trunk/src/dbobject.h
+   A /bonddb/trunk/src/dbobjectdel.c
+   A /bonddb/trunk/src/dbobjectdel.h
+   A /bonddb/trunk/src/dbobjectnav.c
+   A /bonddb/trunk/src/dbobjectnav.h
+   A /bonddb/trunk/src/dbobjectvalid.c
+   A /bonddb/trunk/src/dbobjectvalid.h
+   A /bonddb/trunk/src/dboo.c
+   A /bonddb/trunk/src/dboo.h
+   A /bonddb/trunk/src/dboosql.c
+   A /bonddb/trunk/src/dboosql.h
+   A /bonddb/trunk/src/dbpath.c
+   A /bonddb/trunk/src/dbpath.h
+   A /bonddb/trunk/src/dbpgsql.c
+   A /bonddb/trunk/src/dbpgsql.h
+   A /bonddb/trunk/src/dbpgsqlgather.c
+   A /bonddb/trunk/src/dbpgsqlgather.h
+   A /bonddb/trunk/src/dbsqlparse.c
+   A /bonddb/trunk/src/dbsqlparse.h
+   A /bonddb/trunk/src/dbsuggest.c
+   A /bonddb/trunk/src/dbsuggest.h
+   A /bonddb/trunk/src/dbsync.c
+   A /bonddb/trunk/src/dbsync.h
+   A /bonddb/trunk/src/dbtest.c
+   A /bonddb/trunk/src/dbtoliet.c
+   A /bonddb/trunk/src/dbtoliet.h
+   A /bonddb/trunk/src/dbuniqueid.c
+   A /bonddb/trunk/src/dbuniqueid.h
+   A /bonddb/trunk/src/dbverifysql.c
+   A /bonddb/trunk/src/dbverifysql.h
+   A /bonddb/trunk/src/dbwrapper.c
+   A /bonddb/trunk/src/dbwrapper.h
+   A /bonddb/trunk/src/safescanner.c
+   A /bonddb/trunk/src/safescanner.h
+   A /bonddb/trunk/src/testdbcommentcallback.c
+   A /bonddb/trunk/src/vicprof.c
+   A /bonddb/trunk/stamp-h.in
+   A /bonddb/trunk/test
+   A /bonddb/trunk/test/buildprocessDB
+   A /bonddb/trunk/test/changeconf.pl
+   A /bonddb/trunk/test/images
+   A /bonddb/trunk/test/images/blank
+   A /bonddb/trunk/test/images/db-test.0
+   A /bonddb/trunk/test/images/db-test.1
+   A /bonddb/trunk/test/images/db-test.10
+   A /bonddb/trunk/test/images/db-test.11
+   A /bonddb/trunk/test/images/db-test.12
+   A /bonddb/trunk/test/images/db-test.13
+   A /bonddb/trunk/test/images/db-test.14
+   A /bonddb/trunk/test/images/db-test.15
+   A /bonddb/trunk/test/images/db-test.16
+   A /bonddb/trunk/test/images/db-test.17
+   A /bonddb/trunk/test/images/db-test.18
+   A /bonddb/trunk/test/images/db-test.19
+   A /bonddb/trunk/test/images/db-test.2
+   A /bonddb/trunk/test/images/db-test.20
+   A /bonddb/trunk/test/images/db-test.21
+   A /bonddb/trunk/test/images/db-test.22
+   A /bonddb/trunk/test/images/db-test.23
+   A /bonddb/trunk/test/images/db-test.24
+   A /bonddb/trunk/test/images/db-test.25
+   A /bonddb/trunk/test/images/db-test.26
+   A /bonddb/trunk/test/images/db-test.27
+   A /bonddb/trunk/test/images/db-test.28
+   A /bonddb/trunk/test/images/db-test.29
+   A /bonddb/trunk/test/images/db-test.3
+   A /bonddb/trunk/test/images/db-test.30
+   A /bonddb/trunk/test/images/db-test.31
+   A /bonddb/trunk/test/images/db-test.32
+   A /bonddb/trunk/test/images/db-test.33
+   A /bonddb/trunk/test/images/db-test.34
+   A /bonddb/trunk/test/images/db-test.35
+   A /bonddb/trunk/test/images/db-test.36
+   A /bonddb/trunk/test/images/db-test.37
+   A /bonddb/trunk/test/images/db-test.38
+   A /bonddb/trunk/test/images/db-test.39
+   A /bonddb/trunk/test/images/db-test.4
+   A /bonddb/trunk/test/images/db-test.5
+   A /bonddb/trunk/test/images/db-test.6
+   A /bonddb/trunk/test/images/db-test.7
+   A /bonddb/trunk/test/images/db-test.8
+   A /bonddb/trunk/test/images/db-test.9
+   A /bonddb/trunk/test/mail2.pl
+   A /bonddb/trunk/test/obsolete.qatest
+   A /bonddb/trunk/test/qa_besttime.txt
+   A /bonddb/trunk/test/qabondDB
+   A /bonddb/trunk/test/qareporterDB
+
+inital import
+
+------------------------------------------------------------------------

@@ -1,0 +1,21 @@
+Import('env','usrlocal', 'gda')
+
+env.Append(CPPPATH='../bonddb')
+
+gdaenv = env.Copy()
+
+if int(gda):
+	gdaenv.Append(CCFLAGS = '-D_GDA')
+	gdaenv.ParseConfig('pkg-config --cflags --libs libgda')
+#	PG_CCFLAGS = ' -I`pg_config --includedir` '
+#	PG_LINKFLAGS = ' -L`pg_config --libdir` -lpq ' 
+#	gdaenv.Append(CCFLAGS=PG_CCFLAGS, LINKFLAGS=PG_LINKFLAGS)
+
+# Source files
+list = Split('binding_gda.c')
+
+# print list
+l = gdaenv.SharedLibrary('bonddb2_gda',list)
+
+env.InstallPerm(usrlocal+'lib',l,0444)
+env.Alias('install', usrlocal+'lib')

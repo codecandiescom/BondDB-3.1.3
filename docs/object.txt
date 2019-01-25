@@ -1,0 +1,8 @@
+Each object represents a table or a collection of tables.
+
+There is an array of uniqueid's in the main object representing every 
+row in the record set result, but these are only created on a per-read basis.
+
+The total num in object is different to the number of rows returned.
+This is because new yet to be written records are also included.
+

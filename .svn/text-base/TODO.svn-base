@@ -1,0 +1,109 @@
+* Remove basetable dependency
+  db.c
+  loadobjectbyobject
+  getobjectbyfield
+  addobjecttoobject
+  delete of records
+dbuniqueid.c
+  remeberbyrow and its associated
+dbobjectdel.c
+  How i suppose to delete rows now?
+dbtoliet.c
+  flushing cache
+dbbirth.c
+  the whole thing...
+  
+
+* Fix oid references to be table.field
+
+* Hash tables on commonily used arrays
+
+
+
+
+* Remove and put in any code with the #ifdef __PORTED around it.  There can
+be comments of missing components, or design change swhich has problems. 
+
+* remove all gtk and bond test code from dbtest, restart the testing process
+and checking.  Rewrite the inital tests to check themselves instead of just
+printing the values only.  Ie it knows when it doesn't work and prints error
+message.  Add template database .sql file into cvs and test directory with
+documentation on how to install it
+
+* Common data sources, so if you modify one field it knows to update other
+objects.  db_birth_effect needs to be finished off and the dbbuecrate
+needs to call this 
+
+* change function names to be db_filename_function ie db_field_add.  Some
+modules like dbgather still dont support it.  functions in the api just have
+db_function name, so things like dbclient can remain the same.  
+
+* methods, add support for methods.  you could attach a method to a field in
+a table and whenever that field is accessed it runs the function instead.
+could start with just C pointer to function support then move to a seperate
+libary, and then add python, slag etc method support where you impliment
+from another lanagauge.  Lots of fun stuff.
+
+* dbobjects, write code to extract first table name for updation from sql
+statment. will have to use sql.c code to get this.  This is put in obj->name
+
+* tidy up some of dbbirth sql functions by using the sql parser
+
+* remove warnings from the code, theres annoying ones with that bizare error
+messsage. not sure what happening there. either is baz and whoever else whos
+looked at it.
+
+* Add missing documentation to code
+
+* remove non-needed attributes from Object
+
+* finish of dbobjectvalid
+
+* add more documentation, like a document detailing what each .c file does
+
+* add in section information for web documents, and fill in documentation
+for all files.
+
+* Add gnome-db support
+
+* Client/server knowledge of locking/shared access. This is a tricky large
+section, in the bond.conf file you could specify a locking/shared access
+database, this addtional database bonddb could create and then write into a
+table all the changes that happen which the buecurate and log pick up on and
+deal with.
+
+* move dbwrapper code in regard to specific databases outside into seperate
+libaries which are loaded at runtime and not at link time.
+
+* free up memory.  Yes i know its annoying, but hey someones got to do it.
+things like birth etc need to be freed by calling there proper calls
+
+* test for memory leaks and destroy them
+
+* strange stuff with sql in postgresql. table.field dont work so things like
+db_id_verifysql will have to be modified. I fixed db_birth_createsql but the
+other sql functions still need fixing.  db_id_createsql maybe a dieing
+cause, may ditch function.  verifysql_other needs to check if the primary
+keys are picked up by the * value and then not show them. hmmm
+
+* hash tables in bureacrat to store sql statements and the fields they
+depreived from as well as maybe base table.
+
+* In db_verify_sql, if it has more than one table then do a table.field
+instead of a just straight field.  This will effect oid somehow. hmmm.
+
+* dbunieid.c, db_id_adduniqueid.  this needs some tidy up and linking to the
+sql parser.  At the moment it only works on sane sql statements, it will
+fall over on some insane sql.
+
+* make idindexpos a different name. its so screwing up stuff cause thats
+just cost me many hours. idindexpos is in dbobject.h
+
+* Code iseffected function in dbbirth
+
+* Fixed all documentationa errors and warnings, a file in docs/ describes
+all the problems that have occured
+
+* Tests 10 and 13 fail. Deletion of records doesn't work and searching
+doesn't work properly. the lexer paser is the problem because it doesnt'
+understand commands like LIKE and % marks, andre will have to expand this

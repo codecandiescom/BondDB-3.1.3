@@ -1,0 +1,14 @@
+ <dbtest.c:949 main();> testing db write to for a new record[0m
+ <dbobject.c:269 db_obj_sqlwrite();> INSERT INTO person (id,firstname,lastname,email) VALUES ('24','dru','hill','dru@treshna.com')[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on person, with 3 3 items there[0m
+ <dbobject.c:269 db_obj_sqlwrite();> INSERT INTO person (id,firstname,lastname,email) VALUES ('25','dru2','hill2','dru@treshna.com2')[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on person, with 3 3 items there[0m
+ <dbobjectdel.c:133 db_del_getchildren();> No children found for person[0m
+ <db.c:527 db_deleteobject();> This is going to delete recusively.  TEST WELL BEFORE USE![0m
+ <dbobjectdel.c:322 db_del_deleteall();> delllist->objlist is null[0m
+ <dbobjectdel.c:355 db_del_deleteall();> deleting records[0m
+ <dbobjectdel.c:133 db_del_getchildren();> No children found for person[0m
+ <db.c:527 db_deleteobject();> This is going to delete recusively.  TEST WELL BEFORE USE![0m
+ <dbobjectdel.c:322 db_del_deleteall();> delllist->objlist is null[0m
+ <dbobjectdel.c:355 db_del_deleteall();> deleting records[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

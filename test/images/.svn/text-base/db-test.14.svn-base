@@ -1,0 +1,4 @@
+ <dbtest.c:310 main();> Testing object by object loadings[0m
+ <dbtest.c:315 main();> Retval from load by object 0[0m
+ <dbtest.c:324 main();> General Avis is in the house[0m
+ <dbtest.c:331 main();> TEST PASSED[0m

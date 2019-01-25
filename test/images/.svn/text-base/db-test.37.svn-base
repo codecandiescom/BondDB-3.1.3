@@ -1,0 +1,5 @@
+ <dbobject.c:210 db_obj_sqlread();> No records found for loading SELECT *,oid FROM weapon WHERE soldierid='3'[0m
+ <dbobject.c:214 db_obj_sqlread();> I'm assuming table name of weapon, and hoping for the best[0m
+ <db.c:932 db_add();> Applying default sprintchicken values.[0m
+ <db.c:387 db_setvalue_nomark();> adding in some default values of 3 to soldierid[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

@@ -1,0 +1,10 @@
+Import('env','usrlocal', 'pg', 'mysql','bondcommon','bondsql','bonddb2')
+nv=env.Copy();
+
+nv.Append(CPPPATH=['#bonddb']);
+nv.Append(LIBS=['bonddb2','oleaut32']);
+
+L=nv.SharedLibrary("#lib/vb_bonddb", ["vb_bonddb.c"]);
+
+# display a list of exported symbols.
+#env.Command('foo',L,"cat "+L[2].path+" | sed '/IMPORTS/,$ d'")

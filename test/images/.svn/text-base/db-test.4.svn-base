@@ -1,0 +1,5 @@
+ <dbtest.c:124 main();> lastname is hill[0m
+ <dbtest.c:138 main();> lastname is thatcher[0m
+ <dbobject.c:269 db_obj_sqlwrite();> UPDATE person SET firstname='andru',lastname='hill',email='andrew@treshna.com' WHERE person.oid=416410[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on person, with 1 1 items there[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

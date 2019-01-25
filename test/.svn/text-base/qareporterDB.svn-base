@@ -1,0 +1,305 @@
+#!/bin/bash
+#
+# qareporterDB - Simple automated testing script
+# 
+# Version 1.0, Mar 27, 2002 by Francis Lee (francis@treshna.com)
+
+CURRENT_TEST_DIR=`pwd`
+BONDDB_DIR=${CURRENT_TEST_DIR%/*}
+HTML=1
+
+# Message to be mailed
+MSGFILE=${CURRENT_TEST_DIR}/qa_test_errors.txt
+WARNFILE=${CURRENT_TEST_DIR}/qa_compiler_warnings.txt
+BESTTIMEFILE=${CURRENT_TEST_DIR}/qa_besttime.txt
+REPORTFILE=${CURRENT_TEST_DIR}/qa_bigreport.txt
+
+CONFFILE=$BONDDB_DIR/src/bond.conf
+CONFFILETMP=${CURRENT_TEST_DIR}/bond.conf.backup
+CREATE_TEST_DB_SQL=${BONDDB_DIR}/createtestdb.sql
+
+######################################################################
+# CONFIGURATION STUFF
+
+DBADMIN=andru
+
+# Set test database information
+TESTDB_DBNAME=poohead
+TESTDB_HOST=loki
+TESTDB_USER=andru
+
+ADDR='andru@treshna.com'
+#ADDR='francis@treshna.com'
+QATESTPROG='qabondDB'
+
+######################################################################
+#
+case "$1" in
+	'-h')
+		echo "Usage: $0 [createdb|dropdb]"
+		exit 0
+	;;
+
+	createdb)
+		dropdb -h $TESTDB_HOST $TESTDB_DBNAME
+		createdb -h $TESTDB_HOST $TESTDB_DBNAME
+		psql -f $CREATE_TEST_DB_SQL -h $TESTDB_HOST -d $TESTDB_DBNAME -U $TESTDB_USER
+		exit 0
+	;;
+
+	dropdb)
+		dropdb -h $TESTDB_HOST $TESTDB_DBNAME
+		exit 0
+	;;
+
+	restoreconf)
+		if [[ -f $CONFFILETMP ]]; then
+			cp $CONFFILETMP $CONFFILE
+			exit 0
+		else
+			echo "No backup file." >/dev/stderr
+			exit 1
+		fi
+	;;
+
+	*)
+	;;
+esac
+
+
+cd $BONDDB_DIR
+cvs update
+cd $CURRENT_TEST_DIR
+
+######################################################################
+# Dependency checking
+if [[ ! -f "./changeconf.pl" ]]; then
+	echo "This program requires 'changeconf.pl' in $CURRENT_TEST_DIR " \
+		>/dev/stderr
+	exit 1;
+elif [[ ! -f $QATESTPROG ]]; then
+	echo "This program requires '$QATESTPROG' in $CURRENT_TEST_DIR" \
+		>/dev/stderr
+	exit 1;
+elif [[ ! -f "$BONDDB_DIR/configure" ]]; then
+	echo "This program requires 'configure' in $BONDDB_DIR" \
+		>/dev/stderr
+	echo "Automatically generating..." >/dev/stderr
+	cd ${BONDDB_DIR}
+	${BONDDB_DIR}/autogen.sh
+	cd test
+fi
+
+
+######################################################################
+# Variable checking
+
+if [[ -z $TESTDB_DBNAME ]]; then
+	echo "Make sure to set TESTDB_DBNAME." >/dev/stderr
+	exit 1
+elif [[ -z $TESTDB_HOST ]]; then
+	echo "Make sure to set TESTDB_HOST." >/dev/stderr
+	exit 1
+elif [[ -z $TESTDB_USER ]]; then
+	echo "Make sure to set TESTDB_USER." >/dev/stderr
+	exit 1
+#elif [[ $USER != $TESTDB_USER ]]; then
+#	echo "You are '$USER' but it does not match with '$TESTDB_USER'!" >/dev/stderr
+#	exit 1
+elif [[ ! -f $CREATE_TEST_DB_SQL ]]; then
+	echo "File $CREATE_TEST_DB_SQL does not exists." \
+		>/dev/stderr
+fi
+
+
+
+# Check if we can createdb properly
+
+dropdb $TESTDB_DBNAME &>/dev/null
+createdb $TESTDB_DBNAME &>/dev/null
+
+if [[ ! $? ]]; then
+	echo "Failed to create database $TESTDB_DBNAME." >/dev/stderr
+	echo "Please check if you have permission to create a DB." >/dev/stderr
+	exit;
+fi
+
+psql -f $CREATE_TEST_DB_SQL $TESTDB_DBNAME &>/dev/null
+
+
+
+######################################################################
+# Check configuration file because often this program destorys it!!!
+
+if [[ ! -f $CONFFILE || ! -s $CONFFILE ]]; then
+	echo -n "Please check if '$CONFFILE' is OK because often this script "
+	echo "destroys the file."
+	exit 1;
+fi
+
+######################################################################
+# Change test database information
+
+cp $CONFFILE $CONFFILETMP
+if [[ -n $TESTDB_DBNAME && -n $TESTDB_HOST && -n $TESTDB_USER ]]; then
+	echo "Changing test database..."
+
+	./changeconf.pl $TESTDB_DBNAME $TESTDB_HOST $TESTDB_USER < $CONFFILETMP > $CONFFILE
+fi
+
+if [[ ! -s $CONFFILE ]]; then
+	echo "Failed to make a new configuration file" >/dev/stderr
+	exit 1
+fi
+
+
+######################################################################
+# Give some information
+echo "QA Error File                 : $MSGFILE"
+echo "QA Compiler Warning File      : $WARNFILE"
+echo "QA Best Time of Test Run File : $BESTTIMEFILE"
+echo "----------------------------------------"
+echo "Test DB dbname=$TESTDB_DBNAME"
+echo "Test DB host=$TESTDB_HOST"
+echo "Test DB user=$TESTDB_USER"
+echo "Report email address: $ADDR"
+echo "----------------------------------------"
+
+
+######################################################################
+# Mail compiler warnings
+
+# Go to bond directory and make bond
+cd $BONDDB_DIR
+make clean > /dev/null
+
+
+######################################################################
+# Print the content of bond.conf
+
+echo "----------------------------------------"
+echo " Content of bond.conf"
+echo "----------------------------------------"
+cat $CONFFILE
+echo "----------------------------------------"
+
+
+# Time how long takes to build
+echo "Compiling..."
+make > /dev/null 2>$WARNFILE
+
+MAKE_RESULT=$?
+
+cp $CONFFILETMP $CONFFILE
+
+# Uh-oh
+if (( $MAKE_RESULT > 0 )); then
+
+	mail -s "QA ($QATESTPROG): Failed to build. 'make' was unsuccessful" \
+		$ADDR <$WARNFILE
+	exit 1
+fi
+
+
+if (( $HTML == 1)); then
+	echo "<HTML>" >$REPORTFILE
+	echo "<BODY>" >>$REPORTFILE
+fi
+
+# Only mail if any compiler warnings were found.
+if [ -s $WARNFILE ]; then
+	echo "Sending Compiler Warning Report..."
+
+	if (( $HTML == 1 )); then
+		echo "<HR>" >>$REPORTFILE
+		echo '<DIV ALIGN="CENTER"><H1>Compiler Warning Report</H1></DIV>' >>$REPORTFILE
+		echo "<HR>" >>$REPORTFILE
+		#echo "<PRE>" >>$REPORTFILE
+		sed 's/$/<BR>/' $WARNFILE >>$REPORTFILE
+		#cat $WARNFILE >>$REPORTFILE
+		#echo "</PRE>" >>$REPORTFILE
+	else
+		mail -s "QA ($QATESTPROG): Compiler Warning Report" $ADDR <$WARNFILE
+	fi
+fi
+
+cd test
+
+######################################################################
+# Time how long takes to test all
+#
+# Unfortunately I don't know how to keep the value of time without using
+# utility called 'gnutime'
+
+TIMESTAMP=`date +%s`
+./${QATESTPROG} testall 2> $MSGFILE
+
+# Only mail if an error was found.
+if [ -s $MSGFILE ]; then
+	echo "Sending Test Error Report..."
+
+	if (( $HTML == 1 )); then
+		echo "<HR>" >>$REPORTFILE
+		echo '<DIV ALIGN="CENTER"><H1>Test Error Report</H1></DIV>' >>$REPORTFILE
+		echo "<HR>" >>$REPORTFILE
+		echo "<PRE>" >>$REPORTFILE
+		cat $MSGFILE >>$REPORTFILE
+		echo "</PRE>" >>$REPORTFILE
+	else
+		mail -s "QA ($QATESTPROG): Test Error Report" $ADDR <$MSGFILE
+	fi
+fi
+
+TIMESPENT=$(( `date +%s` - $TIMESTAMP ))
+
+echo "$TIMESPENT seconds in real time."
+
+if [ ! -f $BESTTIMEFILE ]; then
+	touch $BESTTIMEFILE
+	echo "3600" > $BESTTIMEFILE
+fi
+
+read KNOWNBEST < $BESTTIMEFILE
+
+# echo $KNOWNBEST $TIMESPENT
+
+if (( $KNOWNBEST > $TIMESPENT )); then
+	# Update new best time record
+	echo $TIMESPENT > $BESTTIMEFILE
+
+	if (( $HTML == 1 )); then
+#		echo "<HR>" >>$REPORTFILE
+#		echo '<DIV ALIGN="CENTER"><H1>Time Report</H1></DIV>' >>$REPORTFILE
+#		echo "<HR>" >>$REPORTFILE
+#		echo "<PRE>" >>$REPORTFILE
+		$TIMEREP="New best time so far:$TIMESPENT (sec)"
+#		echo "</PRE>" >>$REPORTFILE
+	else
+		echo -e "New best time so far:$TIMESPENT (sec)\n" \
+			| mail -s "QA ($QATESTPROG): New Best Time Report" $ADDR
+	fi
+else
+	if (( $HTML == 1 )); then
+#		echo "<HR>" >>$REPORTFILE
+#		echo '<DIV ALIGN="CENTER"><H1>Best/Current Time Report</H1></DIV>' >>$REPORTFILE
+#		echo "<HR>" >>$REPORTFILE
+		TIMEREP=" -  (Best/Current time: $KNOWNBEST/$TIMESPENT (sec))"
+	else
+		echo -e "Best time so far:$KNOWNBEST (sec)\nCurrent time: $TIMESPENT (sec)" | mail -s "QA ($QATESTPROG): Best/Current Time Report" $ADDR
+	fi
+
+fi
+
+if (( $HTML == 1 )); then
+	echo "</BODY></HTML>" >>$REPORTFILE
+	./mail2.pl $ADDR "BONDDB Report $TIMEREP" <$REPORTFILE
+fi
+
+######################################################################
+# Dont forget to drop table
+
+dropdb $TESTDB_DBNAME &>/dev/null
+createdb $TESTDB_DBNAME &>/dev/null
+psql -f $CREATE_TEST_DB_SQL $TESTDB_DBNAME &>/dev/null
+
+rm -f $MSGFILE $WARNFILE

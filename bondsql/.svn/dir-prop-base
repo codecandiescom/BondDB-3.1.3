@@ -1,0 +1,15 @@
+K 10
+svn:ignore
+V 88
+*.os
+*.exe 
+lexer.c 
+parser.c
+.sconsign
+lexer.c
+parser.output
+parser.h
+sql_parser_test
+
+
+END

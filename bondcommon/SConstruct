@@ -1,0 +1,22 @@
+Import('env','usrlocal')
+print 'building bondcommon'
+
+# Source files
+list = Split('bc.c bcdebug.c bcmem.c bcconfig.c bcgarbage.c')
+
+headerlist = Split('bc.h bcdebug.h bcmem.h bcconfig.h bcgarbage.h')
+
+# print list
+nv=env.Clone();
+bondcommon = nv.SharedLibrary('#lib/bondcommon',list)
+
+env.InstallPerm(usrlocal+'lib',bondcommon,0444)
+env.InstallPerm(usrlocal+'include/bond',headerlist,0444)
+il = env.Alias('install-lib', usrlocal+'lib')
+ih = env.Alias('install-header', usrlocal+'include/bond')
+env.Alias('install', [il, ih])
+
+env.Append(LIBS=['bondcommon'])
+env.Append(LIBPATH=['#lib'])
+env.Append(CPPPATH=['#bondcommon'])
+Export('bondcommon');

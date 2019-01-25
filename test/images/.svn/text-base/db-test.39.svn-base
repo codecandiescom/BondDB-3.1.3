@@ -1,0 +1,24 @@
+ <dbtest.c:982 main();> Testing object by object loadings[0m
+ <db.c:921 db_add();> You can't add a record without finishing this record[0m
+ <dbtest.c:985 main();> Beginning ----- [0m
+ <dbtest.c:992 main();> Created soldier ----- [0m
+ <dbobject.c:269 db_obj_sqlwrite();> INSERT INTO soldier (id,name,location,active,rankid,countryid) VALUES ('24','norty dru','Bathroom','t','3','1')[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on soldier, with 1 1 items there[0m
+ <db.c:214 db_loadobjectbyobject();> soldier is a new record, I am flushing it so i can use it properly.[0m
+ <dbobject.c:210 db_obj_sqlread();> No records found for loading SELECT *,oid FROM weapon WHERE soldierid='24'[0m
+ <dbtest.c:996 main();> Starting write weapon ----- [0m
+ <db.c:932 db_add();> Applying default sprintchicken values.[0m
+ <db.c:387 db_setvalue_nomark();> adding in some default values of 24 to soldierid[0m
+ <dbtest.c:1001 main();> Testing results ----- [0m
+ <dbobject.c:269 db_obj_sqlwrite();> INSERT INTO weapon (id,name,damage,soldierid) VALUES ('24','AK48','102','24')[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on weapon, with 1 1 items there[0m
+ <dbobjectdel.c:146 db_del_getchildren();> Loading children from weapon.soldierid where value is 24[0m
+ <dbobjectdel.c:133 db_del_getchildren();> No children found for weapon[0m
+ <dbobjectdel.c:88 db_del_objectrec();> Assigning object weapon, 1 items[0m
+ <dbobjectdel.c:301 db_del_addobjtolist();> dropping soldier from the creflist[0m
+ <db.c:527 db_deleteobject();> This is going to delete recusively.  TEST WELL BEFORE USE![0m
+ <dbobjectdel.c:324 db_del_deleteall();> delllist->objlist is NOT null[0m
+Name: weapon, Num: 1, Row: 0, Current cache: 0x808a50c
+Numcache: 1, Cache: 0x808aef4, FilterApplied: (nil)
+id	(null)name	(null)damage	(null)soldierid	(null)oid	(null) <dbobjectdel.c:355 db_del_deleteall();> deleting records[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

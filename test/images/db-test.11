@@ -1,0 +1,10 @@
+ <dbtest.c:261 main();> Testing constraints capabilities[0m
+ <dbtest.c:266 main();> constraint: rank->countryid = country->id[0m
+ <dbtest.c:266 main();> constraint: awards->awardid = award->id[0m
+ <dbtest.c:266 main();> constraint: insurance->rankid = rank->id[0m
+ <dbtest.c:266 main();> constraint: insurance->countryid = country->id[0m
+ <dbtest.c:266 main();> constraint: rank->insuranceid = insurance->id[0m
+ <dbtest.c:266 main();> constraint: soldier->rankid = rank->id[0m
+ <dbtest.c:266 main();> constraint: soldier->countryid = country->id[0m
+ <dbtest.c:266 main();> constraint: weapon->soldierid = soldier->id[0m
+ <dbtest.c:266 main();> constraint: soldier->kills = rank->pay[0m

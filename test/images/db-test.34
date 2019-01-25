@@ -1,0 +1,4 @@
+ <dbtest.c:867 main();> Running test[0m
+ <dbtest.c:870 main();> TEST 1 PASSED[0m
+ <dbtest.c:880 main();> TEST 2 PASSED[0m
+ <dbtest.c:893 main();> TEST 3 PASSED[0m

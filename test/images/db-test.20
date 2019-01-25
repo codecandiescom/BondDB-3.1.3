@@ -1,0 +1,10 @@
+ <db.c:932 db_add();> Applying default sprintchicken values.[0m
+ <db.c:387 db_setvalue_nomark();> adding in some default values of 3 to id[0m
+ <dbobject.c:269 db_obj_sqlwrite();> INSERT INTO soldier (id,name,active,rankid,countryid) VALUES ('20','test20','f','3','1')[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on soldier, with 2 2 items there[0m
+ <dbobjectdel.c:146 db_del_getchildren();> Loading children from weapon.soldierid where value is 20[0m
+ <dbobject.c:210 db_obj_sqlread();> No records found for loading SELECT *,oid FROM weapon WHERE soldierid='20'[0m
+ <db.c:527 db_deleteobject();> This is going to delete recusively.  TEST WELL BEFORE USE![0m
+ <dbobjectdel.c:322 db_del_deleteall();> delllist->objlist is null[0m
+ <dbobjectdel.c:355 db_del_deleteall();> deleting records[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

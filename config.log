@@ -1,0 +1,34 @@
+file /home/elyobo/work/eclipse/bonddb/branches/3.1.3/SConstruct,line 67:
+	Configure(confdir = .sconf_temp)
+scons: Configure: Checking for glib-2.0 >= 2.12.0... 
+scons: Configure: ".sconf_temp/conftest_0" is up to date.
+scons: Configure: The original builder output was:
+  |pkg-config glib-2.0 --atleast-version=2.12.0
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C library pq... 
+scons: Configure: ".sconf_temp/conftest_1.c" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_1.c <-
+  |  |
+  |  |
+  |  |
+  |  |int
+  |  |main() {
+  |  |  
+  |  |return 0;
+  |  |}
+  |  |
+  |
+scons: Configure: ".sconf_temp/conftest_1.o" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1.o -c -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include .sconf_temp/conftest_1.c
+  |
+scons: Configure: ".sconf_temp/conftest_1" is up to date.
+scons: Configure: The original builder output was:
+  |gcc -o .sconf_temp/conftest_1 -Wl,--export-dynamic .sconf_temp/conftest_1.o -lgmodule-2.0 -lglib-2.0 -lpq
+  |
+scons: Configure: (cached) yes
+
+

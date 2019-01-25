@@ -1,0 +1,6 @@
+ <dbtest.c:445 main();> Using string 1;liam.name
+[0m
+ <dbtest.c:449 main();> Got type: 1
+Got field: name
+Got table: liam
+[0m

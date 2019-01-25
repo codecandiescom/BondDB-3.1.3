@@ -1,0 +1,49 @@
+dbwrapper/dbpgsql/dbpgsqlgather.. This is a database wrapper so we can
+integrate gnome-db into the system without problems.  This is handled by a
+#define for database backend at compile time.  The dbpgsqlgather is specific
+to whatever database backend your using and how to get that data from the
+database.
+
+dbobject is completely redone from scratch. A lot of functions were dumped
+but still a lot of other functions need writing.  This depends on a lot of
+the new functions. Big differences are it has a store of ids for fields its
+read from and also the write cache is built into the object. (reverse of how
+it operated before).  A lot of new structures here and a lot of stuff still
+to be written.  file is a lot smaller now.
+
+dbuniqueid, a new function. This is for id's. So no longer is everything
+done on postgresql oid field, but handled by this file so it'll work with
+other database backends.
+
+db, I've restructured the API.  This Will be the main API file. new functions
+like db_sql replace db_specialsql. db_getvalue replaces db_getfieldstr.  You
+no longer need to create an object before you use it, and table name is
+optional. however you need to specify tablename in order to write a new
+object back to database. (you do need to know what table your saving to).
+Also another thing is that db_getvalue get will tie in with a lot of other
+functions directly like db_getdefaults etc.
+
+dbbureaucrat. This is a global structure of every
+database object created. Nice to know for memory links. But also to allow us
+to know when object changes it effects another object so update its data
+
+dbtoliet.  This takes over a lot of the dbobject functions.  This will do
+the write backs and record where changes occur. though the changes are now
+stored directly in a database object and not in a separate write cache.  
+
+dblog. This is a log of every object that changes. Useful for user interface
+so it knows when to refresh widgets.
+
+dboopath is renamed to dbpath
+
+dbobjectvalid needs all its rules completely re-thought though cause of the
+change in processes.
+
+dbobjectbirth will mark how an object came into existence so it can be used
+for checking for data effecting data.  
+
+I'm hoping all this is going to be thread safe but I don't know till I try
+cause that's the next thing that's happening.  A number of the new files will
+be running in completely different threads. Like writing to database will be
+in different thread to reading, checking for log changes will be in another
+thread as well..  hmm lots of threading..

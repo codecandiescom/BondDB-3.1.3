@@ -1,0 +1,6 @@
+ <dbtest.c:424 main();> I AM TIGER![0m
+ <dbobject.c:132 db_obj_doread();> This is a default value field (id) you are getting the value from[0m
+ <dbdefault.c:67 db_default_execfunction();> Executing SQL function nextval('"persontype_id_seq"'::text)[0m
+ <dbdefault.c:91 db_default_execfunction();> 20 returning for function nextval('"persontype_id_seq"'::text)... [0m
+ <dbobject.c:141 db_obj_doread();> returning 20 for default value[0m
+ <dbtest.c:433 main();> TEST PASSED[0m

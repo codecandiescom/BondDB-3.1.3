@@ -1,0 +1,15 @@
+bonddb
+
+bonddb is an object-oriented wrapper around SQL. It is designed to be fast
+and simple data abstration layer to use.  You can get the speed and 
+stablitiy of SQL while still having persistent objects and easy class 
+management.
+
+At the moment bonddb supports postgresql and gives you a C API.  
+Integration with gnome-db is planned as the short term feature to give
+greater database support.  Also more langauge interfaces are planned
+in the future.
+
+bonddb orginated from the bond project, visit http://bond.treshna.com
+for more information.  The documentation here is not as complete as it is in
+bond, as I'm still in the process of moving files over.

@@ -1,0 +1,144 @@
+bonddb (0.6.2-1) unstable; urgency=low
+
+  * Fix incompatbility with woody 
+
+ -- Andrew Hill <andru@nikita.localnet>  Mon, 30 Dec 2002 18:02:05 +1300
+
+bonddb (0.6.2) unstable; urgency=low
+
+  * Continued work on method calls, rewrite of debug library
+
+ -- Andrew Hill <andru@treshna.com>  Sun,  3 Nov 2002 13:06:46 +1300
+
+bonddb (0.6.1) unstable; urgency=low
+
+  * Started work on method calls support 
+
+ -- Andrew Hill <andru@nikita.localnet>  Wed, 17 Jul 2002 07:23:46 +1200
+
+bonddb (0.6.0-1) unstable; urgency=low
+
+  * Added improve birth support for backtracking from sql 
+
+ -- Andrew Hill <andru@nikita.localnet>  Fri, 21 Jun 2002 01:58:02 +1200
+
+bonddb (0.6.0) unstable; urgency=low
+
+  * Major stable release 
+
+ -- Andrew Hill <andru@nikita.localnet>  Thu, 20 Jun 2002 09:30:10 +1200
+
+bonddb (0.5.9-4) unstable; urgency=low
+
+  * not even going to start....... 
+
+ -- Andrew Hill <andru@nikita.localnet>  Wed, 19 Jun 2002 15:56:22 +1200
+
+bonddb (0.5.9-3) unstable; urgency=low
+
+  * annoying shite. defaults to /usr/lib instead of /usr/local/lib for
+  resolving libraries with -l. This is one very annoying problem. 
+  Oi SOMEONE FIX IT.
+  or at least tell me whos package it is so i can tell them to fix it.
+
+ -- Andrew Hill <andru@nikita.localnet>  Wed, 19 Jun 2002 15:53:04 +1200
+
+bonddb (0.5.9-2) unstable; urgency=low
+
+  * Deleation bug fixed 
+
+ -- Andrew Hill <andru@nikita.localnet>  Wed, 19 Jun 2002 13:58:32 +1200
+
+bonddb (0.5.9-1) unstable; urgency=low
+
+  * Major bug fixes, removal of memory testing 
+
+ -- Andrew Hill <andru@nikita.localnet>  Wed, 19 Jun 2002 11:49:11 +1200
+
+bonddb (0.5.9) unstable; urgency=low
+
+  * Speed improvements, test for ymca 
+
+ -- Andrew Hill <andru@nikita.localnet>  Wed, 12 Jun 2002 18:24:56 +1200
+
+bonddb (0.5.8-1) unstable; urgency=low
+
+  * Minor changes.   
+
+ -- Andrew Hill <andru@nikita.localnet>  Mon, 10 Jun 2002 13:26:42 +1200
+
+bonddb (0.5.8) unstable; urgency=low
+
+  * Added support for plugins in config file 
+
+ -- Andrew Hill <andru@nikita.localnet>  Tue,  4 Jun 2002 00:19:40 +1200
+
+bonddb (0.5.7-4) unstable; urgency=low
+
+  * Bug fixes for db_loadobjectbyobject 
+
+ -- Andrew Hill <andru@nikita.localnet>  Fri, 31 May 2002 14:59:20 +1200
+
+bonddb (0.5.7-3) unstable; urgency=low
+
+  * Bug fix for dbobjectdel, got test 39 working, bug fix for burearcrat 
+
+ -- Andrew Hill <andru@nikita.localnet>  Thu, 30 May 2002 17:30:12 +1200
+
+bonddb (0.5.7-1) unstable; urgency=low
+
+  * Speed up memory debugging code, turn it to be always on 
+
+ -- Andrew Hill <andru@nikita.localnet>  Thu, 30 May 2002 13:19:42 +1200
+
+bonddb (0.5.7) unstable; urgency=low
+
+  * Removed all memory leaks. Yes every single damn last one of them. 
+
+ -- Andrew Hill <andru@nikita.localnet>  Thu, 30 May 2002 01:09:57 +1200
+
+bonddb (0.5.6) unstable; urgency=low
+
+  * Replaced SQL parser with a fancy new one.  A lot of bug fixes, more
+    tests written. 
+
+ -- Andrew Hill <andru@nikita.localnet>  Tue, 28 May 2002 00:35:55 +1200
+
+bonddb (0.5.4-1) unstable; urgency=low
+
+  * A number of minor bug fixes from 0.5.4 (and a few major ones), and 
+    release to make sure that bond 0.3.4 is upto date with this version. 
+ 
+ -- Andrew Hill <andru@nikita.localnet>  Tue,  7 May 2002 15:13:53 +1200
+
+bonddb (0.5.4) unstable; urgency=low
+
+  * Bug fixes to filters and additions to filter api. 
+
+ -- Andrew Hill <andru@nikita.localnet>  Tue, 30 Apr 2002 01:08:55 +1200
+
+bonddb (0.5.2-3) unstable; urgency=low
+
+  * Still trying to fix dependences issues between differing versions of
+    postgresql 
+
+ -- Andrew Hill <andru@nikita.localnet>  Mon, 22 Apr 2002 16:24:14 +1200
+
+bonddb (0.5.2) unstable; urgency=low
+
+  * Support postgresql 7.2, finish filters 
+
+ -- Andrew Hill <andru@treshna.com>  Wed, 17 Apr 2002 15:10:37 +1200
+
+bonddb (0.5.1) unstable; urgency=low
+
+  * Bug fixes, filters, test suites and more database support work 
+
+ -- Andrew Hill <andru@treshna.com>  Wed, 10 Apr 2002 13:50:14 +1200
+
+bonddb (0.4.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Andrew Hill <andru@treshna.com>  Wed, 27 Feb 2002 10:53:35 +1300
+

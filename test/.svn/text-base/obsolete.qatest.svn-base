@@ -1,0 +1,94 @@
+#!/bin/bash
+
+# qatest - Quality Assurance Test for bond, interacts with dbtest for use in 
+#   cron jobs and the like.
+#
+# Version 1.0, July 26th 2001 by Sascha Beaumont, sascha@treshna.com
+#
+# configuration
+IMG=images # image path
+DBTEST=../src/dbtest # executable
+LIMIT=24 # how many tests
+
+# begin main program... dont change below here unless
+# you are fixing or breaking stuff mkay.
+COUNT=0
+rm -f $IMG/blank &>/dev/null
+touch $IMG/blank
+((LIMIT = $(($LIMIT+1)) ))
+
+case "$1" in
+	imageall)
+		COUNT=0;
+		while (($COUNT < $LIMIT)); do
+		        IMG_STDOUT=$IMG/db-test.$COUNT
+		        echo -n "Creating/Replacing images for test $COUNT..."
+			rm -f $IMG_STDOUT &> /dev/null
+			$DBTEST $COUNT 1 > $IMG_STDOUT 2> /dev/stderr
+			echo "done."
+			((COUNT=$(($COUNT+1))))
+	        done
+		;;
+	image)
+		IMG_STDOUT=$IMG/db-test.$2
+
+		if [ "!$2" = "!" ]; then
+			echo "Usage: $0 $1 n \n Where 'n' is image to create"
+			exit 0
+		fi
+		echo -n "Creating/Replacing images for test $2..."
+		$DBTEST $2 1 > $IMG_STDOUT 2> /dev/stderr
+		echo "done."
+		exit 0
+        ;;
+	test)
+	        COUNT=$2
+		LIMIT=$2
+		((LIMIT = $(($LIMIT+1)) ))
+		echo $COUNT
+		echo $LIMIT
+		# fall through to below
+        ;;
+	testall)
+		# fall through to below
+	;;
+	*)
+		echo "Usage: $0 [image|imageall|test] <n>"
+		echo -e "\timage: create sample image for test case 'n'"
+		echo -e "\timageall: create all images"
+		echo -e "\ttest: run all tests"
+		echo -e "\n\t code errors are displayed on stderr, readable "
+		echo -e "\tpass/fail test results are displayed on stdout."
+		echo -e "\tTry using as $0 test 2> err.log"
+		exit 0;
+esac              
+
+while (($COUNT < $LIMIT)) ; do
+	echo  -n "Test $COUNT..." 
+	TST_STDOUT=/tmp/db-test.$COUNT.stdout
+	TST_STDERR=/tmp/db-test.$COUNT.stderr
+	IMG_STDOUT=$IMG/db-test.$COUNT
+	$DBTEST $COUNT 1 > $TST_STDOUT 2> $TST_STDERR
+	# do stdout compare
+	echo -ne "\tstdout..."
+	if ( diff $TST_STDOUT $IMG_STDOUT &> /dev/null ) ; then
+		echo -n "pass"
+	else
+		echo -n "***fail***"
+		echo -e "\tTest $COUNT failed stdout image compare" > /dev/stderr
+		diff $TST_STDOUT $IMG_STDOUT &> /dev/stderr
+	fi	
+	# do stderr compare
+	echo -ne ", stderr..."
+	if ( diff $IMG/blank $TST_STDERR &> /dev/null ); then
+		echo  "pass"
+	else
+		echo  "***fail***"
+		echo -e "\n\aTest $COUNT failed stderr check" > /dev/stderr
+		echo "---------------------------" > /dev/stderr
+	        cat $TST_STDERR                                > /dev/stderr
+	fi
+
+	((COUNT = $(($COUNT+1)) ))
+	rm -f $TST_STDERR $TST_STDOUT
+done

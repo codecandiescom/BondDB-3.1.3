@@ -1,0 +1,49 @@
+Import('env','usrlocal', 'pg','bondcommon','bondsql')
+
+nv = env.Copy()
+
+list=[]
+
+if int(pg):
+	nv.Append(CCFLAGS = '-D_PGSQL')
+	list += Split('dbpgsql.c dbpgsqlgather.c')
+	# add support for postgresql
+	PG_CCFLAGS = ' -I`pg_config --includedir` '
+	PG_LINKFLAGS = ' -L`pg_config --libdir` -lpq ' 
+	if env['XMINGW']:
+		nv.Append(LIBS=["libpq"]);
+	else:
+		nv.Append(CCFLAGS=PG_CCFLAGS, LINKFLAGS=PG_LINKFLAGS)
+	
+# Add bondcommon and bondsql
+
+# Source files
+list += Split('dbgather.c dbwrapper.c dbconstraint.c dbmethod.c \
+	dbcommentcallback.c dbmethodmodule.c safescanner.c \
+	dbclient.c db.c dbobject.c dbmasteroftable.c dblooksee.c \
+	dbmapme.c dbdefault.c dbobjectnav.c dboo.c dboosql.c dbpath.c \
+	dbobjectdel.c dbobjectvalid.c dbuniqueid.c dblog.c \
+	dbtoliet.c dbbureaucrat.c dbfilter.c dbcache.c dbfield.c \
+	dbsuggest.c dbbirth.c dbverifysql.c dbsqlparse.c')
+
+headerlist = Split('db.h dbclient.h dbobject.h dbgather.h dbconstraint.h \
+	dbmapme.h dbobjectdel.h dbobjectvalid.h dbobjectnav.h \
+	dbuniqueid.h dblog.h dbtoliet.h dbbureaucrat.h \
+	dbbirth.h dbheader.h dbwrapper.h dbpgsql.h \
+	dblooksee.h dbdefault.h	dbsqlparse.h \
+	dbpath.h dbfield.h dbfilter.h dbcache.h \
+	dbmethod.h dbcommentcallback.h dbmethodmodule.h')
+
+l = nv.SharedLibrary('#lib/bonddb',list)
+testprog = nv.Copy()
+testprog.Append(LIBS='bonddb')
+testprog.Append(LIBPATH='#src')
+testprog.Append(CPPPATH='#src')
+
+testprog.Program('dbtest',['dbtest.c'])
+
+env.InstallPerm(usrlocal+'include/bond', headerlist, 0444)
+env.InstallPerm(usrlocal+'lib',l,0444)
+il = env.Alias('install-lib', usrlocal+'lib')
+ih = env.Alias('install-header', usrlocal+'include/bond')
+env.Alias('install',[il, ih])

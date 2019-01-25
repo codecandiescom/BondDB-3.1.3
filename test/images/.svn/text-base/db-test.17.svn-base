@@ -1,0 +1,5 @@
+ <dbtest.c:406 main();> Testing dbmapme module, phase 2[0m
+ <dbtest.c:411 main();> Creating map, retval is 0[0m
+ <dbtest.c:413 main();> Person loaded at moment is Avis[0m
+ <dbtest.c:417 main();> Rank of person is General[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

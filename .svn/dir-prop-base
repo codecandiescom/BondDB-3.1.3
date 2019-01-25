@@ -1,0 +1,15 @@
+K 10
+svn:ignore
+V 71
+.sconf_temp
+config.log
+.sconsign
+svn-commit.tmp
+*.swp
+.sconsign.dblite
+
+K 13
+svn:mergeinfo
+V 18
+/bonddb/trunk:3968
+END

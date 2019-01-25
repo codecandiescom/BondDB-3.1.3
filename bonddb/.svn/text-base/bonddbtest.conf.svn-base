@@ -1,0 +1,64 @@
+# ================================================
+# Postgresql Database Configuration
+# 
+# 
+db_host = localhost
+db_username = liam
+db_password = liam
+db_name = testbond
+
+db_remote_write = true
+db_name_remote_write = testdb2
+
+# Backend is the library to run which is used to send sql commands though
+# Use gda to support all database, pgsql for a direct postgresql connection.
+#db_backend = mysql 
+#db_backend = gda
+# In the case of gda, you need a provider also. see www.gnome-db.org for
+# options here.  postgresql, odbc, mysql and many others could be
+# specified here.
+db_provider = PostgreSQL
+#db_provider = MySQL
+
+
+# A database conncetion string doesn't have to be provided, it will be used
+# over any db_name, db_host etc specified.  It allows you to pass in more
+# options for setting up the database connection. Ie if you wanted to connect
+# on a specific port or wanted encrpytion here is where you specify those
+# options. Please refer to your postgres documentation for details.
+# For using libgda see www.gnome-db.org website for details on connection
+# strings, there format is a little different with HOSTNAME=x;DATABASE=y
+db_connection_string =
+
+# ================================================
+# Debugging Messages
+# 
+# 
+debug_enabled = true
+# This is where the standard debugging and log messages go. It can be 
+# stdout (ouputs to the console), stderr, or null to have no debugging 
+# messages or the name of a file that will be appended to with the 
+# log messages.
+debug_stream_stdout = stdout
+# The location to send error messages. Can be a file, stdout, stderr etc.
+debug_stream_stderr = stderr
+# The dump stream is any log messages that are to be excluded from going
+# to the stdout stream.  Ie, if it is above the current debug_level or
+# is a file not included in the debug_only options.  Leave blank or null
+# to just ignore these messages.
+debug_stream_dump = 
+# If a error message is to cause the programme to terminate.
+debug_breakonerror = true
+# If a warning message is to cause the programme to terminate.
+debug_breakonwarning = true
+# Debugging level. 0 means exclude all messages, 100 means include everything.
+# messages will generally have a value of importance attached to them, 
+# so you can 
+debug_level = 100
+# If you only want to display debugging output from certain files specify
+# them in a debug_only list, debug_list is repeated once for every file.
+# ie. debug_only dbtest.c.  Leave these blank to not show all debugging
+# output.
+debug_only = 
+debug_only = 
+

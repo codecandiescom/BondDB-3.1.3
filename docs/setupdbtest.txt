@@ -1,0 +1,76 @@
+
+In order to run dbtest you need to create a test database. Adding database
+users and privileges can be a terribly complicated and frustrating step
+for new users so we'll try to guide you as much as possible.
+
+** For the easiest setup, first install the 'sudo' program, and then add
+   the following line to /etc/sudoers:
+
+	YOUR_USUAL_USERNAME	ALL=(ALL) ALL
+
+   (This will allow YOUR_USUAL_USERNAME to run commands as the superuser,
+   which will greatly simplify the rest of instructions).
+
+** Then, to create a test database named 'testbond', and assuming your
+   postgres admin user is 'postgres', do this:
+
+	sudo -u postgres createdb testbond
+
+   (If you're asked for a password, type in your user's password, not 
+   root or some other password).
+
+   In any case, what you need to do here is somehow run 'createdb testbond'
+   and get PostgreSQL to reply with "CREATE DATABASE".
+
+** Then, add a role for yourself:
+
+	sudo -u postgres createuser YOUR_USUAL_USERNAME
+
+   Again, what you need to do here is somehow run 'createuser ...' and
+   get PostgreSQL to reply with "CREATE ROLE".
+
+** Then, enter directory bonddb/ in your bonddb distribution and 
+   edit the bonddbtest.conf file in there.
+   (The database name will already match, just replace 'andru' with
+   YOUR_USUAL_USERNAME, set password to a value of your choice, and make
+   sure db_backend is set to pgsql. The rest of options are debug-related
+   and you can leave them alone).
+
+** Unless the following line is already present in your pg_hba.conf file,
+   execute this to add an appropriate access entry line to Postgres:
+
+	echo "host all all 127.0.0.1/32 md5"  >> \
+		/etc/postgresql/8.1/main/pg_hba.conf
+
+   (Of course, find the exact location of your pg_hba.conf by running
+   find /etc -name pg_hba.conf).
+
+** Get into psql as admin user and set password for YOUR_USUAL_USERNAME:
+
+	sudo -u postgres psql template1
+	alter user YOUR_USUAL_USERNAME password 'SOMETHING';
+
+   (Remember that it must be the same password you already defined
+   in bonddbtest.conf above; make sure they match).
+
+** To verify the above, execute:
+
+	psql testbond YOUR_USUAL_USERNAME -h localhost --password
+
+   After typing in the password SOMETHING, you should be in the psql prompt,
+   which is OK.
+
+** We now need to create the test database. Change directory to your base
+   bonddb directory (cd ..), then enter psql again (as shown in the previous
+   step), and do:
+
+	\i createtestdb.sql
+
+   That should create some entries in your database, that you can check
+   by just executing \d (type: \dENTER) within psql.
+
+** That's it! You may now go to the bonddb/ directory (cd bonddb), and
+   run ./bonddbtest . The test program and the example data probably
+   won't always be synchronized, so don't worry if you get an error along
+   the way - it's just important that the first few test succeed as a proof
+   of concept ;-)

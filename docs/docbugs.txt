@@ -1,0 +1,5 @@
+There has been some unknown problems with certain versions of postgresql
+7.0 or later. While 7.1 should work fine, and varying versions of 7.1, this
+hasn't always been true under all circumstances.  I'd recommend using
+7.2.
+

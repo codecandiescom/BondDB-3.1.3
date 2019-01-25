@@ -1,0 +1,36 @@
+ <dbtest.c:852 main();> rebuilt string: select *, wibble, pig.blah, spoon from foo, membership where ((blah = smu) and ((name like '%joe') or (foo is waa))) order by member.oid group by wibble[0m
+query: select *, wibble, pig.blah, spoon from foo, membership where blah=smu and (name like '%joe' or foo is waa) order by member.oid group by wibble
+  fields:
+    *
+    wibble
+    pig.blah
+    spoon
+  from:
+    table: foo
+    table: membership
+  where:
+    pair: 0
+    left:
+        op: =
+        left:
+          blah
+        right:
+          smu
+    right:
+      pair: 1
+      left:
+          op: LIKE
+          left:
+            name
+          right:
+            '%joe'
+      right:
+          op: IS
+          left:
+            foo
+          right:
+            waa
+  order by:
+    member.oid
+  group by:
+    wibble

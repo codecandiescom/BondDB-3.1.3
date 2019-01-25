@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}/local
+libdir=${exec_prefix}/lib
+includedir=${prefix}/local/include
+
+Name: bondcommon
+Description: Bond Common Library
+Version: 0.7.99
+Libs: -L${libdir} -lbondcommon
+Cflags: -I${includedir}/bond

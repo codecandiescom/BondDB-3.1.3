@@ -1,0 +1,192 @@
+#!/bin/bash
+
+# qabondDB - Quality Assurance Test for bond DB, interacts with dbtest
+#              for use in cron jobs and the like.
+#          - This program is based on qatest written by Sascha
+#
+# - Version 1.0, March 26th 2002 by Francis - Simplified code a bit.
+#      1. diff with blank file can be checked with file size
+#         testing operator -s
+#      2. Modified to > /dev/stderr to >> /dev/stderr so that
+#         other programs can redirect error information
+#      3. Changed ((VAR = $(( $VAR+1 )) )) to just VAR=$(( $VAR + 1 )).
+#         Please note that in shell script there should be no space
+#         before and after = assignment operator
+#      4. SET_DEBUG_LINE_NUM configuration support
+
+# configuration
+TEST_DIR=`pwd`
+IMG=${TEST_DIR}/images # image path
+DBTEST=${TEST_DIR%/*}/src/dbtest # executable
+LIMIT=39 # how many tests
+SET_DEBUG_LINE_NUM="TRUE"
+HTMLMODE=1
+#HTMLMODE=0
+
+if (($HTMLMODE == 1)); then
+	BOH='<H2><FONT COLOR="BLUE" FACE="Helvetica">' # Begin stdOut Header
+	BEH='<H2><FONT COLOR="RED" FACE="Helvetica">' # Begin stdErr Header
+	EH="</FONT></H2>" # End Header
+fi
+
+
+######################################################################
+# begin main program... dont change below here unless
+# you are fixing or breaking stuff mkay.
+COUNT=0
+LIMIT=$(( $LIMIT+1 ))
+
+
+
+# Go to src directory
+cd ../src
+
+case "$1" in
+	imageall)
+		while (($COUNT < $LIMIT)); do
+			IMG_STDOUT=$IMG/db-test.$COUNT
+			echo -n "Creating/Replacing images for test $COUNT..."
+			rm -f $IMG_STDOUT &> /dev/null
+
+			if [[ $SET_DEBUG_LINE_NUM == "TRUE" ]]; then
+				$DBTEST $COUNT 1 >$IMG_STDOUT 2>/dev/stderr
+			else
+				$DBTEST $COUNT >$IMG_STDOUT 2>/dev/stderr
+			fi
+
+			echo "done."
+			COUNT=$(( $COUNT+1 ))
+		done
+		exit 0
+		;;
+	image)
+		IMG_STDOUT=$IMG/db-test.$2
+
+		if [ "!$2" = "!" ]; then
+			echo "Usage: $0 $1 n \n Where 'n' is image to create"
+			exit 0
+		fi
+		echo -n "Creating/Replacing images for test $2..."
+
+		if [[ $SET_DEBUG_LINE_NUM == "TRUE" ]]; then
+			$DBTEST $2 1 >$IMG_STDOUT 2>/dev/stderr
+		else
+			$DBTEST $2 >$IMG_STDOUT 2>/dev/stderr
+		fi
+
+		echo "done."
+		exit 0
+		;;
+	test)
+		COUNT=$2
+		LIMIT=$2
+		LIMIT=$(( $LIMIT+1 ))
+		echo $COUNT
+		echo $LIMIT
+		# fall through to below
+		;;
+	testall)
+		# fall through to below
+	;;
+	*)
+		echo "Usage: $0 [image|imageall|test|testall] <n>"
+		echo -e "\timage    : create sample image for test case 'n'"
+		echo -e "\timageall : create all images"
+		echo -e "\ttest     : run test case 'n'"
+		echo -e "\ttestall  : run all tests"
+		echo -e "\n\t code errors are displayed on stderr, readable "
+		echo -e "\tpass/fail test results are displayed on stdout."
+		echo -e "\tTry using as $0 test 2> err.log"
+		exit 0;
+esac
+
+######################################################################
+#
+# NOTE: To separate stderr stream of temporary file and this script's
+#       genuine stderr report feature
+#
+
+ANOTHER_COUNTER=$COUNT
+while (($ANOTHER_COUNTER < $LIMIT)); do
+	#echo -n "Test $COUNT..." 
+
+	TST_STDOUT=/tmp/db-test.$ANOTHER_COUNTER.stdout
+	TST_STDERR=/tmp/db-test.$ANOTHER_COUNTER.stderr
+	IMG_STDOUT=$IMG/db-test.$ANOTHER_COUNTER
+
+	if [[ $SET_DEBUG_LINE_NUM == "TRUE" ]]; then
+		$DBTEST $ANOTHER_COUNTER 1 >$TST_STDOUT 2>$TST_STDERR
+	else
+		$DBTEST $ANOTHER_COUNTER >$TST_STDOUT 2>$TST_STDERR
+	fi
+	ANOTHER_COUNTER=$(( $ANOTHER_COUNTER+1 ))
+done
+
+
+#(($HTMLMODE==1)) && echo "<html><head><title>Test Error Report</title></head><body>" >/dev/stderr
+
+if (($HTMLMODE==1)); then
+	ANOTHER_COUNTER=$COUNT
+
+	while (( $ANOTHER_COUNTER < $LIMIT )); do
+		TST_STDOUT=/tmp/db-test.$ANOTHER_COUNTER.stdout
+		TST_STDERR=/tmp/db-test.$ANOTHER_COUNTER.stderr
+		IMG_STDOUT=$IMG/db-test.$ANOTHER_COUNTER
+
+		if ( ! diff $TST_STDOUT $IMG_STDOUT &> /dev/null ) \
+			|| [ -s $TST_STDERR ]; then
+
+			# If only stderr exists, then set link to ERR${COUNT}
+			if ( diff $TST_STDOUT $IMG_STDOUT &> /dev/null ) \
+				&& [ -s $TST_STDERR ]; then
+
+				echo '<A HREF="#ERR'${ANOTHER_COUNTER}'">'"Go to test ${ANOTHER_COUNTER}"'</A>' >>/dev/stderr
+			else
+				echo '<A HREF="#OUT'${ANOTHER_COUNTER}'">'"Go to test ${ANOTHER_COUNTER}"'</A>' >>/dev/stderr
+
+			fi
+		fi
+
+		ANOTHER_COUNTER=$(( $ANOTHER_COUNTER+1 ))
+	done
+fi
+
+while (($COUNT < $LIMIT)); do
+	echo -n "Test $COUNT..."
+
+	TST_STDOUT=/tmp/db-test.$COUNT.stdout
+	TST_STDERR=/tmp/db-test.$COUNT.stderr
+	IMG_STDOUT=$IMG/db-test.$COUNT
+
+	########################################
+	# Do STDOUT compare
+	echo -ne "\tstdout..."
+	if ( diff $TST_STDOUT $IMG_STDOUT &> /dev/null ); then
+		echo -n "pass"
+	else
+		echo -n "***fail***"
+		(( $HTMLMODE == 1 )) && ANCHOR="<A NAME=OUT${COUNT}>"
+		echo -e "\n${BOH}${ANCHOR}Test $COUNT failed stdout image compare${EH}" >> /dev/stderr
+		(( $HTMLMODE != 1 )) && echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" >>/dev/stderr
+		diff $TST_STDOUT $IMG_STDOUT >>/dev/stderr 2>&1
+	fi  
+
+	########################################
+	# Do STDERR compare
+	echo -ne ", stderr..."
+	if [ ! -s $TST_STDERR ]; then
+		echo  "pass"
+	else
+		echo  "***fail***"
+		(( $HTMLMODE == 1 )) && ANCHOR="<A NAME=ERR${COUNT}>"
+		echo -e "\n${BEH}${ANCHOR}Test $COUNT failed stderr check${EH}" >> /dev/stderr
+		(( $HTMLMODE != 1 )) && echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" >>/dev/stderr
+		cat $TST_STDERR >>/dev/stderr
+	fi
+
+	# Increase the counter and delete the temporary file
+	COUNT=$(( $COUNT+1 ))
+	rm -f $TST_STDERR $TST_STDOUT &> /dev/null
+done
+
+#(($HTMLMODE==1)) && echo "</body></html>" >>/dev/stderr

@@ -1,0 +1,15 @@
+ <dbtest.c:338 main();> Testing add object by another object[0m
+ <db.c:895 db_addobjecttoobject();> Spring Chickens![0m
+ <db.c:387 db_setvalue_nomark();> adding in some default values of 3 to rankid[0m
+ <dbobject.c:269 db_obj_sqlwrite();> INSERT INTO soldier (id,name,dob,active,rankid,countryid,nihil) VALUES ('6','cannon fodder','2000-12-21','t','3','1','f')[0m
+ <dbtoliet.c:100 db_toliet_flush();> i've just done an insert on soldier, with 1 1 items there[0m
+ <dbtest.c:351 main();> Retval from load by object 0[0m
+ <dbtest.c:352 main();> Number of corporals: 2[0m
+ <dbtest.c:359 main();> Private: Liam[0m
+ <dbtest.c:364 main();> Private: cannon fodder[0m
+ <dbobjectdel.c:146 db_del_getchildren();> Loading children from weapon.soldierid where value is 6[0m
+ <dbobject.c:210 db_obj_sqlread();> No records found for loading SELECT *,oid FROM weapon WHERE soldierid='6'[0m
+ <db.c:527 db_deleteobject();> This is going to delete recusively.  TEST WELL BEFORE USE![0m
+ <dbobjectdel.c:322 db_del_deleteall();> delllist->objlist is null[0m
+ <dbobjectdel.c:355 db_del_deleteall();> deleting records[0m
+ <dbtest.c:1454 test_total();> TEST PASSED[0m

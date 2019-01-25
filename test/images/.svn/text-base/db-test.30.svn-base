@@ -1,0 +1,3 @@
+ <dbtest.c:715 main();> TEST PASSED[0m
+ <dbtest.c:721 main();> For the record the sql string returned was ...[0m
+ <dbtest.c:722 main();> ...select *,oid from whatever[0m

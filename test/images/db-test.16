@@ -1,0 +1,6 @@
+ <dbtest.c:378 main();> Testing dbmapme module[0m
+ <dbtest.c:381 main();> Searching for the reference 'description' returned rank[0m
+ <dbtest.c:384 main();> Searching for the reference 'rank.description' returned rank[0m
+ <dbtest.c:387 main();> Searching for the reference 'rank_id.description' returned rank[0m
+ <dbtest.c:390 main();> Suggested table for 'rank.description' is rank[0m
+ <dbtest.c:394 main();> Suggested field for 'rank.description' is description[0m

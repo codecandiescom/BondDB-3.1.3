@@ -1,0 +1,117 @@
+bonddb
+
+http://bonddb.treshna.com
+==========================================================================
+
+Setting Up:
+----------
+
+In order to make and install this library you need postgresql development
+files and glib installed on your system.  Make sure you have postgresql
+version 7.3 or higher and glib1.2 or higher installed if you run into
+problems.
+
+To compile bonddb you need scons installed. Scons is a Makefile
+replacement. Make compatibility has been left in. 
+Type the following to build the source code.  
+   scons
+   scons install (NOTE: must be root user to perform this install) 
+
+The dbtest programme requires a sample database set up on your system.
+It will use this database to test itself and functionality.  
+
+General Notes:
+
+Please check the docs directory, website and reference directory for
+more information on using bonddb.  db.h is the main api file which you
+should include in your source code.  It can be quicker to look up the
+functions in the db.c and db.h file as a quick reference on the api calls.
+
+The library currently has high debugging on and told to get the hell out of
+there if it thinks anything is slightly wrong.  This will mean your get a
+lot of assertion failures when you first start playing, don't worry about it.
+In time when i believe this to be really stable a lot of the assertions will
+be made warnings. At the moment if data is missing from the database, or a 
+form references a field that doesn't exist, or a 101 other minor things 
+happen when you first create your fields bond calls an g_assert(NULL); 
+
+NOTE:Unless the following  packages are installed, bond will not work:
+	   - flex
+	   - bison	    
+	   - libtool
+	   - postgresql-dev
+	   - libglib2.0
+
+
+Libgda installation
+-------------------
+
+(libgda is NOT required if you use direct connection to PostgreSQL).
+
+Bonddb uses libgda version 1.3. For debian sarge users, you'll have to
+install from source or cvs. It can be quite a mission to get it working, if
+you get errors like GdaColumn not found etc when compiling it means your
+using a version which is too old. This GNOME Data Abstraction layer can be
+downloaded from http://www.gnome-db.org/
+
+Gotcha's
+---------------------
+
+when installing.
+
+this:
+
+  $ su root scons install
+
+may not work...
+
+this:
+
+  $ su root
+  password:
+  # scons install 
+
+should work.
+
+To install the libraries, /etc/ld.so.conf may need editing. Ensure that
+/usr/local/lib is listed, adding it if not, then run ldconfig.
+
+Sometimes bonddb2.pc does not install into the right location. This defaults
+to /usr/lib/pkgconfig.  But can be overridden with the PKG_CONFIG_PATH variable before you compile and install bonddb.
+ie.
+  
+  export PKG_CONFIG_PATH = /usr/local/lib/pkgconfig
+  scons install
+
+
+to build for windows 
+------------------------
+
+install 
+  mingw32
+  cross-tools    from svn.treshna.com/pub/cross-tools/trunk
+  gtk-devel      etc for windows into /usr/i586-mingw32/usr/
+  libpq          etc...
+  
+run 
+  cross-scons
+  su root
+  cross-scons install 
+  
+  (which copies libs etc to /usr/i586-mingw32/usr/local/...)
+  
+Testing if you installed bonddb ok.
+--------------------------------------
+
+This should tell you the version of bonddb you have installed :
+
+pkg-config bonddb2 --modversion
+
+To test bonddb works fine run these commands :
+
+createdb testbond
+psql -f createtestdb.sql testbond
+cd bonddb
+./bonddbtest
+
+
